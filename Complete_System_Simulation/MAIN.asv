@@ -36,23 +36,17 @@ InicializaRuido;
 
 %% Global variable(s) - MUST COME HERE, strictly after the initialisation
 global Sim Sim_Plot Time ROV Torque SLC SP WP yaw  V ;
-V   = zeros(1,numel(Time)*SLC.Freq);
+V = zeros(1,numel(Time)*SLC.Freq);
 yaw = 0;
-
-% Auxiliar variables to integrate
-Aux = [];
-
 %% Catamaran Physical Properties
-% Fisical properties Initialization
 PhysicalProperties;
 
-%% Controller Project
+%% Calcula os ganhos dos controladores
 Calc_Controllers;
-
 %% Creates SetPoints to Be Tracked
 SetPointsCreation(Nome);
 
-%% Select use or not use the L1_controler
+%% Controle de Posição
 switch Nome
     case {'Figura','LinearX','Oito'}
         L1_controller = 1;
@@ -60,10 +54,13 @@ switch Nome
         L1_controller = 0;
 end
 
-%% Starts the simulation
-tic;        % Starts the stopwatch timer
+%% Auxiliar variables to integrate
+Aux = [];
+
+%% Starts the stopwatch timer
+tic;
 for i = 1:numel(Time)
-    %% Chose when follow to the next waypoint
+    %% Desenvolvimento do caminho
     if((norm(SP.XYZ(1:2,WP) - Sim.Current_X_Y_psi(1:2)))<3 && WP<length(SP.XYZ(1,:)))
         WP = WP+1;
     end
