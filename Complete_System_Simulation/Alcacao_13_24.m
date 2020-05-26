@@ -1,15 +1,17 @@
-function [Th,PWM] = Alcacao_13_24(Fi,th,pwm,k)
-global Fmax Nmax DEG_TO_RAD RAD_TO_DEG Lx Ly Pwmmax Pwmmin k1 k2 k3 k4 M_PI;
+function [Th,PWM] = Alcacao_13_24(Fi,th,pwm)
+global Fmax  DEG_TO_RAD RAD_TO_DEG Lx Ly Pwmmax Pwmmin k1 k2 k3 k4 M_PI;
 
-FX = Fi(1) * Fmax;
-FY = Fi(2) * Fmax;
-TN = Fi(3) * Nmax;
+FX = Fi(1);
+FY = Fi(2);
+TN = Fi(3);
 
 %% Dependendo da ordem de alocação, um dos conjuntos abaixo nao é usado
-PWM = NormtoPWM(pwm(:,k));%       // Converte o valor normalizado de 0  a 1 para PWM
-Th  = th(:,k) .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
+PWM = NormtoPWM(pwm);%       // Converte o valor normalizado de 0  a 1 para PWM
+Th  = th .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
 
 K1 = diag([k1  k2  k3  k4]);
+
+%%
 
 M2 = [0             cos(Th(1))      0           cos(Th(2));
     0             sin(Th(1))      0           sin(Th(2));
@@ -47,9 +49,7 @@ Th(3,1) = TH1;
 Th(4,1) = TH2;
 
 Th  = Satura(Th,M_PI,-M_PI);
-%% Saturações
-% PWM = Satura(PWM,Pwmmax,Pwmmin);
-% Th  = Satura(Th,M_PI,-M_PI);
+%%
 
 PWM = PWMtoNorm(PWM);
 Th = Th .* RAD_TO_DEG;

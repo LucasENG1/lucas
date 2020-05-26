@@ -28,9 +28,9 @@ Sim.Ts = 0.01;
 %% >>>>>>>>>>>>>>>  Emulando o uso do controle remoto
 % vetor para construir um quadrado unitário
 salva = 0;
-N = {'Cenario1','Cenario2','Cenario3'};
+N = {'Cenario1','Cenario2','Cenario3','Cenario4'};
 
-Nome = N{2};
+Nome = N{4};
 
 switch Nome
     case 'Cenario2'
