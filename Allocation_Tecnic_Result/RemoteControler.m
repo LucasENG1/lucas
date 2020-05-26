@@ -59,7 +59,7 @@ for i=1:length(X)
     F(:,i) = [Xmap(i);Ymap(i);TNmap(i)];
     
     %% matriz de alocação
-    [theta(:,i+1),Pwm(:,i+1)] = Fossen_alocation(F(:,i),theta,Pwm,i);
+    [theta(:,i+1),Pwm(:,i+1)] = Alcacao_13_24(F(:,i),theta,Pwm,i);
     
     %% alocação direta para conferir
     F_out(:,i)  = Aloc_Direta(theta(:,i+1),Pwm(:,i+1));
