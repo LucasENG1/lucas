@@ -7,6 +7,7 @@ global M_PI DEG_TO_RAD RAD_TO_DEG WP;
 numFig = 1;         % Initialises figure index
 WP     = 1;         % Initialises WP index
 
+
 %% Mantendo o padrão utilizado no C
 
 M_PI = pi;

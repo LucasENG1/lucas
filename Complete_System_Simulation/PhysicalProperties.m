@@ -3,12 +3,14 @@
 %==========================================================================
 function PhysicalProperties
 % Global variable(s)
-global ROV APP L Lx Ly k1 Sat Pwmmax Pwmmin;
+global ROV APP Lx Ly k1 Sat Pwmmax Pwmmin;
 
-% PARAMETROS A SEREM DEFINIDOS
+% PARAMETROS A SEREM DEFINIDOS - Saturacao
 MaxVelX   = 3.05;
 MaxVelY   = 1.3;
 MaxVelAng = 2.32; %rad/s
+
+WpRadius  = 3;
 
 % Parametros construtivos
 m   = 20.8;
@@ -114,7 +116,7 @@ ROV = struct('mass',m,'ICG',Iz,'InertiaMatrix',IM,'IMrb',IMrb,'IMra',IMra,...
     'Nrdot',Nrdot,'Xuu', Xuu,'Yvv',Yvv,'Yvr',Yvr,'Nrv',Nrv,'Nvv',Nvv,...
     'Nvr', Nvr, 'Nrr', Nrr,'Xu', Xu, 'Yv', Yv, 'Yr', Yr, 'Nv', Nv,...
     'Nr', Nr, 'dcx', dcx,'dcbby', dcbby, 'dceby', dceby, 'CG', CG,...
-    'Bw1',Bw1,'Loa',Loa,'Lx',Lx,'Ly',Ly,'k1',k1,'L',L);
+    'Bw1',Bw1,'Loa',Loa,'Lx',Lx,'Ly',Ly,'k1',k1,'WpRadius',WpRadius);
 
 APP = struct('tau_mt', tau_mt,'tau_srv',tau_srv);
 end
