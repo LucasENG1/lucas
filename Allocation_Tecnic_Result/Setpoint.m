@@ -22,6 +22,12 @@ switch Name
         %         ([-1,g,1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1]);
         TN = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
         
+    case 'Torque'
+        X  = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
+        X  =  zeros(1,length(X));
+        Y  =  zeros(1,length(X));
+        TN = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
+        
     case 'Cenario4'
         % Cenario com valores total em Força
         X  = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);

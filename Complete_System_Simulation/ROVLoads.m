@@ -16,6 +16,7 @@ Coriolis = Coriolis_Effect_Cat(); % Parte da Equação 7.06 -- Fossen
 
 % Totals the net forces and moments
 [Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = Allocation_M13_24_PWM_Diferente(Sim.F(:,j),Sim.Theta(:,j),Sim.PWM(:,j));
+
 % [Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = DynamicsOfServosAndMotors((j+1),Sim.Theta,Sim.PWM);
 
 Sim.F_out(:,j) = Aloc_Direta(Sim.Theta(:,j+1),Sim.PWM(:,j+1));
