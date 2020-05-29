@@ -19,7 +19,7 @@ clear all; close all; clc;
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{5};
+SetPoint = Possible_SPs{7};
 Lang     = Language{2};
 
 % Plot Configuration
