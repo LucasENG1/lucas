@@ -1,4 +1,4 @@
-function [Th,PWM] = alocation_matrix(F,Th,PWM)
+function [Th,PWM] = Allocation_Mathaus(F,Th,PWM)
 global DEG_TO_RAD RAD_TO_DEG k1 M_PI Lx Ly Pwmmax Pwmmin;
 
 FX = F(1);

@@ -89,8 +89,7 @@ for i = 1:numel(Time)
         Sim_Plot.SP_Posi(:,j) = SP.XYZ(:,WP);
         Sim_Plot.SP_Vel(:,j)  = Sim.Vel(:,i);
         
-        s
-        pd(:,j) = BF2NED(Sim.Current_X_Y_psi(3),[Sim.Vel(1,i);0;0]);
+        spd(:,j) = BF2NED(Sim.Current_X_Y_psi(3),[Sim.Vel(1,i);0;0]);
         ayp(:,j) = BF2NED(Sim.Current_X_Y_psi(3),[0;2*Sim.Vel(2,i);0]);
     end
     % Plota a figura dinamica

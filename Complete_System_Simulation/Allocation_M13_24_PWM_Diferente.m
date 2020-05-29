@@ -1,4 +1,4 @@
-function [Th,PWM] = Alcacao_13_24(Fi,th,pwm)
+function [Th,PWM] = Allocation_M13_24_PWM_Diferente(Fi,th,pwm)
 global Fmax  DEG_TO_RAD RAD_TO_DEG Lx Ly Pwmmax Pwmmin k1 k2 k3 k4 M_PI;
 
 FX = Fi(1);
