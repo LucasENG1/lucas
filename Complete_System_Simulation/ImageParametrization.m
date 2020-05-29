@@ -18,8 +18,4 @@ Img.TlabelOpt = {'Interpreter','latex','FontWeight','bold','FontName', 'Times Ne
 Img.Legend    = {'Interpreter','latex','FontWeight','normal','FontName', 'Times New Roman','FontSize',11};
 Img.COR = [0.3 1 0.4]./2;
 
-
-
-
-
 end

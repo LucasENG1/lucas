@@ -1,5 +1,5 @@
-function [Th,PWM] = Allocation_M13_24_PWM_Diferente(Fi,th,pwm)
-global Fmax  DEG_TO_RAD RAD_TO_DEG Lx Ly Pwmmax Pwmmin k1 k2 k3 k4 M_PI;
+function [Th,PWM] = Allocation_M13_24_PWM_Diferent(Fi,th,pwm)
+global  DEG_TO_RAD RAD_TO_DEG Lx Ly Pwmmax Pwmmin k1 k2 k3 k4 M_PI;
 
 FX = Fi(1);
 FY = Fi(2);
@@ -12,10 +12,9 @@ Th  = th .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
 K1 = diag([k1  k2  k3  k4]);
 
 %%
-
-M2 = [0             cos(Th(1))      0           cos(Th(2));
-    0             sin(Th(1))      0           sin(Th(2));
-    Ly*cos(Th(1)) Lx*sin(Th(1)) Ly*cos(Th(2)) -Lx*cos(Th(2)) ];
+M2 = [0             cos(Th(1))      0              cos(Th(2));
+      0             sin(Th(1))      0              sin(Th(2));
+      Ly*cos(Th(1)) Lx*sin(Th(1))   Ly*cos(Th(2)) -Lx*cos(Th(2)) ];
 
 ep = 1e-15*eye(size(M2*transpose(M2))); % Resíduo para não deixar a matriz se tornar singular
 

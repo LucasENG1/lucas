@@ -73,12 +73,13 @@ for i = 1:numel(Time)
         
         %% Computes the net forces and moments acting on the ROV
         ROVLoads(j);
+        
         n_dot = BF2NED(Sim.Current_X_Y_psi(3),Sim.Current_u_v_r);
         v_dot = ROV.InverseInertia * (Torque - Sim.NetForces);
         
         %% Double integration: accelerations -> velocities -> position/attitude
         X = [n_dot; v_dot]; % Vetor de Estados
-        [AuxVector, Aux] = Integra(X,Aux,j);
+        [AuxVector, Aux] = Integration(X,Aux,j);
         
         Sim.u_v_r_dot(:,j+1) = v_dot;         % utilizada no controle de Velocidade
         Sim.Current_X_Y_psi  = AuxVector(1:3);% + sqrt(R_gps)*randn(size(AuxVector(1:3)));

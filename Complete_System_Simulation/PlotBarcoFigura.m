@@ -1,5 +1,4 @@
 function [] = PlotBarcoFigura(X_Y_psi,Theta, PWM,F)
-%%
 % Função para plotar o Barco em tamanho real 2D
 % x   = Posição x do veículo no referencial Global
 % y   = Posição y do veículo no referencial Global
@@ -9,7 +8,6 @@ function [] = PlotBarcoFigura(X_Y_psi,Theta, PWM,F)
 % aux= X_Y_psi;
 % X_Y_psi(1,:) = aux(2,:);
 % X_Y_psi(2,:) = aux(1,:);
-
 yaw   = X_Y_psi(end,:);
 global ROV DEG_TO_RAD;
 for i=1:length(yaw)

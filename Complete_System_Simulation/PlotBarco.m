@@ -7,7 +7,6 @@ function [] = PlotBarco(i)
 % yaw = Angulo de yaw do veículo no referencial fixo do corpo
 %%
 global ROV Sim;
-
 % Ajuste para plotar o veículo pois ele é desenhado com o eixo y no nariz
 % porém  o referencial do memso utiliza o eixo x
 yaw = Sim.Current_X_Y_psi(3);
@@ -50,5 +49,4 @@ plot3(Sim.Current_X_Y_psi(2),Sim.Current_X_Y_psi(1),0 ,'or','markersize',5);
 hold off
 grid
 view(2)
-
 end

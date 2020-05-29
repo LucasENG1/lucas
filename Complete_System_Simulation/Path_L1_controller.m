@@ -1,5 +1,5 @@
 function Path_L1_controller(stp)
-global Sim WP SP SLC Sat ;
+global Sim WP SP Sat ;
 
 groundspeed_vector = Sim.Current_u_v_r(1:2);
 groundSpeed = norm(Sim.Vel(1:2,stp));
@@ -81,7 +81,6 @@ Sim.Vel(2,stp) = latAccDem;
 %% Saturações
 Sim.Vel(1,stp) = Satura(Sim.Vel(1,stp),Sat.MaxVelX,-Sat.MaxVelX);
 Sim.Vel(2,stp) = Satura(Sim.Vel(2,stp),Sat.MaxVelY,-Sat.MaxVelY);
-
 
 %---------------------------------------------
 E = norm(SP.XYZ(1:2,WP) - Sim.Current_X_Y_psi(1:2));

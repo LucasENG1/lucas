@@ -2,7 +2,6 @@
 % This function computes the Hydrodynamic Resistance D(v)v acting on the ROV
 %===========================================================================
 function [Results] = Hydro_Resist()
-
 global ROV Sim;
 
 % Parametros de amortecimento linear

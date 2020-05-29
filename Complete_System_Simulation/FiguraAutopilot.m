@@ -21,7 +21,7 @@ Screen = [0.1 0.1 .55 .65];
 figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen,'InnerPosition',Screen};
 
 figure(figOpt{:});grid on;
-hold on 
+hold on
 % SetPoint
 s1 = plot(SP_y(1:G:end),SP_x(1:G:end),'--or','markersize',10,'linewidth',1.5);
 % Caminho Executado
@@ -44,4 +44,5 @@ legend(st1,'SetPoint','Caminho executado','Dire\c{c}\~ao de $L_{WP}$',...
 drawnow
 if(salva==1)
     saveas(gcf,strcat('Autopilot'),'epsc');
+end
 end

@@ -4,13 +4,6 @@
 function [Results] = Coriolis_Effect_Cat()
 global ROV Sim;
 
-% Alterações:
-% Data: 01 de agosto de 2018
-% Por quem: Marina
-% O que: Inseri parâmetros que são utilizados  pelo modelo oficial do
-% Fossen para 3 DOF e alterei a matriz de coriolis do corpo rígido e massa
-% adicionada. Inicialmente parâmetros foram chutados.
-
 % Parametros construtivos
 m  = ROV.mass;
 xg = ROV.CG(1);
@@ -33,7 +26,6 @@ CRB = [            0          0    -m*(xg*r + v);
                    0          0              m*u;
         m*(xg*r + v)       -m*u                0];
 
-    
 % Matriz de Coriolis - Massa Adicionada   6.51 --7.15
    
 CA = [                  0              0          Yvdot*v+Yrdot*r;

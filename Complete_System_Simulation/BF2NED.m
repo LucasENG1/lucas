@@ -8,7 +8,6 @@
 % celerations, or linear velocities, and the 2nd regarding angular quan-
 % tities, e.g. moments, angular accelerations, or angular velocities
 %==========================================================================
-
 function NEDVector3 = BF2NED(EulerAngles, BFVector)
 % EulerAngles
 % Pre-computations

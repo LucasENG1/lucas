@@ -13,7 +13,6 @@ d = 0.02;
 
 % ajuste para o plote
 %  yaw =-yaw;
-
 %Decomposição de Forças
 Fx = 0 ;%*cos(yaw);
 Fy = forca;% *sin(yaw);

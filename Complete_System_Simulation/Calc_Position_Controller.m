@@ -2,6 +2,7 @@ function [kpPosi,kiPosi,kdPosi] = Calc_Position_Controller()
 %% Controlador de Posição
 global Sat ;
 Raio = 10;
+
 % Posição X
 Px_umax = Sat.MaxVelX;
 Px_umin = 0;
@@ -25,6 +26,7 @@ Psi_Emax = pi/4; % radianos
 Psi_Emin = 0; %raio admitido
 
 kPYaw = calc_P_Gain(Psi_umax,Psi_umin,Psi_Emax,Psi_Emin);
+
 
 % Posição X
        kIX =  0;       kDX =  0;

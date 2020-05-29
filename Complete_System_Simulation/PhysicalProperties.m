@@ -16,7 +16,6 @@ WpRadius  = 3;
 m   = 20.8;
 xg  = -0.05;
 Iz  = 2.9824;
-
 L   = 0.586;
 
 Fmax = 2.1*9.81*4; % Força maxíma real
@@ -84,7 +83,6 @@ Nvr   = 0;
 % Nrv   =   0;
 % Nvv   =   0;
 % Nvr   =   0;
-
 
 %% Momentos e produtos de Inércia
 CG = [xg;0;0];

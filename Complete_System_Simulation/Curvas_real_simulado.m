@@ -94,7 +94,6 @@ xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YYaw3L{:},Img.YLabelOpt{:});
 
 linkaxes([vx1 vx2 vx3],'x')
-% linkaxes([vx1 vx2],'y')
 
 %% FORÇAS E ALOCAÇÃO
 force = figure(Img.figOpt3L{:});
@@ -174,9 +173,9 @@ switch Nome
         axis([-17.5 17.5 -2.5 32.5]);
         
         figure(posi3L)
-%         ylim(ax1,[10.25-20 10.25+20]);
-%         ylim(ax2,[11.25-20 11.25+20]);
-%         ylim(ax3,[-190  190]);
+        %         ylim(ax1,[10.25-20 10.25+20]);
+        %         ylim(ax2,[11.25-20 11.25+20]);
+        %         ylim(ax3,[-190  190]);
         xlim([0 TimeJ(end)])
         
         figure(vel3L)
@@ -202,7 +201,6 @@ if(salva==1)
     saveas(force,strcat(Nome,'ForcaServo'),'fig');
     
 end
-
 
 end
 

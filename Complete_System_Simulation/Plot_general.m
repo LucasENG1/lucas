@@ -34,4 +34,5 @@ title(sprintf('Tempo: %.2f s FX: %.4f FY: %.4f TN: %.4f\nPosicao: X = %.2f m, Y 
     j*Sim.Ts,Sim.F_out(1,j),Sim.F_out(2,j) ,Sim.F_out(3,j), Sim.Current_X_Y_psi(1),Sim.Current_X_Y_psi(2),Sim.Current_X_Y_psi(3)*180/pi,Sim.Current_u_v_r(1),Sim.Current_u_v_r(2),Sim.Current_u_v_r(3)*180/pi));
 
 drawnow
+
 end

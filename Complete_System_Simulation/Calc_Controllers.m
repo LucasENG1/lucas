@@ -1,5 +1,6 @@
 function Calc_Controllers()
 global Ctrl ;
+
 %% Control data structure (Ctrl)
 ErrPXYZprev  = zeros(3,1);
 ErrIXYZprev  = zeros(3,1);

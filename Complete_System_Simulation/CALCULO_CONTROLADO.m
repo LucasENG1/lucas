@@ -1,7 +1,6 @@
 close all; clear all; clc;
 
 %% CONTROLADOR PID ===> KD s^2 + KP s + KI
-
 %% Controlador de Posição
 % Posição X
 Px_umax = 3.05;

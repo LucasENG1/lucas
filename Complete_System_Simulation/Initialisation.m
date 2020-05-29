@@ -46,5 +46,4 @@ Sim = struct('Current_X_Y_psi',Current_X_Y_psi,'Current_u_v_r', Current_u_v_r,..
     'u_v_r_dot',u_v_r_dot,'tFinal',TEMPO_Sim,'Ts', Ts,'F',F,'PWM',PWM,'Theta',Th);
 
 Sim.Vel = zeros(3,1);
-
 end

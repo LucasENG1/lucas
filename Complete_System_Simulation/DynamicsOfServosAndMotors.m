@@ -9,14 +9,12 @@ function [Theta1,PWM1] = DynamicsOfServosAndMotors (stp,Theta,PWM)
 % Global Variables
 global APP Sim M_PI Pwmmax Pwmmin DEG_TO_RAD RAD_TO_DEG
 
-
 PWM = NormtoPWM(PWM);%       // Converte o valor normalizado de 0  a 1 para PWM
 Theta  = Theta .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
 
 % Engine and Servos dynamics - Considering First-Order Linear System
 tau = [APP.tau_mt; APP.tau_mt; APP.tau_mt; APP.tau_mt;...
     APP.tau_srv; APP.tau_srv; APP.tau_srv; APP.tau_srv];
-
 % ---------------------------------------------------------------------
 % Get the Servo and Motor Dynamics from new methodology
 % Reference signals of Servos and Motors to be considered before to apply their dynamics

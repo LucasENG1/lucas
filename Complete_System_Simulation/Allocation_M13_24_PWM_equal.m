@@ -1,5 +1,5 @@
-function [Th,PWM] = Allocation_M13_24_PWM_equal(F,Th,PWM)
-global DEG_TO_RAD RAD_TO_DEG k1 M_PI Lx Ly Pwmmax Pwmmin;
+function [Th,PWM] = Allocation_M13_24_PWM_Equal(F,Th,PWM)
+global DEG_TO_RAD RAD_TO_DEG k1 M_PI Lx Pwmmax Pwmmin;
 
 FX = F(1);
 FY = F(2);

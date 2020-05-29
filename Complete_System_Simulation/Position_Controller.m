@@ -21,5 +21,4 @@ V(3) = Satura(V(3),Sat.MaxVelAng,-Sat.MaxVelAng);
 
 % Rotação de Frame
 Sim.Vel(:,stp) = NED2BF(Sim.Current_X_Y_psi(3),V);
-
 end

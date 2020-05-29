@@ -14,7 +14,7 @@ Xu_dot = -2 ;%0*-11.2;
 Xu    = -15.8;
 
 Yv_dot = -26; %0*-68.1;
-Yv    = -22;   
+Yv    = -22;
 
 Nr_dot = -8.65; %0*-148.8;
 Nr    = -13.2;
@@ -80,21 +80,21 @@ kPVY = num(2);
 kIVY = num(3);
 
 kpVel = [kPVX  0     0;
-          0    kPVY  0;
-          0    0     kPVYaw];
+    0    kPVY  0;
+    0    0     kPVYaw];
 
 kiVel = [kIVX  0     0;
-          0    kIVY  0;
-          0    0     kIVYaw];
+    0    kIVY  0;
+    0    0     kIVYaw];
 
 kdVel = [kDVX  0     0;
-          0    kDVY  0;
-          0    0     kDVYaw];
+    0    kDVY  0;
+    0    0     kDVYaw];
 
 end
 
 % GC_Y = Cs_Y*Gs_Y;
-% 
+%
 % figure
 % rlocus(GC_Y);
 % figure

@@ -1,5 +1,5 @@
 % RUnge Kutta
-function [AuxVector,Aux] = Integra(X,Aux,i)
+function [AuxVector,Aux] = Integration(X,Aux,i)
 global Sim 
 if(i==1)
     Aux(:,i) =  Sim.Ts*X;
@@ -12,7 +12,6 @@ end
 AuxVector = [Sim.Current_X_Y_psi;Sim.Current_u_v_r] + AuxVector;
 
 % AuxVector(3) = rem(AuxVector(3),2*pi);
-
 % if AuxVector(3) > pi
 %     AuxVector(3) = AuxVector(3) - 2*pi;
 % end

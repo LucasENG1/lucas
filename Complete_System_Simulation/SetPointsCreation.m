@@ -22,7 +22,7 @@ switch Nome
         Y   = [A*ones(size(Y)) A*(ones(1,180)) zeros(size(Y))];
         X = zeros(size(Y));
         
-        hold on; plot(Y,X,'Linewidth',2); plot(Y(1),X(1),'*r');axis equal
+        %         hold on; plot(Y,X,'Linewidth',2); plot(Y(1),X(1),'*r');axis equal
         
     case 'LinearX'
         t = 0:1:360;
@@ -56,7 +56,7 @@ switch Nome
         Y = [Y21(335:671) Y22(1290:end) Y22(1:720) Y21(1310:end) Y21(1:330)];
         Yaw = atan2(Y,X);
         Sim.Current_X_Y_psi = [X(1); Y(1); Yaw(1)];
-%         Sim.Current_X_Y_psi = [30; -12;  -pi/4];
+        %         Sim.Current_X_Y_psi = [30; -12;  -pi/4];
         
         X = X(1:20:end);
         Y = Y(1:20:end);

@@ -1,4 +1,4 @@
-function plotPaperFunc(Nboats)
+function Plot(Nboats)
 
 %% plota a parte Executada em campo do sistema
 load('logcircle.mat')

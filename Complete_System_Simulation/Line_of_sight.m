@@ -21,7 +21,6 @@ Sim.Vel(1,stp) = Satura(Sim.Vel(1,stp),Sat.MaxVelX,-Sat.MaxVelX);
 Sim.Vel(2,stp) = Satura(Sim.Vel(2,stp),Sat.MaxVelY,-Sat.MaxVelY);
 Sim.Vel(3,stp) = Satura(Sim.Vel(3,stp),Sat.MaxVelAng,-Sat.MaxVelAng);
 
-
 % SP.XYZ(3,WP) = rem(SP.XYZ(3,WP),2*pi);
 
 %---------------------------------------------
