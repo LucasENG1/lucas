@@ -1,4 +1,4 @@
-function [Th,PWM] = Fossen_alocation(Fi,th,pwm,k)
+function [Th,PWM] = Allocation_Fossen(Fi,th,pwm,k)
 global Fmax Nmax DEG_TO_RAD RAD_TO_DEG k1 k2 k3 k4 M_PI Lx Ly Pwmmax Pwmmin;
 
 FX = Fi(1) * Fmax;
