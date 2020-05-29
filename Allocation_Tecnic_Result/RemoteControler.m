@@ -28,9 +28,9 @@ Sim.Ts = 0.01;
 %% >>>>>>>>>>>>>>>  Emulando o uso do controle remoto
 % vetor para construir um quadrado unitário
 salva = 0;
-N = {'Cenario1','Cenario2','Cenario3'};
+N = {'Cenario1','Cenario2','Cenario3','Torque'};
 
-Nome = N{2};
+Nome = N{4};
 
 switch Nome
     case 'Cenario2'
@@ -59,7 +59,7 @@ for i=1:length(X)
     F(:,i) = [Xmap(i);Ymap(i);TNmap(i)];
     
     %% matriz de alocação
-    [theta(:,i+1),Pwm(:,i+1)] = Allocation_Fossen(F(:,i),theta,Pwm,i);
+    [theta(:,i+1),Pwm(:,i+1)] = Allocation_Artigo1_M13_24_PWM_igual(F(:,i),theta,Pwm,i);
     
     %% alocação direta para conferir
     F_out(:,i)  = Aloc_Direta(theta(:,i+1),Pwm(:,i+1));

@@ -19,7 +19,13 @@ switch Name
         % Cenario com valores totalem Força e Torque ( Problematico)
         X  = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
         Y  = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
-%         ([-1,g,1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1]);
+        %         ([-1,g,1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1]);
+        TN = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
+        
+    case 'Torque'
+        X  = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
+        X  =  zeros(1,length(X));
+        Y  =  zeros(1,length(X));
         TN = ([1,ones(1,length(g)),1,-g,-1,-ones(1,length(g)),-1,g,1]);
     otherwise
         X=0;

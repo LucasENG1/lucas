@@ -9,7 +9,7 @@ TN = Fi(3) * Nmax;
 PWM = NormtoPWM(pwm(:,k));%       // Converte o valor normalizado de 0  a 1 para PWM
 Th  = th(:,k) .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
 
-K1 = diag([2*k1]);
+K1 = diag([k1]);
 
 M2 = [cos(Th(1))+cos(Th(2));
       sin(Th(1))+sin(Th(2));
@@ -21,16 +21,16 @@ M2_Inv = transpose(M2)/((M2*transpose(M2))+ep); % Eq. 12.276
 
 F_mix = inv(K1)* M2_Inv * [FX;FY;TN]; % Eq. 12.275
 
-PWM(1,1) = (F_mix(2)-F_mix(1))/2;
-PWM(2,1) = (F_mix(3)+F_mix(4))/2;
-PWM(3,1) = (F_mix(2)+F_mix(1))/2;
-PWM(4,1) = (F_mix(4)-F_mix(3))/2;
+PWM(1,1) = (F_mix)/2;
+PWM(2,1) = (F_mix)/2;
+PWM(3,1) = (F_mix)/2;
+PWM(4,1) = (F_mix)/2;
 
 PWM = Satura(PWM,Pwmmax,Pwmmin);
 
-M1 = [(PWM(1,1)+PWM(3,1))         0                  (PWM(2,1)+PWM(4,1))      0                 ;
-       0                        (PWM(1,1)+PWM(3,1))  0                       (PWM(2,1)+PWM(4,1));
-      Ly*(PWM(1,1)-PWM(3,1)) Lx*(PWM(1,1)+PWM(3,1))  Ly*(PWM(2,1)-PWM(4,1)) -Lx*(PWM(2,1)+PWM(4,1))];
+M1 = [1      0      1      0 ;
+      0      1      0      1 ;
+      0      Lx     0     -Lx];
 
 ep1 = 1e-10*eye(size(M1*transpose(M1))); % Resíduo para não deixar a matriz se tornar singular
 
