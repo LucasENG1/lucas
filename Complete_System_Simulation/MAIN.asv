@@ -21,11 +21,11 @@ Arquivo = importdata('DadosColetadosDoTeste.txt',' ');
 T = Arquivo(:,2)';
 T = (T-T(1))./1000;
 Fx = Arquivo(:,3)' ./100;
-Fy =0* Arquivo(:,4)' ./100;
-Tn =0* Arquivo(:,5)' ./100;
+Fy = Arquivo(:,4)' ./100;
+Tn = Arquivo(:,5)' ./100;
 
-dt = 0.13;
-Time = 0:dt:T(end);
+dt = 0.001;
+Time = 0::T(end);
 
 %% Configuration
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
@@ -71,8 +71,8 @@ h= 1;
 tic;
 for i = 1:numel(Time)
     
-    if(Time(i) >= T(h) && h< length(T) )   
-                    FF = [Fx(h);Fy(h);Tn(h)];
+    if(Time(i) >= T(h) )   
+                    FF = [Fx(i);Fy(i);Tn(i)];
                     h = h+1;
     end
     %     WaypointUpdate;
@@ -122,8 +122,8 @@ elapsedTime = toc;
 fprintf('Total simulation time = %0.4fs\n', elapsedTime);
 
 %% Calculo do Indices
-% Vel_IAE  = IAE(Sim_Plot.SP_Vel,Sim_Plot.u_v_r,Sim.Ts)
-%   Posi_IAE = IAE(Sim_Plot.SP_Posi,Sim_Plot.X_Y_psi,Sim.Ts)
+Vel_IAE  = IAE(Sim_Plot.SP_Vel,Sim_Plot.u_v_r,Sim.Ts)
+Posi_IAE = IAE(Sim_Plot.SP_Posi,Sim_Plot.X_Y_psi,Sim.Ts)
 
 %% Plot das Figuras
 % FiguraAutopilot(spd,5*ayp,Sim_Plot.SP_Posi,salva);  % Autopilot

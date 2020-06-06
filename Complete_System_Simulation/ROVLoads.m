@@ -15,7 +15,7 @@ D_V = Hydro_Resist(); % Parte da Equação 7.06 -- Fossen
 Coriolis = Coriolis_Effect_Cat(); % Parte da Equação 7.06 -- Fossen
 
 % Totals the net forces and moments
-[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = Allocation_M13_24_PWM_Diferent(Sim.F(:,j),Sim.Theta(:,j),Sim.PWM(:,j));
+[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = Allocation_Fossen(Sim.F(:,j),Sim.Theta(:,j),Sim.PWM(:,j));
 
 [Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = DynamicsOfServosAndMotors((j+1),Sim.Theta,Sim.PWM);
 

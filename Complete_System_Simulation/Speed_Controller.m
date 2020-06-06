@@ -19,4 +19,6 @@ F(2) = Satura(F(2),Sat.F_motor,-Sat.F_motor);
 F(3) = Satura(F(3),Sat.torque,-Sat.torque);
 
 Sim.F(:,j) = F;
+
+
 end

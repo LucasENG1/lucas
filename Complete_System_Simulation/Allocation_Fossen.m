@@ -1,4 +1,4 @@
-function [Th,PWM] = Allocation_Fossen(Fi,th,pwm,k)
+function [Th,PWM] = Allocation_Fossen(Fi,th,pwm)
 global Fmax Nmax DEG_TO_RAD RAD_TO_DEG k1 k2 k3 k4 M_PI Lx Ly Pwmmax Pwmmin;
 
 FX = Fi(1) * Fmax;
@@ -6,14 +6,14 @@ FY = Fi(2) * Fmax;
 TN = Fi(3) * Nmax;
 
 %% Dependendo da ordem de alocação, um dos conjuntos abaixo nao é usado
-PWM = NormtoPWM(pwm(:,k));%       // Converte o valor normalizado de 0  a 1 para PWM
-Th  = th(:,k) .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
+PWM = NormtoPWM(pwm);%       // Converte o valor normalizado de 0  a 1 para PWM
+Th  = th .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
 
 %% Pesos
 w1 = 1; w3 = 1;
 w2 = 1; w4 = 1;
 
-K1 = diag([k1 k1 k2 k2 k3 k3 k4 k4]);
+K1 = diag([k1 k1 k1 k1 k1 k1 k1 k1]);
 W1 = diag([w1 w1 w2 w2 w3 w3 w4 w4]);
 
 M2 = [1   0   1    0  1  0   1   0 ;

@@ -27,8 +27,8 @@ switch Nome
         posi3D = figure(Img.figOpt{:});
 end
 
-plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
-plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
+% plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);
+plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);hold on;axis equal
 PlotBarcoFigura(XYpsi,Theta, PWM,F);
 
 xlabel('Y (m)',Img.YLabelOpt{:});
@@ -38,16 +38,16 @@ legend(Leg.p3D{:},Img.Legend{:});
 %% POSIÇÃO
 posi3L = figure(Img.figOpt3L{:});
 ax1 = subplot(311);
-plot(TimeJ,Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on; grid on;
-plot(TimeJ,Sim_Plot.X_Y_psi(1,:),'b','linewidth',2');
+% plot(TimeJ,Sim_Plot.SP_Posi(1,:),'r','linewidth',2)
+plot(TimeJ,Sim_Plot.X_Y_psi(1,:),'b','linewidth',2');hold on; grid on;
 
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 legend(Leg.posicaoX3L{:},Img.Legend{:});
 
 ax2 = subplot(312);
-plot(TimeJ,Sim_Plot.SP_Posi(2,:),'r','linewidth',2);hold on; grid on;
-plot(TimeJ,Sim_Plot.X_Y_psi(2,:),'b','linewidth',2');
+% plot(TimeJ,Sim_Plot.SP_Posi(2,:),'r','linewidth',2);
+plot(TimeJ,Sim_Plot.X_Y_psi(2,:),'b','linewidth',2');hold on; grid on;
 
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
@@ -55,8 +55,8 @@ legend(Leg.posicaoY3L{:},Img.Legend{:});
 
 ax3 = subplot(313);
 if strcmp(Nome,'Circular')==0
-    plot(TimeJ,Sim_Plot.SP_Posi(3,:)*RAD_TO_DEG,'r','linewidth',2); hold on;grid on;
-    plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');
+%     plot(TimeJ,Sim_Plot.SP_Posi(3,:)*RAD_TO_DEG,'r','linewidth',2); 
+    plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');hold on;grid on;
     legend(Leg.posicaoYaw3L{:},Img.Legend{:});
 else
     plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');grid on;
@@ -72,23 +72,23 @@ xlim([0 TimeJ(end)])
 vel3L = figure(Img.figOpt3L{:});
 
 vx1 = subplot(311);
-plot(TimeJ,Sim_Plot.SP_Vel(1,:),'r','linewidth',2'); hold on; grid on;
-plot(TimeJ,Sim_Plot.u_v_r(1,:),'b','linewidth',2');
+% plot(TimeJ,Sim_Plot.SP_Vel(1,:),'r','linewidth',2'); 
+plot(TimeJ,Sim_Plot.u_v_r(1,:),'b','linewidth',2');hold on; grid on;
 
 legend(Leg.VelX3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
 vx2 = subplot(312);
-plot(TimeJ,Sim_Plot.SP_Vel(2,:),'r','linewidth',2'); hold on; grid on;
-plot(TimeJ,Sim_Plot.u_v_r(2,:),'b','linewidth',2');
+% plot(TimeJ,Sim_Plot.SP_Vel(2,:),'r','linewidth',2');
+plot(TimeJ,Sim_Plot.u_v_r(2,:),'b','linewidth',2'); hold on; grid on;
 legend(Leg.VelY3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
 vx3 = subplot(313);
-plot(TimeJ,Sim_Plot.SP_Vel(3,:)*RAD_TO_DEG,'r','linewidth',2'); hold on; grid on;
-plot(TimeJ,Sim_Plot.u_v_r(3,:)*RAD_TO_DEG,'b','linewidth',2');
+% plot(TimeJ,Sim_Plot.SP_Vel(3,:)*RAD_TO_DEG,'r','linewidth',2'); 
+plot(TimeJ,Sim_Plot.u_v_r(3,:)*RAD_TO_DEG,'b','linewidth',2');hold on; grid on;
 legend(Leg.VelYaw3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YYaw3L{:},Img.YLabelOpt{:});
@@ -98,8 +98,8 @@ linkaxes([vx1 vx2 vx3],'x')
 %% FORÇAS E ALOCAÇÃO
 force = figure(Img.figOpt3L{:});
 axf1 = subplot(311);
-plot(TimeJ,Sim.F(1,:),'r','linewidth',2');hold on; grid on;
-plot(TimeJ,Sim.F_out(1,1:end),'b','linewidth',2');
+% plot(TimeJ,Sim.F(1,:),'r','linewidth',2');
+plot(TimeJ,Sim.F_out(1,1:end),'b','linewidth',2');hold on; grid on;
 
 legend(Leg.AlocacaoX{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
