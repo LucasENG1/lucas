@@ -3,7 +3,7 @@
 %==========================================================================
 function PhysicalProperties
 % Global variable(s)
-global ROV APP Lx Ly k1 Sat Pwmmax Pwmmin;
+global ROV APP Lx Ly k1 Sat Pwmmax Pwmmin Fmax Nmax;
 
 % PARAMETROS A SEREM DEFINIDOS - Saturacao
 MaxVelX   = 3.05;

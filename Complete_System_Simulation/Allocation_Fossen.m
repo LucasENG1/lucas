@@ -1,9 +1,9 @@
 function [Th,PWM] = Allocation_Fossen(Fi,th,pwm)
 global Fmax Nmax DEG_TO_RAD RAD_TO_DEG k1 k2 k3 k4 M_PI Lx Ly Pwmmax Pwmmin;
 
-FX = Fi(1) * Fmax;
-FY = Fi(2) * Fmax;
-TN = Fi(3) * Nmax;
+FX = Fi(1) ;
+FY = Fi(2) ;
+TN = Fi(3) ;
 
 %% Dependendo da ordem de alocação, um dos conjuntos abaixo nao é usado
 PWM = NormtoPWM(pwm);%       // Converte o valor normalizado de 0  a 1 para PWM
@@ -41,8 +41,8 @@ Th(3,1) = atan2(F(6),F(5));
 Th(4,1) = atan2(F(8),F(7));
 
 %% Saturações
-% PWM = Satura(PWM,Pwmmax,Pwmmin);
-% Th  = Satura(Th,M_PI,-M_PI);
+PWM = Satura(PWM,Pwmmax,Pwmmin);
+Th  = Satura(Th,M_PI,-M_PI);
 
 % th(: ,k+1) = Th.* RAD_TO_DEG;
 % pwm(:,k+1) = PWMtoNorm(PWM);
