@@ -1,5 +1,5 @@
 function Curvas_real_simulado(Nboats,Nome,Language,salva)
-global  Sim Sim_Plot TimeJ RAD_TO_DEG;
+global  Sim Sim_Plot TimeJ RAD_TO_DEG Log;
 
 Img = ImageParametrization;
 Leg = LegendLanguage(Language);
@@ -18,17 +18,9 @@ PWM   = zeros(4,length(XYpsi(1,:)));
 % PWM   = Sim.PWM(:,2:passo:end);
 
 %% POSIÇÃO 3D
-% switch Nome
-%     case 'LinearX'
-%         Screen = [0 0 1 1];
-%         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
-%         posi3D = figure(figOpt{:});
-%     otherwise
-%         posi3D = figure(Img.figOpt{:});
-% end
 figure
-% plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);
-plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);hold on;axis equal
+plot(Log.Py,Log.Px,'r','linewidth',2);hold on;axis equal
+plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
 PlotBarcoFigura(XYpsi,Theta, PWM,F);
 
 xlabel('Y (m)',Img.YLabelOpt{:});
@@ -38,24 +30,25 @@ legend(Leg.p3D{:},Img.Legend{:});
 %% POSIÇÃO
 posi3L = figure(Img.figOpt3L{:});
 ax1 = subplot(311);
-% plot( Sim_Plot.SP_Posi(1,:),'r','linewidth',2)
-plot(Sim_Plot.X_Y_psi(1,:),'b','linewidth',2');hold on; grid on;
+plot(Log.Px,'r','linewidth',2);hold on; grid on;
+plot(Sim_Plot.X_Y_psi(1,:),'b','linewidth',2');
 
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 legend(Leg.posicaoX3L{:},Img.Legend{:});
 
 ax2 = subplot(312);
-% plot( Sim_Plot.SP_Posi(2,:),'r','linewidth',2);
-plot(Sim_Plot.X_Y_psi(2,:),'b','linewidth',2');hold on; grid on;
+plot(Log.Py,'r','linewidth',2);hold on; grid on;
+plot(Sim_Plot.X_Y_psi(2,:),'b','linewidth',2');
 
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 legend(Leg.posicaoY3L{:},Img.Legend{:});
 
 ax3 = subplot(313);
-    plot(Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');grid on;
-    legend(Leg.posicaoYaw3L{1},Img.Legend{:});
+plot(Log.Hdg,'r','linewidth',2);hold on; grid on;
+plot(Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');
+legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.yaw3L{:},Img.YLabelOpt{:});
 
@@ -66,23 +59,23 @@ linkaxes([ax1 ax2 ax3],'x')
 vel3L = figure(Img.figOpt3L{:});
 
 vx1 = subplot(311);
-% plot( Sim_Plot.SP_Vel(1,:),'r','linewidth',2'); 
-plot( Sim_Plot.u_v_r(1,:),'b','linewidth',2');hold on; grid on;
+plot( Log.Vx,'r','linewidth',2');hold on; grid on;
+plot( Sim_Plot.u_v_r(1,:),'b','linewidth',2');
 
 legend(Leg.VelX3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
 vx2 = subplot(312);
-% plot( Sim_Plot.SP_Vel(2,:),'r','linewidth',2');
-plot( Sim_Plot.u_v_r(2,:),'b','linewidth',2'); hold on; grid on;
+plot( Log.Vy,'r','linewidth',2');hold on; grid on;
+plot( Sim_Plot.u_v_r(2,:),'b','linewidth',2'); 
 legend(Leg.VelY3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
 vx3 = subplot(313);
-% plot( Sim_Plot.SP_Vel(3,:)*RAD_TO_DEG,'r','linewidth',2'); 
-plot( Sim_Plot.u_v_r(3,:)*RAD_TO_DEG,'b','linewidth',2');hold on; grid on;
+plot( Log.Vyaw*RAD_TO_DEG,'r','linewidth',2');hold on; grid on;
+plot( Sim_Plot.u_v_r(3,:)*RAD_TO_DEG,'b','linewidth',2');
 legend(Leg.VelYaw3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YYaw3L{:},Img.YLabelOpt{:});
@@ -141,58 +134,58 @@ end
 %         ylim(ax2,[-15 15]);
 %         ylim(ax3,[-50 100]);
 %         legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','northoutside');
-%         
+%
 %         figure(vel3L)
 %         ylim(vx1,[-0 4]);
 %         ylim(vx2,[-0 4]);
 %         ylim(vx3,[-20  20]);
 %         %xlim([0 TimeJ(end)])
-%         
+%
 %         figure(force)
 %         %xlim(axf1,[0 TimeJ(end)])
-%         
+%
 %     case 'Oito'
 %         figure(posi3D);
-%         
+%
 %         ylim(ax1,[-60 5]);
 %         ylim(ax2,[-30 30]);
 %         ylim(ax3,[-50 250]);
-%         
+%
 %         % velocidade
 %         ylim(vx2,[-.5 1])
-%         
+%
 %     case 'Sway'
 %         figure(posi3D);
 %         axis([-2 70 -2 5]);
-%         
+%
 %         figure(posi3L)
 %         ylim(ax1,[-1 60]);
 %         ylim(ax2,[0  70]);
 %         ylim(ax3,[-220  50]);
 %         %xlim([0 TimeJ(end)])
-%         
+%
 %         figure(vel3L)
 %         ylim(vx1,[-2 3]);
 %         ylim(vx2,[-2 3]);
 %         ylim(vx3,[-75  70]);
 %         %xlim([0 TimeJ(end)]);
-%         
+%
 %     case 'Circular'
 %         figure(posi3D);
 %         axis([-17.5 17.5 -2.5 32.5]);
-%         
+%
 %         figure(posi3L)
 %         %         ylim(ax1,[10.25-20 10.25+20]);
 %         %         ylim(ax2,[11.25-20 11.25+20]);
 %         %         ylim(ax3,[-190  190]);
 %         %xlim([0 TimeJ(end)])
-%         
+%
 %         figure(vel3L)
 %         ylim(vx1,[-1 2.5]);
 %         ylim(vx2,[-1 2.5]);
 %         ylim(vx3,[-22.5 22.5]);
 %         %xlim([0 TimeJ(end)])
-%         
+%
 %     otherwise
 % end
 
