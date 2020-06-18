@@ -14,7 +14,7 @@ kPX = calc_P_Gain(Px_umax,Px_umin,Px_Emax,Px_Emin);
 % Posição Y
 Py_umax = Sat.MaxVelY;
 Py_umin = 0;
-Py_Emax = Raio; %raio admitido
+Py_Emax = Raio/2; %raio admitido
 Py_Emin = 0; %raio admitido
 
 kPY = calc_P_Gain(Py_umax,Py_umin,Py_Emax,Py_Emin);
@@ -48,8 +48,6 @@ kdPosi = [kDX 0    0 ;
           0   0    kDYaw];
       
 end
-
-
 
 
 % Definição de Funções

@@ -15,16 +15,16 @@ D_V = Hydro_Resist(); % Parte da Equação 7.06 -- Fossen
 Coriolis = Coriolis_Effect_Cat(); % Parte da Equação 7.06 -- Fossen
 
 % Totals the net forces and moments
-[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = Allocation_M13_24_PWM_Diferent(Sim.F(:,j),Sim.Theta(:,j),Sim.PWM(:,j));
+[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = Allocation_Mathaus(Sim.F(:,j),Sim.Theta(:,j),Sim.PWM(:,j));
 
-[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = DynamicsOfServosAndMotors((j+1),Sim.Theta,Sim.PWM);
+% [Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = DynamicsOfServosAndMotors((j+1),Sim.Theta,Sim.PWM);
 
 Sim.F_out(:,j) = Aloc_Direta(Sim.Theta(:,j+1),Sim.PWM(:,j+1));
 
 % Sim.Theta(:,j+1) = zeros(4,1);% zerando para Plot
 % Sim.PWM(:,j+1)   = zeros(4,1);% zerando para Plot
 
-Torque = Sim.F_out(:,j);%Sim.F(:,j);
+Torque = Sim.F(:,j);%Sim.F_out(:,j);%
 
 % Sim.NetForcesAndMoments = Torque - D_V - Coriolis - g_n; % parte da equação 3.69 (segundo parentesis)
 Sim.NetForces = D_V + Coriolis + g_n; % parte da equação 3.69 (segundo parentesis)

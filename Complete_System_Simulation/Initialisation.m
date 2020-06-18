@@ -7,7 +7,6 @@ global M_PI DEG_TO_RAD RAD_TO_DEG WP;
 numFig = 1;         % Initialises figure index
 WP     = 1;         % Initialises WP index
 
-
 %% Mantendo o padrão utilizado no C
 
 M_PI = pi;
@@ -18,7 +17,7 @@ RAD_TO_DEG = 180/pi;
 
 SLC.Freq = 20;      % Sucessive Loop Closure frequency % 90s Linear X / 
 
-TEMPO_Sim   = 70;       % Total simulation time [s]
+TEMPO_Sim   = 55;       % Total simulation time [s]
 Ts          = 0.01;      % Integration step / sampling period [s]
 
 Time  = Ts*SLC.Freq:Ts*SLC.Freq:TEMPO_Sim;
