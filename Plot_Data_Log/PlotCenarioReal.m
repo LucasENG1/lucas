@@ -20,6 +20,7 @@ FiguraArtigo(10,Pose_real); grid on;
 xlabel('Y (m)',Img.YLabelOpt{:});
 ylabel('X (m)',Img.YLabelOpt{:});
 legend(Leg.p3D{:},Img.Legend{:});
+
 %% POSIÇÃO EM CADA COMPONENTE
 posi3L=figure(Img.figOpt3L{:});
 ax1 = subplot(311);
@@ -87,16 +88,17 @@ switch Nome
         
     case 'Oito_Real'
         figure(posi3D);
-        ylim([min([SP.Y Pose_real(2,:)])-2 max([SP.Y Pose_real(2,:)])+7])
+        ylim([min([SP.Y Pose_real(2,:)])-2 max([SP.Y Pose_real(2,:)])+2])
         xlim([min([SP.X Pose_real(1,:)])-2 max([SP.X Pose_real(1,:)])+2])
         %         axis([-20 10 -55 10]);
+        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','northoutside');
         % posição
         ylim(ax1,[-60 5]);
         ylim(ax2,[-30 30]);
         ylim(ax3,[-50 250]);
         
         % velocidade
-        ylim(vx2,[-.5 1])
+        ylim(vx2,[-1 1])
         
     case 'Sway_Real'
         figure(posi3D);

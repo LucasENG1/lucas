@@ -19,7 +19,7 @@ clear all; close all; clc;
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{4};
+SetPoint = Possible_SPs{2};
 Lang     = Language{1};
 
 % Plot Configuration
@@ -48,8 +48,8 @@ SetPointsCreation(SetPoint);
 
 %% Choose which controller is going to be used
 switch SetPoint
-    case {'Figura','LinearX','Oito'}
-        L1_controller = 0;
+    case {'Figura','LinearX','Circular'}
+        L1_controller = 1;
     otherwise
         L1_controller = 0;
 end
@@ -62,16 +62,16 @@ for i = 1:numel(Time)
     
     Position_Controller(i);
     
-    if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius
-    
-        Sim.Vel(:,i)=[0;0;0];
-    end
-    
-    if(L1_controller==1)
-        Path_L1_controller(i);
-    else
-        Line_of_sight(i);
-    end
+%     if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius
+%     
+%         Sim.Vel(:,i)=[0;0;0];
+%     end
+%     
+%     if(L1_controller==1)
+%         Path_L1_controller(i);
+%     else
+%         Line_of_sight(i);
+%     end
 
     for j = (SLC.Freq*(i-1)+1):SLC.Freq*(i)
         

@@ -7,7 +7,7 @@ global ROV APP Lx Ly k1 Sat Pwmmax Pwmmin;
 
 % PARAMETROS A SEREM DEFINIDOS - Saturacao
 MaxVelX   = 3.05;
-MaxVelY   = 1.3;
+MaxVelY   = 1;
 MaxVelAng = 2.32; %rad/s
 
 WpRadius  = 3;

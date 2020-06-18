@@ -13,15 +13,27 @@ switch Nome
         X   = 1e-10-(120*zeros(size(t)));
         Yaw = (pi*sind((360/(t(end)-20))*t));
     case 'Sway'
-        t = 0:1:180;
-        A = 60;
+        t = 0:1:80;
+        A = 67;
         Y = 1e-10+(A*ones(size(t)));
         X = 1e-10-(A*zeros(size(t)));
         
-        Yaw = [zeros(1,110) [0:pi/180:pi] pi*ones(size(t)) pi*ones(1,70)];
-        Y   = [A*ones(size(Y)) A*(ones(1,180)) zeros(size(Y))];
-        X = zeros(size(Y));     
+        rotat =[0:pi/20:pi];
+        Yaw = [zeros(size(Y)) rotat pi*ones(size(t))];
+        Y   = [A*ones(size(Y)) A*ones(size(rotat)) zeros(size(Y))];
+        X = zeros(size(Y));
         %         hold on; plot(Y,X,'Linewidth',2); plot(Y(1),X(1),'*r');axis equal
+        
+        %     case 'Sway'
+        %         t = 0:1:180;
+        %         A = 60;
+        %         Y = 1e-10+(A*ones(size(t)));
+        %         X = 1e-10-(A*zeros(size(t)));
+        %
+        %         Yaw = [zeros(1,110) [0:pi/180:pi] pi*ones(size(t)) pi*ones(1,70)];
+        %         Y   = [A*ones(size(Y)) A*(ones(1,180)) zeros(size(Y))];
+        %         X = zeros(size(Y));
+        %         %         hold on; plot(Y,X,'Linewidth',2); plot(Y(1),X(1),'*r');axis equal
     case 'LinearX'
         t = 0:1:360;
         X   = 1e-10+(140*ones(size(t)));

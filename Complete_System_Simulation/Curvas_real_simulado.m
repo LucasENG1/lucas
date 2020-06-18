@@ -19,6 +19,8 @@ PWM   = zeros(4,length(XYpsi(1,:)));
 
 %% POSIÇÃO 3D
 switch Nome
+    case 'Sway'
+         posi3D = figure(Img.figOpt3L{:});
     case 'LinearX'
         Screen = [0 0 1 1];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
@@ -144,22 +146,23 @@ switch Nome
         
     case 'Oito'
         figure(posi3D);
+        axis([-15 8 23 79])
+        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','northoutside');
         
-        ylim(ax1,[-60 5]);
-        ylim(ax2,[-30 30]);
-        ylim(ax3,[-50 250]);
-        
-        % velocidade
-        ylim(vx2,[-.5 1])
+                figure(vel3L)
+        ylim(vx1,[-0 1.5]);
+        ylim(vx2,[-1 1]);
+        ylim(vx3,[-20  20]);
+        xlim([0 TimeJ(end)])
         
     case 'Sway'
         figure(posi3D);
-        axis([-2 70 -2 5]);
+        axis([-2 62 -2 5]);
         
         figure(posi3L)
         ylim(ax1,[-1 60]);
         ylim(ax2,[0  70]);
-        ylim(ax3,[-220  50]);
+        ylim(ax3,[0  200]);
         xlim([0 TimeJ(end)])
         
         figure(vel3L)

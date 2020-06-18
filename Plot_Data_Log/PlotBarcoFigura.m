@@ -6,7 +6,7 @@ function [] = PlotBarcoFigura(yaw, X_Y_psi,Theta, PWM,F)
 % z   = Posição z do veículo no referencial Global
 % yaw = Angulo de yaw do veículo no referencial fixo do corpo
 %%
-aux= X_Y_psi;
+aux = X_Y_psi;
 X_Y_psi(1,:) = aux(2,:);
 X_Y_psi(2,:) = aux(1,:);
 

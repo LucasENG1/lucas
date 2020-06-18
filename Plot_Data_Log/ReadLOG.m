@@ -54,7 +54,7 @@ switch Nome
         Ang     = -37.7;        % ajuste de angulo para plotar a imagem melhor
         ini     = 20750;        % Inicio da leitura no log
         fim     = ini+2400;     % Final da leitura no log
-        yaw_ini = -100*(pi/180);%155*(pi/180); Offset na guinada inicial (plot)
+        yaw_ini = 45*(pi/180);%155*(pi/180); Offset na guinada inicial (plot)
         
     otherwise
         0;
