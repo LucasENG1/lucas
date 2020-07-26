@@ -157,7 +157,7 @@ switch Nome
         
     case 'Sway'
         figure(posi3D);
-        axis([-2 62 -2 5]);
+        axis([-2 70 -2 5]);
         
         figure(posi3L)
         ylim(ax1,[-1 60]);
