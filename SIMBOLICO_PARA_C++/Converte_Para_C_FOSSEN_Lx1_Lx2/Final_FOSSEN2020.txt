@@ -1,0 +1,17 @@
+
+PWM(1) = ((FX/(4*k1) - (Ly*TN)/(k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*Ly*(Lx1 - Lx2))/(2*k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2 + ((TN*(Lx1 + Lx2))/(2*k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*(Lx2^2 + 2*Ly^2 + Lx1*Lx2))/(2*k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2)^(1/2);
+PWM(2) = ((FX/(4*k2) + (Ly*TN)/(k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (FY*Ly*(Lx1 - Lx2))/(2*k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2 + ((TN*(Lx1 + Lx2))/(2*k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (FY*(Lx1^2 + 2*Ly^2 + Lx1*Lx2))/(2*k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2)^(1/2);
+PWM(3) = ((FX/(4*k3) + (Ly*TN)/(k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (FY*Ly*(Lx1 - Lx2))/(2*k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2 + ((TN*(Lx1 + Lx2))/(2*k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*(Lx2^2 + 2*Ly^2 + Lx1*Lx2))/(2*k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2)^(1/2);
+PWM(4) = ((FX/(4*k4) - (Ly*TN)/(k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*Ly*(Lx1 - Lx2))/(2*k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2 + ((TN*(Lx1 + Lx2))/(2*k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (FY*(Lx1^2 + 2*Ly^2 + Lx1*Lx2))/(2*k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)))^2)^(1/2);
+
+
+theta(1) = atan2((TN*(Lx1 + Lx2))/(2*k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*(Lx2^2 + 2*Ly^2 + Lx1*Lx2))/(2*k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)), FX/(4*k1) - (Ly*TN)/(k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*Ly*(Lx1 - Lx2))/(2*k1*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)));
+theta(2) = atan2((FY*(Lx1^2 + 2*Ly^2 + Lx1*Lx2))/(2*k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (TN*(Lx1 + Lx2))/(2*k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)), FX/(4*k2) + (Ly*TN)/(k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (FY*Ly*(Lx1 - Lx2))/(2*k2*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)));
+theta(3) = atan2((TN*(Lx1 + Lx2))/(2*k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*(Lx2^2 + 2*Ly^2 + Lx1*Lx2))/(2*k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)), FX/(4*k3) + (Ly*TN)/(k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (FY*Ly*(Lx1 - Lx2))/(2*k3*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)));
+theta(4) = atan2((FY*(Lx1^2 + 2*Ly^2 + Lx1*Lx2))/(2*k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) - (TN*(Lx1 + Lx2))/(2*k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)), FX/(4*k4) - (Ly*TN)/(k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)) + (FY*Ly*(Lx1 - Lx2))/(2*k4*(Lx1^2 + Lx2^2 + 4*Ly^2 + 2*Lx1*Lx2)));
+
+
+F_out(1) = PWM1*k1*cos(Theta1) + PWM2*k2*cos(Theta2) + PWM3*k3*cos(Theta3) + PWM4*k4*cos(Theta4);
+F_out(2) = PWM1*k1*sin(Theta1) + PWM2*k2*sin(Theta2) + PWM3*k3*sin(Theta3) + PWM4*k4*sin(Theta4);
+F_out(3) = Lx1*(PWM1*k1*sin(Theta1) + PWM3*k3*sin(Theta3)) - Ly*(PWM1*k1*cos(Theta1) - PWM2*k2*cos(Theta2) - PWM3*k3*cos(Theta3) + PWM4*k4*cos(Theta4)) - Lx2*(PWM2*k2*sin(Theta2) + PWM4*k4*sin(Theta4));
+

@@ -19,12 +19,12 @@ clear all; close all; clc;
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{2};
-Lang     = Language{1};
+SetPoint = Possible_SPs{4};
+Lang     = Language{2};
 
 % Plot Configuration
 Plotar = 1;  % 1 - True or 0 - False
-Salvar = 1;  % 1 - True or 0 - False
+Salvar = 0;  % 1 - True or 0 - False
 
 Plot_Step = 20; % Step to dynamic plot
 

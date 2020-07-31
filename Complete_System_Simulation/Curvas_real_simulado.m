@@ -21,17 +21,42 @@ PWM   = zeros(4,length(XYpsi(1,:)));
 switch Nome
     case 'Sway'
          posi3D = figure(Img.figOpt3L{:});
+         plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
+         plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
+         PlotBarcoFigura(XYpsi,Theta, PWM,F);
+
     case 'LinearX'
         Screen = [0 0 1 1];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
         posi3D = figure(figOpt{:});
+       
+        Ax = Sim_Plot.X_Y_psi(2,:);
+        Sim_Plot.X_Y_psi(2,:)= Sim_Plot.X_Y_psi(1,:);
+        Sim_Plot.X_Y_psi(1,:) = Ax;
+        Sim_Plot.X_Y_psi(3,:) = Sim_Plot.X_Y_psi(1,:) +pi/2;
+        XYpsi = Sim_Plot.X_Y_psi(:,1:passo:end);
+        
+        plot(Sim_Plot.SP_Posi(1,:),Sim_Plot.SP_Posi(2,:),'r','linewidth',2);hold on;axis equal
+        plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
+        PlotBarcoFigura(XYpsi,Theta, PWM,F);
+        
+        Ax = Sim_Plot.X_Y_psi(2,:);
+        Sim_Plot.X_Y_psi(2,:)= Sim_Plot.X_Y_psi(1,:);
+        Sim_Plot.X_Y_psi(1,:) = Ax;
+        Sim_Plot.X_Y_psi(3,:) = Sim_Plot.X_Y_psi(1,:) -pi/2;
+        XYpsi = Sim_Plot.X_Y_psi(:,1:passo:end);
+        
     otherwise
         posi3D = figure(Img.figOpt{:});
+        plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
+        plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
+        PlotBarcoFigura(XYpsi,Theta, PWM,F);
+
 end
 
-plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
-plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
-PlotBarcoFigura(XYpsi,Theta, PWM,F);
+% plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
+% plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
+% PlotBarcoFigura(XYpsi,Theta, PWM,F);
 
 xlabel('Y (m)',Img.YLabelOpt{:});
 ylabel('X (m)',Img.XLabelOpt{:});
@@ -129,11 +154,13 @@ linkaxes([axf1 axf2 ],'y')
 switch Nome
     case 'LinearX'
         figure(posi3D);
-        axis([-15 15 -2 143]);
+        xlabel('X (m)',Img.YLabelOpt{:});
+        ylabel('Y (m)',Img.XLabelOpt{:});
+        axis([ -2 143 -10 10]);
         ylim(ax1,[0 150]);
         ylim(ax2,[-15 15]);
         ylim(ax3,[-50 100]);
-        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','northoutside');
+        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','northoutside');
         
         figure(vel3L)
         ylim(vx1,[-0 4]);

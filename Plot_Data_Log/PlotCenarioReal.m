@@ -5,18 +5,34 @@ Img = ImageParametrization();
 Leg = LegendLanguage(Language);
 
 %% POSIÇÃO 3D
-switch Nome 
+switch Nome
     case 'LinearX_Real'
-        Screen = [0 0 1 1];
+        Screen = [0 0 0.5 0.5];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto',...
-        'Position',Screen};
-    posi3D = figure(figOpt{:});
+            'Position',Screen};
+        posi3D = figure(figOpt{:});
+        Ax = Pose_real(2,:);
+        Pose_real(2,:)= Pose_real(1,:);
+        Pose_real(1,:) = Ax;
+        Pose_real(3,:) = Pose_real(3,:) +pi/2;
+        
+        plot(SP.Y,SP.X,'r','linewidth',2);hold on;axis equal
+        plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
+        FiguraArtigo(10,Pose_real); grid on;
+        
+        Ax = Pose_real(2,:);
+        Pose_real(2,:)= Pose_real(1,:);
+        Pose_real(1,:) = Ax;
+        Pose_real(3,:) = Pose_real(3,:) - pi/2;
+        
     otherwise
-posi3D = figure(Img.figOpt{:});
+        posi3D = figure(Img.figOpt{:});
+        plot(SP.X,SP.Y,'r','linewidth',2);hold on;axis equal
+        plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
+        FiguraArtigo(10,Pose_real); grid on;
 end
-plot(SP.X,SP.Y,'r','linewidth',2);hold on;axis equal
-plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
-FiguraArtigo(10,Pose_real); grid on;
+
+
 xlabel('Y (m)',Img.YLabelOpt{:});
 ylabel('X (m)',Img.YLabelOpt{:});
 legend(Leg.p3D{:},Img.Legend{:});
@@ -73,12 +89,14 @@ xlim([0 T(end)])
 switch Nome
     case 'LinearX_Real'
         figure(posi3D);
-        axis([-15 15 -2 143]);
+        axis([ -2 143 -10 10]);
         % posição
         ylim(ax1,[0 150]);
         ylim(ax2,[-15 15]);
         ylim(ax3,[-50 100]);
-        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','northoutside');
+        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','northoutside');
+        xlabel('X (m)',Img.YLabelOpt{:});
+        ylabel('Y (m)',Img.YLabelOpt{:});
         
         figure(vel3L)
         ylim(vx1,[-0 4]);
