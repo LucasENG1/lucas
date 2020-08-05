@@ -57,7 +57,11 @@ switch Nome
         yaw_ini = 45*(pi/180);%155*(pi/180); Offset na guinada inicial (plot)
         
     otherwise
-        0;
+        load('DIATOP/1BIN.mat')
+        Ang     = 0;        % ajuste de angulo para plotar a imagem melhor
+        ini     = 0;        % Inicio da leitura no log
+        fim     = 'end';     % Final da leitura no log
+        yaw_ini = 0*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
 end
 %% PARAMETROS DE DINAMICA DO VEICULO
 Tempo = GRIN(ini:fim,2)/1000000;        % Tempo 

@@ -3,12 +3,12 @@ close all; clear all; clc;
 %%
 ParametrosBarco()
 
-Nome = {'Circular','LinearX','Sway','Sway2','Oito'};
+Nome = {'Circular','LinearX','Sway','Sway2','Oito','OUTRO'};
 
 Language = {'Portugues','Ingles'};
-Lang = Language{2};
+Lang     = Language{2};
 
-Nome_SP  = Nome{1};           % Nome do SP a ser carregado do LOG
+Nome_SP = Nome{6};           % Nome do SP a ser carregado do LOG
 salva = 1;                    % 0/1 para salvar ou não as figuras obtidas
 
 [Vel_real,Pose_real,TempoVeiculo,Theta,PWM,F,F_out,TempoAlocacao] = ReadLOG(Nome_SP); % Leitura do LOG acontece aqui
