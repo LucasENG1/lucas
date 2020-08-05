@@ -14,6 +14,18 @@ switch language
         Leg.AlocacaoY   = {'$F_y$ Desejado','$F_y$  Alocado','Location','best'};
         Leg.AlocacaoPsi = {'$\tau_{\psi}$ Desejado','$\tau_{\psi}$  Alocado','Location','best'};
         
+        Leg.ServoAngle1  = {'Servo motor 1','Location','northeast'};
+        Leg.ServoAngle2  = {'Servo motor 2','Location','northeast'};
+        Leg.ServoAngle3  = {'Servo motor 3','Location','northeast'};
+        Leg.ServoAngle4  = {'Servo motor 4','Location','northeast'};
+                       
+        Leg.ServoPWM1  = {'Motor 1','Location','northeast'};
+        Leg.ServoPWM2  = {'Motor 2','Location','northeast'};
+        Leg.ServoPWM3  = {'Motor 3','Location','northeast'};
+        Leg.ServoPWM4  = {'Motor 4','Location','northeast'};
+                       
+        Leg.YSA     = {'\^ Angulo (Grau)'};
+        Leg.YPWM     = {'PWM (\%)'};
         Leg.X3D     = {'X (m)'};
         Leg.Y3D     = {'Y (m)'};
         Leg.XP3L    = {'Tempo (s)'};
@@ -36,6 +48,18 @@ switch language
         Leg.AlocacaoY    = {'$F_y$ desired','$F_y$ allocated','Location','best'};
         Leg.AlocacaoPsi  = {'$\psi$ desired','$\psi$ allocated','Location','best'};
         
+        Leg.ServoAngle1  = {'Servomotor 1','Location','best'};
+        Leg.ServoAngle2  = {'Servomotor 2','Location','best'};
+        Leg.ServoAngle3  = {'Servomotor 3','Location','best'};
+        Leg.ServoAngle4  = {'Servomotor 4','Location','best'};
+        
+        Leg.ServoPWM1  = {'Motor 1','Location','best'};
+        Leg.ServoPWM2  = {'Motor 2','Location','best'};
+        Leg.ServoPWM3  = {'Motor 3','Location','best'};
+        Leg.ServoPWM4  = {'Motor 4','Location','best'};
+        
+        Leg.YSA     = {'Angle (Degree)'};
+        Leg.YPWM     = {'PWM (\%)'};
         Leg.X3D    = {'X (m)'};
         Leg.Y3D    = {'Y (m)'};
         Leg.XP3L   = {'Time (s)'};

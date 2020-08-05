@@ -18,7 +18,7 @@ tau = [APP.tau_mt; APP.tau_mt; APP.tau_mt; APP.tau_mt;...
 % ---------------------------------------------------------------------
 % Get the Servo and Motor Dynamics from new methodology
 % Reference signals of Servos and Motors to be considered before to apply their dynamics
-RefSignal    = [PWM(:,stp); Theta(:,stp)];
+RefSignal   = [PWM(:,stp); Theta(:,stp)];
 
 if stp==1
     ActualSignal = zeros(8,1);

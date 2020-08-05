@@ -12,14 +12,14 @@
 % Obs: Por convenção os motores puxam o barco:
 %      Angulo do propulsor +  ---> Embarcação se move para direita
 %      Angulo do propulsor -  ---> Embarcação se move para esquerda
-% =========================================================================
+%% =========================================================================
 clear all; close all; clc;
 
 %% Configuration
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{4};
+SetPoint = Possible_SPs{5};
 Lang     = Language{2};
 
 % Plot Configuration
@@ -49,7 +49,7 @@ SetPointsCreation(SetPoint);
 %% Choose which controller is going to be used
 switch SetPoint
     case {'Figura','LinearX','Circular'}
-        L1_controller = 1;
+        L1_controller = 0;
     otherwise
         L1_controller = 0;
 end
@@ -66,12 +66,12 @@ for i = 1:numel(Time)
 %     
 %         Sim.Vel(:,i)=[0;0;0];
 %     end
-%     
-%     if(L1_controller==1)
-%         Path_L1_controller(i);
-%     else
-%         Line_of_sight(i);
-%     end
+    
+    if(L1_controller==1)
+        Path_L1_controller(i);
+    else
+        Line_of_sight(i);
+    end
 
     for j = (SLC.Freq*(i-1)+1):SLC.Freq*(i)
         
@@ -122,22 +122,5 @@ Curvas_real_simulado(10,SetPoint,Lang,Salvar);            % Demais figuras
 
 %% End of the script
 delete *.asv;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
