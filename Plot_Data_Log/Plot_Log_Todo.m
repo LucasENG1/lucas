@@ -1,3 +1,4 @@
+%% criado para a leitura do teste feito no dia 04/08/2020
 clear all; clc; close all;
 
 %case 'BIN'

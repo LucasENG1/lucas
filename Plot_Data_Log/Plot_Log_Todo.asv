@@ -1,3 +1,4 @@
+%% criado para a leitura do teste feito no dia 
 clear all; clc; close all;
 
 %case 'BIN'
@@ -51,16 +52,16 @@ plot(AHR2(ini:ini+As,7),AHR2(ini:ini+As,8),'g','linewidth',2);
 legend('posicao oito');
 
 %% circulo
-As=950;
-ini=7100;
+As=750;
+ini=7000;
 
 figure
 plot(AHR2(ini:ini+As,2)/1000000,AHR2(ini:ini+As,5),'g');
-legend('Yaw oito')
+legend('Yaw circulo')
 
 figure
 plot(AHR2(ini:ini+As,7),AHR2(ini:ini+As,8),'g','linewidth',2);
-legend('posicao oito');
+legend('posicao circulo');
 
 figure
 plot(AHR2(:,7),AHR2(:,8),'m','linewidth',2);
