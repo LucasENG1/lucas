@@ -1,26 +1,13 @@
-function [Th,PWM] = Allocation_Fossen(F,Th,PWM)
-% global Fmax Nmax DEG_TO_RAD RAD_TO_DEG k1 k2 k3 k4 M_PI Lx Ly Pwmmax Pwmmin;
+function [Th,PWM] = Allocation_Fossen(FIn,Th,PWM)
+global Fmax Nmax DEG_TO_RAD RAD_TO_DEG k1 M_PI Lx Ly;
 
-%% Mantendo o padrão utilizado no C
-M_PI = pi;
-DEG_TO_RAD = pi/180;
-RAD_TO_DEG = 180/pi;
-Fmax = 2.1*9.81*4; % Força maxíma real
-L    = 0.586;
-Nmax = L*Fmax;
-Pwmmax = 1001.0;
-Pwmmin = 1.0;
-Lx = L*cos(M_PI/4.0);
-Ly = L*cos(M_PI/4.0);
-k1 = (Fmax/4.0)/(Pwmmax-Pwmmin);
-
-FX = F(1) * Fmax;
-FY = F(2) * Fmax;
-TN = F(3) * Nmax;
+FX = FIn(1);
+FY = FIn(2);
+TN = FIn(3);
 
 %% Dependendo da ordem de alocação, um dos conjuntos abaixo nao é usado
-PWM = NormtoPWM(PWM);%       // Converte o valor normalizado de 0  a 1 para PWM
-Th  = Th .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
+% PWM = NormtoPWM(PWM);%       // Converte o valor normalizado de 0  a 1 para PWM
+% Th  = Th .* DEG_TO_RAD;%     // Convertendo de grau para Radianos
 
 %% Pesos
 w1 = 1; w3 = 1;

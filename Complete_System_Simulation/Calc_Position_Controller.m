@@ -27,7 +27,6 @@ Psi_Emin = 0; %raio admitido
 
 kPYaw = calc_P_Gain(Psi_umax,Psi_umin,Psi_Emax,Psi_Emin);
 
-
 % Posição X
        kIX =  0;       kDX =  0;
 % Posição Y
@@ -46,7 +45,6 @@ kiPosi = [kIX 0    0 ;
 kdPosi = [kDX 0    0 ;
           0   kDY  0 ;
           0   0    kDYaw];
-      
 end
 
 

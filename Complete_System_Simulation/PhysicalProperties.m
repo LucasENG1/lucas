@@ -3,7 +3,7 @@
 %==========================================================================
 function PhysicalProperties
 % Global variable(s)
-global ROV APP Lx Ly k1 Sat Pwmmax Pwmmin;
+global ROV APP Lx Ly k1 Sat Pwmmax Pwmmin Fmax Nmax;
 
 % PARAMETROS A SEREM DEFINIDOS - Saturacao
 MaxVelX   = 3.05;
@@ -28,7 +28,7 @@ Lx = L*cos(pi/4.0);
 Ly = L*cos(pi/4.0);
 k1 = (Fmax/4.0)/(Pwmmax-Pwmmin);
 
-% Parametros relacionados ao desenho (plot) do barco
+%% Parametros relacionados ao desenho (plot) do barco
 Loa   =   1.40;             % Comprimento do casco (metros)
 dcx   =  Loa/2;
 Bw1   =   0.20;              % Largura da linha dágua [m]
@@ -38,25 +38,25 @@ dceby = -dcbby;
 %% MODELO COMPLETO PARA UTILIZAÇÃO NA SIMULAÇÃO
 Xudot = -1.0400;
 Xu    = -16.3292;
-Xv    = 0;
-Xr    = 0;
+% Xv    = 0;
+% Xr    = 0;
 Xuu   = -3.5313;
 Yvdot = -17.2552;
-Yu    = 0;
+% Yu    = 0;
 Yv    = -0.0013;
 Yr    = 0;
 Yvv   = -48.8006;
 Nrdot = -3.7020;
-Nu    = 0;
+% Nu    = 0;
 Nv    = 0;
 Nr    = -18.9686;
 Nrr   = -1.1958e-05;
-Xvdot = 0;
-Xrdot = 0;
-Yudot = 0;
+% Xvdot = 0;
+% Xrdot = 0;
+% Yudot = 0;
 Yrdot = 0;
-Nudot = 0;
-Nvdot = 0;
+% Nudot = 0;
+% Nvdot = 0;
 Yvr   = 0;
 Nrv   = 0;
 Nvv   = 0;

@@ -21,7 +21,7 @@ switch Nome
         rotat =[0:pi/20:pi];
         Yaw = [zeros(size(Y)) rotat pi*ones(size(t))];
         Y   = [A*ones(size(Y)) A*ones(size(rotat)) zeros(size(Y))];
-        X = zeros(size(Y));
+        X   = zeros(size(Y));
         %         hold on; plot(Y,X,'Linewidth',2); plot(Y(1),X(1),'*r');axis equal
         
         %     case 'Sway'
@@ -75,8 +75,7 @@ switch Nome
     otherwise
         X = 0;
         Y = 0;
-        Yaw = 0;
-        
+        Yaw = 0;  
 end
 WP = 2;
 SP.XYZ = [X;Y;Yaw];

@@ -1,6 +1,5 @@
 function Path_L1_controller(stp)
 global Sim WP SP Sat ;
-
 groundspeed_vector = Sim.Current_u_v_r(1:2);
 groundSpeed = norm(Sim.Vel(1:2,stp));
 % L1_dist = 10 * groundSpeed;
@@ -9,7 +8,6 @@ L1_damping = 0.7071;
 L1_period = 80;
 
 K_L1 = 4.0 * L1_damping * L1_damping;
-
 
 L1_dist = 0.3183099 * L1_damping * L1_period * groundSpeed;
 

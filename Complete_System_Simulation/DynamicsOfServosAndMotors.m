@@ -27,7 +27,6 @@ else
 end
 
 AuxVector = (RefSignal - ActualSignal)./tau;
-
 % 4-Order Runge-Kutta Integration Method
 s1 = AuxVector;
 s2 = AuxVector + (Sim.Ts/3)*s1;

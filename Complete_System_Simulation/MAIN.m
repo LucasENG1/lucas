@@ -19,7 +19,7 @@ clear all; close all; clc;
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{5};
+SetPoint = Possible_SPs{7};
 Lang     = Language{2};
 
 % Plot Configuration
@@ -48,8 +48,8 @@ SetPointsCreation(SetPoint);
 
 %% Choose which controller is going to be used
 switch SetPoint
-    case {'Figura','LinearX','Circular'}
-        L1_controller = 0;
+    case {'Figra','Linear','Circlar'}
+        L1_controller = 1;
     otherwise
         L1_controller = 0;
 end
@@ -61,12 +61,9 @@ for i = 1:numel(Time)
     WaypointUpdate;
     
     Position_Controller(i);
-    
-%     if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius
-%     
+%     if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius 
 %         Sim.Vel(:,i)=[0;0;0];
 %     end
-    
     if(L1_controller==1)
         Path_L1_controller(i);
     else
@@ -74,8 +71,6 @@ for i = 1:numel(Time)
     end
 
     for j = (SLC.Freq*(i-1)+1):SLC.Freq*(i)
-        
-        
         %% Controlador de Velocidade
         Speed_Controller(i,j);
 
@@ -92,6 +87,7 @@ for i = 1:numel(Time)
         Sim.u_v_r_dot(:,j+1) = v_dot;         % utilizada no controle de Velocidade
         Sim.Current_X_Y_psi  = AuxVector(1:3);% + sqrt(R_gps)*randn(size(AuxVector(1:3)));
         Sim.Current_u_v_r    = AuxVector(4:6);% + sqrt(R_gps)*randn(size(AuxVector(1:3)));
+       
         %% Armazena para PLOT
         Sim_Plot.u_v_r(:,j)   = Sim.Current_u_v_r;
         Sim_Plot.X_Y_psi(:,j) = Sim.Current_X_Y_psi;
@@ -122,5 +118,3 @@ Curvas_real_simulado(10,SetPoint,Lang,Salvar);            % Demais figuras
 
 %% End of the script
 delete *.asv;
-
-

@@ -11,7 +11,7 @@ s  = tf('s');
 %% APROXIMAÇÃO DE 1 ORDEM PARA CALCULO DO CONTROLADOR
 % Parametros de massa adicionada
 Xu_dot = -2 ;%0*-11.2;
-Xu    = -15.8;
+Xu     = -15.8;
 
 Yv_dot = -26; %0*-68.1;
 Yv    = -22;

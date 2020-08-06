@@ -5,7 +5,7 @@ global  Sim  SP Time SLC WP Sat;
 % P_Controller(stp); % Implementação Mathaus
 
 XY = NED2BF(Sim.Current_X_Y_psi(3),[SP.XYZ(1:2,WP);0]-[Sim.Current_X_Y_psi(1:2);0]);
-N = atan2(XY(2),XY(1)); % Angulo entre V e o ponto desejado
+N  = atan2(XY(2),XY(1)); % Angulo entre V e o ponto desejado
 
 Sim.Vel(1,stp) = 2.5*norm(Sim.Vel(1:2,stp));%norm(NED2BF(Sim.Current_X_Y_psi(3),[Sim.Vel(1:2,stp);0]));
 % Sim.Vel(1,stp) = norm(XY);

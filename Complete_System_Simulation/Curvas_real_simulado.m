@@ -213,7 +213,7 @@ legend(Leg.ServoPWM4{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-linkaxes([axPa1 axPa2 axPa3 axPa4],'x')
+linkaxes([axPa1 axPa2 axPa3 axPa4],'xy')
 
 xlim([0 TimeJ(end)]);
 ylim([ 0 1.1]);
