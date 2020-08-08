@@ -1,6 +1,6 @@
 function A =  Mapeando(F)
 
-maxF = max(F);
+maxF = max(abs(F));
 F = F/maxF;
 
 A(1) = mapcube(F(1),F(2),F(3));

@@ -15,11 +15,14 @@ Ctrl.ErrIXYZprev = ErrIXYZ;
 
 V = Ctrl.kpPosi * ErrPXYZ + Ctrl.kiPosi * ErrIXYZ + Ctrl.kdPosi * Posi_dot;
 
+% Rotação de Frame
+V = NED2BF(Sim.Current_X_Y_psi(3),V);
+
+% Saturação 
 V(1) = Satura(V(1),Sat.MaxVelX,-Sat.MaxVelX);
 V(2) = Satura(V(2),Sat.MaxVelY,-Sat.MaxVelY);
 V(3) = Satura(V(3),Sat.MaxVelAng,-Sat.MaxVelAng);
 
-% Rotação de Frame
-Sim.Vel(:,stp) = NED2BF(Sim.Current_X_Y_psi(3),V);
+Sim.Vel(:,stp) = V;
 
 end

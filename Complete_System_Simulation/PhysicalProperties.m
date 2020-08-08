@@ -102,7 +102,7 @@ IM = IMrb + IMra;                 % 6.48    7.8
 
 %% Constante de Tempo
 settling_time_mt  = 0.3;
-settling_time_srv = 0.5;
+settling_time_srv = 1.0; %//1.5;
 
 tau_mt  = settling_time_mt/5;    % Motors
 tau_srv = settling_time_srv/5;   % Servos

@@ -59,7 +59,7 @@ xlabel('Y(m)',Img.YLabelOpt{:});
 ylabel('X(m)',Img.XLabelOpt{:});
 legend(Leg.p3D{:},Img.Legend{:});
 
-%% ================================================================ POSIÇÃO
+%% ============================================================= POSIÇÃO 3L
 posi3L = figure(Img.figOpt3L{:});
 
 ax1 = subplot(311);
@@ -79,12 +79,12 @@ ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 legend(Leg.posicaoY3L{:},Img.Legend{:});
 
 ax3 = subplot(313);
-if strcmp(Nome,'Circular')==0
+if strcmp(Nome,'Circular')==1
     plot(TimeJ,Sim_Plot.SP_Posi(3,:)*RAD_TO_DEG,'r','linewidth',2); hold on;grid on;
     plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');
     legend(Leg.posicaoYaw3L{:},Img.Legend{:});
 else
-    plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');grid on;
+    plot(TimeJ,Sim_Plot.X_Y_psi(3,:),'m','linewidth',2');grid on;
     legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 end
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
@@ -94,31 +94,32 @@ linkaxes([ax1 ax2 ax3],'x')
 xlim([0 TimeJ(end)])
 
 %% ============================================================= VELOCIDADE
-vel3L = figure(Img.figOpt3L{:});
+vel3L = figure(Img.figOpt2L{:});
 
-vx1 = subplot(311);
-plot(TimeJ,Sim_Plot.SP_Vel(1,:),'r','linewidth',2'); hold on; grid on;
-plot(TimeJ,Sim_Plot.u_v_r(1,:),'b','linewidth',2');
+vx1 = subplot(211);
+% plot(TimeJ,Sim_Plot.SP_Vel(1,:),'r','linewidth',2');
+plot(TimeJ,Sim_Plot.u_v_r(1,:),'linewidth',2'); hold on; grid on;
 
-legend(Leg.VelX3L{:},Img.Legend{:});
+% legend(Leg.VelX3L{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
+
+% vx2 = subplot(312);
+% plot(TimeJ,Sim_Plot.SP_Vel(2,:),'r','linewidth',2'); hold on; grid on;
+plot(TimeJ,Sim_Plot.u_v_r(2,:),'linewidth',2');
+
+legend(Leg.VelXY{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
-vx2 = subplot(312);
-plot(TimeJ,Sim_Plot.SP_Vel(2,:),'r','linewidth',2'); hold on; grid on;
-plot(TimeJ,Sim_Plot.u_v_r(2,:),'b','linewidth',2');
-legend(Leg.VelY3L{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
-
-vx3 = subplot(313);
-plot(TimeJ,Sim_Plot.SP_Vel(3,:)*RAD_TO_DEG,'r','linewidth',2'); hold on;
+vx3 = subplot(212);
+% plot(TimeJ,Sim_Plot.SP_Vel(3,:)*RAD_TO_DEG,'r','linewidth',2'); hold on;
 plot(TimeJ,Sim_Plot.u_v_r(3,:)*RAD_TO_DEG,'b','linewidth',2'); grid on;
-legend(Leg.VelYaw3L{:},Img.Legend{:});
+legend(Leg.VelYaw{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YYaw3L{:},Img.YLabelOpt{:});
 
-linkaxes([vx1 vx2 vx3],'x')
+linkaxes([vx1 vx3],'x')
 
 %% ====================================================== FORÇAS E ALOCAÇÃO
 force = figure(Img.figOpt3L{:});
@@ -148,7 +149,7 @@ ylabel(Leg.Torque{:},Img.YLabelOpt{:});
 
 linkaxes([axf1 axf2 axf3],'x')
 linkaxes([axf1 axf2 ],'y')
-
+xlim([0 TimeJ(end)])
 %% ============================================================ Servo Angle
 servoAngle = figure(Img.figOpt4L{:});
 axSa1 = subplot(411);
@@ -176,6 +177,7 @@ xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
 linkaxes([axSa1 axSa2 axSa3 axSa4],'xy')
+xlim([0 TimeJ(end)]);
 
 % plot(TimeJ,Sim.Theta(2,1:end-1),'linewidth',2')
 % plot(TimeJ,Sim.Theta(3,1:end-1),'linewidth',2')
@@ -230,9 +232,9 @@ switch Nome
         legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','northoutside');
         
         figure(vel3L)
-        ylim(vx1,[-0 4]);
-        ylim(vx2,[-0 4]);
-        ylim(vx3,[-20  20]);
+        ylim(vx1,[-1 4]);
+%         ylim(vx2,[-0 4]);
+%         ylim(vx3,[-20  20]);
         xlim([0 TimeJ(end)])
         
         figure(force)
@@ -245,7 +247,7 @@ switch Nome
         
         figure(vel3L)
         ylim(vx1,[-0 1.5]);
-        ylim(vx2,[-1 1]);
+%         ylim(vx2,[-1 1]);
         ylim(vx3,[-20  20]);
         xlim([0 TimeJ(end)])
         
@@ -261,7 +263,7 @@ switch Nome
         
         figure(vel3L)
         ylim(vx1,[-2 3]);
-        ylim(vx2,[-2 3]);
+%         ylim(vx2,[-2 3]);
         ylim(vx3,[-75  70]);
         xlim([0 TimeJ(end)]);
         
@@ -277,9 +279,9 @@ switch Nome
         
         figure(vel3L)
         ylim(vx1,[-1 2.5]);
-        ylim(vx2,[-1 2.5]);
-        ylim(vx3,[-22.5 22.5]);
-        xlim([0 TimeJ(end)]) 
+        legend(Leg.VelXY{:},Img.Legend{:});
+        ylim(vx3,[-20 20]);
+        xlim([0 TimeJ(end)])
     otherwise
 end
 
@@ -290,17 +292,17 @@ if(salva==1)
     saveas(posi3L,strcat(Nome,'Posicao3L'),'epsc');
     saveas(posi3L,strcat(Nome,'Posicao3L'),'fig');
     
-    saveas(vel3L,strcat(Nome,'Velocidade3L'),'epsc');
-    saveas(vel3L,strcat(Nome,'Velocidade3L'),'fig');
+    saveas(vel3L,strcat(Nome,'Velocidade2L'),'epsc');
+    saveas(vel3L,strcat(Nome,'Velocidade2L'),'fig');
     
     saveas(force,strcat(Nome,'Forca'),'epsc');
     saveas(force,strcat(Nome,'Forca'),'fig');
     
-    saveas(servoAngle,strcat(Nome,'Forca'),'epsc');
-    saveas(servoAngle,strcat(Nome,'Forca'),'fig');
+    saveas(servoAngle,strcat(Nome,'Angle'),'epsc');
+    saveas(servoAngle,strcat(Nome,'Angle'),'fig');
     
-    saveas(servoPwm,strcat(Nome,'Forca'),'epsc');
-    saveas(servoPwm,strcat(Nome,'Forca'),'fig');
+    saveas(servoPwm,strcat(Nome,'PWM'),'epsc');
+    saveas(servoPwm,strcat(Nome,'PWM'),'fig');
     
     
 end

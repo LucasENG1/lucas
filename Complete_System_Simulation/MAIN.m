@@ -1,30 +1,15 @@
-%%
-%                           CATAMARAN
-%                              ^
-%                              |-y
-%               -------------------------------
-%              |    Mot.2           Mot.3       >
-%               -------------------------------
-%                             ||                      ---> x
-%               -------------------------------
-%              |    Mot.4           Mot.1       >
-%               -------------------------------
-% Obs: Por convenção os motores puxam o barco:
-%      Angulo do propulsor +  ---> Embarcação se move para direita
-%      Angulo do propulsor -  ---> Embarcação se move para esquerda
-%% =========================================================================
 clear all; close all; clc;
 
 %% Configuration
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{5};
+SetPoint = Possible_SPs{4};
 Lang     = Language{2};
 
 % Plot Configuration
 Plotar = 1;  % 1 - True or 0 - False
-Salvar = 0;  % 1 - True or 0 - False
+Salvar = 1;  % 1 - True or 0 - False
 
 Plot_Step = 20; % Step to dynamic plot
 
@@ -48,7 +33,7 @@ SetPointsCreation(SetPoint);
 
 %% Choose which controller is going to be used
 switch SetPoint
-    case {'Figra','Linear','Circlar'}
+    case {'Figra','LinarX','Circlar'}
         L1_controller = 1;
     otherwise
         L1_controller = 0;
@@ -61,9 +46,11 @@ for i = 1:numel(Time)
     WaypointUpdate;
     
     Position_Controller(i);
-%     if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius 
-%         Sim.Vel(:,i)=[0;0;0];
-%     end
+    
+    if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius 
+        Sim.Vel(:,i)=[0;0;0];
+    end
+    
     if(L1_controller==1)
         Path_L1_controller(i);
     else
@@ -79,7 +66,7 @@ for i = 1:numel(Time)
         
         n_dot = BF2NED(Sim.Current_X_Y_psi(3),Sim.Current_u_v_r);
         v_dot = ROV.InverseInertia * (Torque - Sim.NetForces);
-        
+        (Torque - Sim.NetForces)
         %% Double integration: accelerations -> velocities -> position/attitude
         X = [n_dot; v_dot]; % Vetor de Estados
         [AuxVector, Aux] = Integration(X,Aux,j);

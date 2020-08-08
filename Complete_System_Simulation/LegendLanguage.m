@@ -7,6 +7,10 @@ switch language
         Leg.posicaoX3L  = {'Setpoint em $X$','Simula\c{c}\~{a}o em $X$','Location','best'};
         Leg.posicaoY3L  = {'Setpoint em $Y$','Simula\c{c}\~{a}o em $Y$','Location','best'};
         Leg.posicaoYaw3L= {'Setpoint em $\psi$','Simula\c{c}\~{a}o em $\psi$','Location','best'};
+        
+        Leg.VelXY       = {'Velocidade $X$','Velocidade $Y$''Location','best'};
+        Leg.VelYaw      = {'Simula\c{c}\~{a}o em $\psi$','Location','northeast'};
+        
         Leg.VelX3L      = {'Setpoint em $X$','Simula\c{c}\~{a}o em $X$','Location','northeast'};
         Leg.VelY3L      = {'Setpoint em $Y$','Simula\c{c}\~{a}o em $Y$','Location','northeast'};
         Leg.VelYaw3L    = {'Setpoint em $\psi$','Simula\c{c}\~{a}o em $\psi$','Location','northeast'};
@@ -41,8 +45,12 @@ switch language
         Leg.posicaoX3L   = {'$X$ waypoint','$X$ response','Location','best'};
         Leg.posicaoY3L   = {'$Y$ waypoint','$Y$ response','Location','best'};
         Leg.posicaoYaw3L = {'$\psi$ waypoint','$\psi$ response','Location','best'};
-        Leg.VelX3L       = {'$X$ waypoint','$X$ response','Location','northeast'};
-        Leg.VelY3L       = {'$Y$ waypoint','$Y$ response','Location','northeast'};
+        
+        Leg.VelXY        = {'$X$ speed','$Y$ speed','Location','best'};
+        Leg.VelYaw     = {'$\psi$ speed','Location','northeast'};
+        
+        Leg.VelX3L       = {'$X$ waypoint','Location','northeast'};
+        Leg.VelY3L       = {'$Y$ waypoint','Location','northeast'};
         Leg.VelYaw3L     =  {'$\psi$ waypoint','$\psi$ response','Location','northeast'};
         Leg.AlocacaoX    = {'$F_x$ desired','$F_x$ allocated','Location','best'};
         Leg.AlocacaoY    = {'$F_y$ desired','$F_y$ allocated','Location','best'};
