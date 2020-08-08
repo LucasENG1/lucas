@@ -17,7 +17,7 @@ RAD_TO_DEG = 180/pi;
 
 SLC.Freq = 20;      % Sucessive Loop Closure frequency % 90s Linear X / 
 
-TEMPO_Sim   = 150;       % Total simulation time [s]
+TEMPO_Sim   = 50;       % Total simulation time [s]
 Ts          = 0.01;      % Integration step / sampling period [s]
 
 Time  = Ts*SLC.Freq:Ts*SLC.Freq:TEMPO_Sim;

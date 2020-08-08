@@ -1,0 +1,4 @@
+PWM(1) = FX/(4*k1) - TN/(4*Ly*k1);
+PWM(2) = FX/(4*k2) + TN/(4*Ly*k2);
+PWM(3) = FX/(4*k3) + TN/(4*Ly*k3);
+PWM(4) = FX/(4*k4) - TN/(4*Ly*k4);
