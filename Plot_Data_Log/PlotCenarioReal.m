@@ -1,4 +1,4 @@
-function PlotCenarioReal(T,Pose_real,Vel_real,Nome,Language,salva)
+function PlotCenarioReal(T,T2,Pose_real,Vel_real,Nome,Language,salva)
 global SP RAD_TO_DEG;
 
 Img = ImageParametrization();
@@ -29,7 +29,7 @@ switch Nome
         posi3D = figure(Img.figOpt{:});
         plot(SP.X,SP.Y,'r','linewidth',2);hold on;axis equal
         plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
-        FiguraArtigo(10,Pose_real); grid on;
+        FiguraArtigo(20,Pose_real); grid on;
 end
 
 
@@ -55,7 +55,7 @@ ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 
 ax3 = subplot(313);
 % plot(SP.t,SP.Yaw*RAD_TO_DEG,'r','linewidth',2);hold on;
-plot(T,rem(Pose_real(3,:),2*pi)*RAD_TO_DEG,'color',Img.COR,'linewidth',2);grid on
+plot(T,Pose_real(3,:)*RAD_TO_DEG,'color',Img.COR,'linewidth',2);grid on
 legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.yaw3L{:},Img.YLabelOpt{:});
@@ -66,25 +66,25 @@ xlim([0 T(end)])
 %%  VELOCIDADE
 vel3L=figure(Img.figOpt3L{:});
 vx1 = subplot(311);
-plot(T,Vel_real(1,:),'color',Img.COR,'linewidth',2);hold on;grid on
+plot(T2,Vel_real(1,:),'color',Img.COR,'linewidth',2);hold on;grid on
 legend(Leg.VelX3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
 vx2 = subplot(312);
-plot(T,Vel_real(2,:),'color',Img.COR,'linewidth',2);hold on ;grid on
+plot(T2,Vel_real(2,:),'color',Img.COR,'linewidth',2);hold on ;grid on
 legend(Leg.VelY3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
 vx3 = subplot(313);
-plot(T,Vel_real(3,:),'color',Img.COR,'linewidth',2);hold on;grid on;
+plot(T2,Vel_real(3,:),'color',Img.COR,'linewidth',2);hold on;grid on;
 legend(Leg.VelYaw3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YYaw3L{:},Img.YLabelOpt{:});
 
 linkaxes([vx1 vx2 vx3],'x')
-xlim([0 T(end)])
+xlim([0 T2(end)])
 
 switch Nome
     case 'LinearX_Real'

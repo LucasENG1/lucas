@@ -1,7 +1,8 @@
-function PlotSaidaReal(T,Theta,PWM,F,F_out,Nome,salva)
+function PlotSaidaReal(T,Theta,PWM,F,F_out,Nome,Language,salva)
 %% PLOTA A FIGURA QUE CONTEM OS ANGULOS E OS PWMS DO SISTEMA
 
 Img = ImageParametrization();% Opções de figura
+Leg = LegendLanguage(Language);
 global Fmax Nmax
 
 %% ANGULOS
@@ -15,11 +16,12 @@ plot(T,Th2,'linewidth',2);
 plot(T,Th3,'linewidth',2);
 plot(T,Th4,'linewidth',2);
 % title('Angulo dos Servo-motores',Img.TlabelOpt{:});
-legend('Servo-motor M1','Servo-motor M2',...
-'Servo-motor M3','Servo-motor M4',...
-Img.Legend{:} ,'Location','best');
-xlabel('Tempo (s)',Img.XLabelOpt{:});
-ylabel('$Graus$',Img.YLabelOpt{:});
+% legend('Servo-motor M1','Servo-motor M2','Servo-motor M3','Servo-motor M4',Img.Legend{:} ,'Location','best');
+
+legend(Leg.ServoAngle{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YSA{:},Img.YLabelOpt{:});
+
 grid on
 
 %% PWM
@@ -28,11 +30,10 @@ plot(T,pwm1,'linewidth',2); hold on
 plot(T,pwm2,'linewidth',2);
 plot(T,pwm3,'linewidth',2);
 plot(T,pwm4,'linewidth',2);
-% title('PWM',Img.TlabelOpt{:});
-legend('PWM M1','PWM M2','PWM M3','PWM M4',...
-Img.Legend{:},'Location','best'); grid on
-xlabel('Tempo (s)',Img.XLabelOpt{:});
-ylabel('Porcentagem',Img.YLabelOpt{:});
+
+legend(Leg.ServoPWM{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 grid on
 linkaxes([axa axb],'x')
 xlim([0 T(end)])
@@ -42,28 +43,26 @@ force =figure(Img.figOpt3L{:});
 ax12=subplot(311);
 plot(T,F(1,:).*Fmax,'linewidth',2); hold on
 plot(T,F_out(1,:),'linewidth',2);
-% title('',Img.TlabelOpt{:});
-legend('$F_x$ a alocar','$F_x$ alocado',Img.Legend{:},'Location','best');grid on
-xlabel('Tempo (s)',Img.XLabelOpt{:});
-ylabel('Newton',Img.YLabelOpt{:});
+grid on;
+legend(Leg.AlocacaoX{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.Forca{:},Img.YLabelOpt{:});
 
 ax22=subplot(312);
 plot(T,F(2,:).*Fmax,'linewidth',2); hold on
 plot(T,F_out(2,:),'linewidth',2);
-% title('$F_y$',Img.TlabelOpt{:});
-legend('$F_y$ a alocar','$F_y$ alocado',Img.Legend{:},'Location','best');grid on
-xlabel('Tempo (s)',Img.XLabelOpt{:});
-ylabel('Newton',Img.YLabelOpt{:});
+grid on;
+legend(Leg.AlocacaoY{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.Forca{:},Img.YLabelOpt{:});
 
 ax32=subplot(313);
 plot(T,F(3,:).*Nmax,'linewidth',2); hold on
 plot(T,F_out(3,:),'linewidth',2);
-% title('$\tau_{\psi}$',Img.TlabelOpt{:});
-legend('$\tau_{\psi}$ a alocar','$\tau_{\psi} $ alocado',...
-Img.Legend{:},'Location','best');grid on
-xlabel('Tempo (s)',Img.XLabelOpt{:});
-ylabel('N.m',Img.YLabelOpt{:});
-
+grid on;
+legend(Leg.AlocacaoPsi{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.Torque{:},Img.YLabelOpt{:});
 linkaxes([ax12 ax22 ax32],'x');
 xlim([0 T(end)])
 
