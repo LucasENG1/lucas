@@ -9,34 +9,67 @@ global Fmax Nmax
 Th1  = Theta(1,:); Th2 = Theta(2,:); Th3 = Theta(3,:); Th4 = Theta(4,:);
 pwm1 = PWM(1,:)  ; pwm2 = PWM(2,:) ; pwm3 = PWM(3,:) ; pwm4 = PWM(4,:);
 
-ang = figure(Img.figOpt3L{:});
-axa = subplot(211);
-plot(T,Th1,'linewidth',2); hold on
-plot(T,Th2,'linewidth',2);
-plot(T,Th3,'linewidth',2);
-plot(T,Th4,'linewidth',2);
-% title('Angulo dos Servo-motores',Img.TlabelOpt{:});
-% legend('Servo-motor M1','Servo-motor M2','Servo-motor M3','Servo-motor M4',Img.Legend{:} ,'Location','best');
+servoAngle = figure(Img.figOpt4L{:});
 
-legend(Leg.ServoAngle{:},Img.Legend{:});
+axSa1 = subplot(411);
+plot(T,Th1,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoAngle1{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-grid on
+axSa2 = subplot(412);
+plot(T,Th2,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoAngle2{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YSA{:},Img.YLabelOpt{:});
+
+axSa3 = subplot(413);
+plot(T,Th3,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoAngle3{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YSA{:},Img.YLabelOpt{:});
+
+axSa4 = subplot(414);
+plot(T,Th4,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoAngle4{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YSA{:},Img.YLabelOpt{:});
+
+linkaxes([axSa1 axSa2 axSa3 axSa4],'xy')
+xlim([0 T(end)])
 
 %% PWM
-axb = subplot(212);
-plot(T,pwm1,'linewidth',2); hold on
-plot(T,pwm2,'linewidth',2);
-plot(T,pwm3,'linewidth',2);
-plot(T,pwm4,'linewidth',2);
+servoPwm = figure(Img.figOpt4L{:});
 
-legend(Leg.ServoPWM{:},Img.Legend{:});
+axPa1 = subplot(411);
+plot(T,pwm1,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoPWM1{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
-grid on
-linkaxes([axa axb],'x')
-xlim([0 T(end)])
+
+axPa2 = subplot(412);
+plot(T,pwm2,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoPWM2{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+axPa3 = subplot(413);
+plot(T,pwm3,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoPWM3{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+axPa4 = subplot(414);
+plot(T,pwm4,'b','linewidth',2);hold on; grid on;
+legend(Leg.ServoPWM4{:},Img.Legend{:});
+xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+linkaxes([axPa1 axPa2 axPa3 axPa4],'xy')
+
+xlim([0 T(end)]);
+
+ylim([0 1]);
 
 %% Força
 force =figure(Img.figOpt3L{:});
@@ -67,11 +100,14 @@ linkaxes([ax12 ax22 ax32],'x');
 xlim([0 T(end)])
 
 if(salva==1)
-    saveas(ang,strcat(Nome,'Ang_PWM_Servo'),'epsc');
-    saveas(ang,strcat(Nome,'Ang_PWM_Servo'),'fig');
+    saveas(servoAngle,strcat('BOM/',strcat(Nome,'Ang_Servo')),'epsc');
+    saveas(servoAngle,strcat('BOM/',strcat(Nome,'Ang_Servo')),'fig');
     
-    saveas(force,strcat(Nome,'ForcaServo'),'epsc');
-    saveas(force,strcat(Nome,'ForcaServo'),'fig');
+    saveas(servoPwm,strcat('BOM/',strcat(Nome,'PWM_Servo')),'epsc');
+    saveas(servoPwm,strcat('BOM/',strcat(Nome,'PWM_Servo')),'fig');
+    
+    saveas(force,strcat('BOM/',strcat(Nome,'ForcaServo')),'epsc');
+    saveas(force,strcat('BOM/',strcat(Nome,'ForcaServo')),'fig');
     
 end
 end

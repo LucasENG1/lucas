@@ -57,12 +57,32 @@ switch Nome
 %         yaw_ini = 45*(pi/180);%155*(pi/180); Offset na guinada inicial (plot)
 %         
 %         
+    case 'Oito_dia_top'
+        load('DIATOP/3BIN.mat');
+        Ang     = 143 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
+        ini     = 8800;                 % Inicio da leitura no log
+        fim     = ini+1900;              % Final da leitura no log
+        yaw_ini = 95*(pi/180);          %155*(pi/180); Offset na guinada inicial (plot);
+   
+    case 'Reta_dia_top'
+        load('DIATOP/3BIN.mat');
+        Ang     = 136 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
+        ini     = 300;                 % Inicio da leitura no log
+        fim     = ini+1500;              % Final da leitura no log
+        yaw_ini = 40*(pi/180);          %155*(pi/180); Offset na guinada inicial (plot);
+        
+    case 'Circulo_dia_top'
+        load('DIATOP/3BIN.mat');
+        Ang     = 136 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
+        ini     = 14000;                 % Inicio da leitura no log
+        fim     = ini+1500;              % Final da leitura no log
+        yaw_ini = 110*(pi/180);          %155*(pi/180); Offset na guinada inicial (plot);
         
     case 'survey_1'
         load('LOG_Artigo_24_08/log1.mat')
         Ang     = 160 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
-        ini     = 10900;        % Inicio da leitura no log
-        fim     = ini+4500;     % Final da leitura no log
+        ini     = 10900+1290;        % Inicio da leitura no log
+        fim     = ini+2700;     % Final da leitura no log
         yaw_ini = 160*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
         
     case 'survey_1_Diferencial'
@@ -81,7 +101,7 @@ switch Nome
     
     case 'Square2_top'
         load('LOG_Artigo_24_08/log2.mat')
-        Ang     = 60 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
+        Ang     = 55 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 12300;        % Inicio da leitura no log
         fim     = ini+1600;     % Final da leitura no log
         yaw_ini = 70*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
@@ -95,7 +115,7 @@ switch Nome
         
     case 'Square_dif'
         load('LOG_Artigo_24_08/log2.mat')
-        Ang     = 60 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
+        Ang     = 55 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 10000;        % Inicio da leitura no log
         fim     = ini+1800;     % Final da leitura no log
         yaw_ini = 130*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);

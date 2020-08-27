@@ -60,17 +60,17 @@ switch language
         
         Leg.ServoAngle  = {'Servomotor 1','Servomotor 2','Servomotor 3','Servomotor 4','Location','best'};
         
-        Leg.ServoAngle1  = {'Servomotor 1','Location','best'};
-        Leg.ServoAngle2  = {'Servomotor 2','Location','best'};
-        Leg.ServoAngle3  = {'Servomotor 3','Location','best'};
-        Leg.ServoAngle4  = {'Servomotor 4','Location','best'};
+        Leg.ServoAngle1  = {'Servomotor 1','Location','northeast'};
+        Leg.ServoAngle2  = {'Servomotor 2','Location','northeast'};
+        Leg.ServoAngle3  = {'Servomotor 3','Location','northeast'};
+        Leg.ServoAngle4  = {'Servomotor 4','Location','northeast'};
         
         Leg.ServoPWM  = {'Motor 1','Motor 2','Motor 3','Motor 4','Location','best'};
         
-        Leg.ServoPWM1  = {'Motor 1','Location','best'};
-        Leg.ServoPWM2  = {'Motor 2','Location','best'};
-        Leg.ServoPWM3  = {'Motor 3','Location','best'};
-        Leg.ServoPWM4  = {'Motor 4','Location','best'};
+        Leg.ServoPWM1  = {'Motor 1','Location','northeast'};
+        Leg.ServoPWM2  = {'Motor 2','Location','northeast'};
+        Leg.ServoPWM3  = {'Motor 3','Location','northeast'};
+        Leg.ServoPWM4  = {'Motor 4','Location','northeast'};
         
         Leg.YSA     = {'Angle (Degree)'};
         Leg.YPWM   = {'PWM (\%)'};

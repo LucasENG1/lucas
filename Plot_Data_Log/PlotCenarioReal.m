@@ -18,7 +18,7 @@ switch Nome
         
         plot(SP.Y,SP.X,'r','linewidth',2);hold on;axis equal
         plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
-        FiguraArtigo(10,Pose_real); grid on;
+        FiguraArtigo(20,Pose_real); grid on;
         
         Ax = Pose_real(2,:);
         Pose_real(2,:)= Pose_real(1,:);
@@ -40,21 +40,21 @@ legend(Leg.p3D{:},Img.Legend{:});
 %% POSIÇÃO EM CADA COMPONENTE
 posi3L=figure(Img.figOpt3L{:});
 ax1 = subplot(311);
-% plot(SP.t,SP.Y,'r','linewidth',2);hold on
+plot(SP.t,SP.Y,'r','linewidth',2);hold on
 plot(T,Pose_real(2,:),'color',Img.COR,'linewidth',2);grid on
 legend(Leg.posicaoX3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 
 ax2 = subplot(312);
-% plot(SP.t,SP.X,'r','linewidth',2);hold on
+plot(SP.t,SP.X,'r','linewidth',2);hold on
 plot(T,Pose_real(1,:),'color',Img.COR,'linewidth',2);grid on
 legend(Leg.posicaoY3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 
 ax3 = subplot(313);
-% plot(SP.t,SP.Yaw*RAD_TO_DEG,'r','linewidth',2);hold on;
+plot(SP.t,SP.Yaw*RAD_TO_DEG,'r','linewidth',2);hold on;
 plot(T,Pose_real(3,:)*RAD_TO_DEG,'color',Img.COR,'linewidth',2);grid on
 legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
@@ -64,26 +64,27 @@ linkaxes([ax1 ax2 ax3],'x')
 xlim([0 T(end)])
 
 %%  VELOCIDADE
-vel3L=figure(Img.figOpt3L{:});
-vx1 = subplot(311);
-plot(T2,Vel_real(1,:),'color',Img.COR,'linewidth',2);hold on;grid on
-legend(Leg.VelX3L{:},Img.Legend{:});
+vel3L=figure(Img.figOpt2L{:});
+vx1 = subplot(211);
+plot(T2,Vel_real(1,:),'linewidth',2);hold on;grid on
+% legend(Leg.VelX3L{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
+
+% vx2 = subplot(312);
+plot(T2,Vel_real(2,:),'linewidth',2);
+legend(Leg.VelXY{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
 
-vx2 = subplot(312);
-plot(T2,Vel_real(2,:),'color',Img.COR,'linewidth',2);hold on ;grid on
-legend(Leg.VelY3L{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
+vx3 = subplot(212);
+plot(T2,Vel_real(3,:),'b','linewidth',2);grid on;
 
-vx3 = subplot(313);
-plot(T2,Vel_real(3,:),'color',Img.COR,'linewidth',2);hold on;grid on;
-legend(Leg.VelYaw3L{:},Img.Legend{:});
+legend(Leg.VelYaw{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YYaw3L{:},Img.YLabelOpt{:});
 
-linkaxes([vx1 vx2 vx3],'x')
+linkaxes([vx1 vx3],'x')
 xlim([0 T2(end)])
 
 switch Nome
@@ -153,14 +154,14 @@ switch Nome
     otherwise
 end
 if(salva==1)
-    saveas(posi3D,strcat(Nome,'Posicao3D'),'epsc');
-    saveas(posi3D,strcat(Nome,'Posicao3D'),'fig');
+    saveas(posi3D,strcat('BOM/',strcat(Nome,'Posicao3D')),'epsc');
+    saveas(posi3D,strcat('BOM/',strcat(Nome,'Posicao3D')),'fig');
     
-    saveas(posi3L,strcat(Nome,'Posicao3L'),'epsc');
-    saveas(posi3L,strcat(Nome,'Posicao3L'),'fig');
+    saveas(posi3L,strcat('BOM/',strcat(Nome,'Posicao3L')),'epsc');
+    saveas(posi3L,strcat('BOM/',strcat(Nome,'Posicao3L')),'fig');
     
-    saveas(vel3L,strcat(Nome,'Velocidade3L'),'epsc');
-    saveas(vel3L,strcat(Nome,'Velocidade3L'),'fig');
+    saveas(vel3L,strcat('BOM/',strcat(Nome,'Velocidade3L')),'epsc');
+    saveas(vel3L,strcat('BOM/',strcat(Nome,'Velocidade3L')),'fig');
 end
 
 

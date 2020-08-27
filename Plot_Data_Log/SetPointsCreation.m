@@ -31,7 +31,7 @@ switch Nome
         a = coefficients (1);
         b = coefficients (2);
         Y2   = a.*t(t(t==78)+N:end)+ b;
-
+        
         X   = 1e-10+(A*ones(size(t)));
         Y = [Y1 Y1(end)*ones(1,2*N) Y2];
         AX = Y;
@@ -42,6 +42,30 @@ switch Nome
         Yaw = -atan2([X(1:length(Y)/2-T), -X(1:length(Y)/2) -X(1:T)],...
             [Y(1:(length(Y)/2)-1-T), -Y(length(Y)/2:end) -Y(1:T)])+...
             0*(pi/180);
+  
+    case {'Square_dif','Square2_top'}
+        t   = 1:1:80;
+        X1   = [30/18:30/18:30];
+        x21  = 30:2/17:(32-2/17);
+        x22  = 32:-2/6:(30+2/17);
+        X2   = [x21 x22];
+        X3   = [30:-30/20:30/20];
+        X4   = 1.18:-1.18/19:1.18/19;%zeros(1,19);
+        Y = [ X1 X2 X3 X4];
+        
+        Y1   = 1.705/17:1.705/17:1.705;
+        Y2   = [31/19:31/19:31];
+        Y3   = 31* ones(1,23);
+        Y4   = [31:-31/19:31/19];
+        X  = [ Y1 Y2 Y3 Y4 0 0];
+        
+        W1 = -10*ones(1,16);
+        W2 = 110* ones(1,20);
+        W3 = 204* ones(1,20);
+        W4 = 307* ones(1,24);
+        
+        Yaw = [W1 W2 W3 W4];
+        Yaw = Yaw.*pi/180;
         
     case 'LinearX'
         t   = 1:1:360;

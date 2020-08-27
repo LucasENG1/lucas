@@ -1,4 +1,4 @@
-function [] = PlotBarcoFigura(yaw, X_Y_psi,Theta, PWM,F)
+function [] = PlotBarcoFigura(X_Y_psi,Theta, PWM,F)
 %%
 % Função para plotar o Barco em tamanho real 2D
 % x   = Posição x do veículo no referencial Global
@@ -6,7 +6,8 @@ function [] = PlotBarcoFigura(yaw, X_Y_psi,Theta, PWM,F)
 % z   = Posição z do veículo no referencial Global
 % yaw = Angulo de yaw do veículo no referencial fixo do corpo
 %%
-aux = X_Y_psi;
+yaw  = X_Y_psi(3,:);
+aux  = X_Y_psi;
 X_Y_psi(1,:) = aux(2,:);
 X_Y_psi(2,:) = aux(1,:);
 
