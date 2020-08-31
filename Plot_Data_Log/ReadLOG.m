@@ -141,12 +141,19 @@ switch Nome
         fim     = ini+4500;     % Final da leitura no log
         yaw_ini = -45 * (pi/180);%155*(pi/180); Offset na guinada inicial (plot);
         
-    otherwise
-        load('LOG_Artigo_24_08/log2.mat')
+    case 'Squarelento'
+     load('LOG_Artigo_24_08/log2.mat')
         Ang     = 50 *(pi/180);        % ajuste de angulo para plotar a imagem melhor
-        ini     = 47000;        % Inicio da leitura no log
-        fim     = ini+3000;     % Final da leitura no log
+        ini     = 1393;        % Inicio da leitura no log
+        fim     = 4282;     % Final da leitura no log
         yaw_ini = -90*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
+        
+    otherwise
+        load('Artigo_31_08_2020/Square_31_08.mat')
+        Ang     = 0 *(pi/180);        % ajuste de angulo para plotar a imagem melhor
+        ini     = 4700;        % Inicio da leitura no log
+        fim     = ini+3100;     % Final da leitura no log
+        yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
 end
 
 %% PARAMETROS DE DINAMICA DO VEICULO

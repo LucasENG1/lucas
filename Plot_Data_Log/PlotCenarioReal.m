@@ -40,23 +40,26 @@ legend(Leg.p3D{:},Img.Legend{:});
 %% POSIÇÃO EM CADA COMPONENTE
 posi3L=figure(Img.figOpt3L{:});
 ax1 = subplot(311);
-plot(SP.t,SP.Y,'r','linewidth',2);hold on
+% plot(SP.t,SP.Y,'r','linewidth',2);hold on
 plot(T,Pose_real(2,:),'color',Img.COR,'linewidth',2);grid on
-legend(Leg.posicaoX3L{:},Img.Legend{:});
+legend('$X$ position',Img.Legend{:});  
+%legend(Leg.posicaoX3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 
 ax2 = subplot(312);
-plot(SP.t,SP.X,'r','linewidth',2);hold on
+% plot(SP.t,SP.X,'r','linewidth',2);hold on
 plot(T,Pose_real(1,:),'color',Img.COR,'linewidth',2);grid on
-legend(Leg.posicaoY3L{:},Img.Legend{:});
+legend('$Y$ position',Img.Legend{:});  
+%legend(Leg.posicaoY3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 
 ax3 = subplot(313);
-plot(SP.t,SP.Yaw*RAD_TO_DEG,'r','linewidth',2);hold on;
+% plot(SP.t,SP.Yaw*RAD_TO_DEG,'r','linewidth',2);hold on;
 plot(T,Pose_real(3,:)*RAD_TO_DEG,'color',Img.COR,'linewidth',2);grid on
-legend(Leg.posicaoYaw3L{1},Img.Legend{:});
+legend('$\psi$ position',Img.Legend{:});  
+% legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.yaw3L{:},Img.YLabelOpt{:});
 
