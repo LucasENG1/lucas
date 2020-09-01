@@ -1,3 +1,6 @@
+% Inicializa os ruídos inseridos no sistema
+% estes ruídos são inseridos para que o sistema se comporte de forma
+% similar ao real.
 function NoiseInitialization
 global R_gps std_gps_x std_gps_yaw
 % -------- GPS --------

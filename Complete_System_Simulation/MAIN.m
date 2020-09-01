@@ -9,7 +9,7 @@ Lang     = Language{2};
 
 % Plot Configuration
 Plotar = 1;  % 1 - True or 0 - False
-Salvar = 1;  % 1 - True or 0 - False
+Salvar = 0;  % 1 - True or 0 - False
 
 Plot_Step = 20; % Step to dynamic plot
 
@@ -19,7 +19,8 @@ NoiseInitialization;  % Initialize the systems noise
 
 %% Global variable(s) - MUST COME HERE, strictly after the initialisation
 global Sim Sim_Plot Time ROV Torque SLC SP WP ;
-%% Auxiliar variables to integrate
+
+%% Auxiliar variables
 Aux = [];
 
 %% Catamaran Physical Properties
@@ -66,7 +67,7 @@ for i = 1:numel(Time)
         
         n_dot = BF2NED(Sim.Current_X_Y_psi(3),Sim.Current_u_v_r);
         v_dot = ROV.InverseInertia * (Torque - Sim.NetForces);
-        (Torque - Sim.NetForces)
+%         (Torque - Sim.NetForces)
         %% Double integration: accelerations -> velocities -> position/attitude
         X = [n_dot; v_dot]; % Vetor de Estados
         [AuxVector, Aux] = Integration(X,Aux,j);

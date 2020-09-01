@@ -1,6 +1,7 @@
 %==========================================================================
 % CATAMARAN MODEL PARAMETERS
 %==========================================================================
+% Inicializa todos os parâmetros físicos do veículo
 function PhysicalProperties
 % Global variable(s)
 global ROV APP Lx Ly k1 Sat Pwmmax Pwmmin Fmax Nmax;
@@ -10,9 +11,9 @@ MaxVelX   = 3.05;
 MaxVelY   = 1;
 MaxVelAng = 2.32; %rad/s
 
-WpRadius  = 3;
+WpRadius  = 3; % Raio do Waypoint para que o veículo assuma Wp alcançado
 
-% Parametros construtivos
+%%  Parametros construtivos
 m   = 20.8;
 xg  = -0.05;
 Iz  = 2.9824;

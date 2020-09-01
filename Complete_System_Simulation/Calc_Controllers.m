@@ -1,3 +1,4 @@
+% calcula todos os controladores da malha de velocidade e de posição
 function Calc_Controllers()
 global Ctrl ;
 
