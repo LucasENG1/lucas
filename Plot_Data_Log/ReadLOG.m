@@ -1,4 +1,4 @@
-function [Velxyz_real,PoseNED_real,Tempo,Theta,PWM,F_IN,F_OUT,TempoAloc] = ReadLOG(Nome)
+function [TempoVel,Velxyz_real,PoseNED_real,Tempo,Theta,PWM,F_IN,F_OUT,TempoAloc] = ReadLOG(Nome)
 %% Carrega o LoG respectivo ai Nome definido
 %% a1.mat RUIM
 %% a2.mat CIRCULO
@@ -20,50 +20,21 @@ function [Velxyz_real,PoseNED_real,Tempo,Theta,PWM,F_IN,F_OUT,TempoAloc] = ReadL
 % -------- Final : 13200 |
 % --------- yaw  : yaw_ini = pi/4
 
-switch Nome
-%     case 'Circular'
-%         load('b5.mat')
-%         Ang     = 140;          % ajuste de angulo para plotar a imagem melhor
-%         ini     = 3523;         % Inicio da leitura no log
-%         fim     = ini+1300;     % Final da leitura no log
-%         yaw_ini = -125*(pi/180); % Offset na guinada inicial (plot)
-%         
-%     case 'LinearX'
-%         load('b4.mat')
-%         Ang     = 140;          % ajuste de angulo para plotar a imagem melhor
-%         ini     = 1662;         % Inicio da leitura no log
-%         fim     = 2688;         % Final da leitura no log
-%         yaw_ini = -130*(pi/180);  % Offset na guinada inicial (plot)
-%         
-%     case 'Sway'
-%         load('b6.mat')
-%         Ang = 153.3+180;
-%         ini     = 13480;        % Inicio da leitura no log
-%         fim     = ini+3050;     % Final da leitura no log
-%         yaw_ini = -166*(pi/180);           % Offset na guinada inicial (plot)
-%         
-%     case 'Sway2' % Melhor
-%         load('b6.mat')
-%         Ang = 1*(-28+180);      % ajuste de angulo para plotar a imagem melhor
-%         ini     = 8880;         % Inicio da leitura no log
-%         fim     = 12080;        % Final da leitura no log
-%         yaw_ini = 208 * pi/180; % Offset na guinada inicial (plot)
-%         
-%     case 'Oito'
-%         load('b1.mat')
-%         Ang     = -37.7;        % ajuste de angulo para plotar a imagem melhor
-%         ini     = 20750;        % Inicio da leitura no log
-%         fim     = ini+2400;     % Final da leitura no log
-%         yaw_ini = 45*(pi/180);%155*(pi/180); Offset na guinada inicial (plot)
-%         
-%         
+switch Nome                                                           
+    case 'Linear'                                                                                                                        
+        load('LogAntigo/b4.mat') ;                                                                           
+        Ang     = 140;          % ajuste de angulo para plotar a imagem melhor            
+        ini     = 1613;         % Inicio da leitura no log                                    
+        fim     = ini+1162;         % Final da leitura no log                           
+        yaw_ini = -130*(pi/180);  % Offset na guinada inicial (plot)
+        
     case 'Oito_dia_top'
         load('DIATOP/3BIN.mat');
         Ang     = 143 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 8800;                 % Inicio da leitura no log
         fim     = ini+1900;              % Final da leitura no log
         yaw_ini = 95*(pi/180);          %155*(pi/180); Offset na guinada inicial (plot);
-   
+        
     case 'Reta_dia_top'
         load('DIATOP/3BIN.mat');
         Ang     = 136 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
@@ -98,7 +69,7 @@ switch Nome
         ini     = 1200;        % Inicio da leitura no log
         fim     = ini+3000;     % Final da leitura no log
         yaw_ini = 140*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
-    
+        
     case 'Square2_top'
         load('LOG_Artigo_24_08/log2.mat')
         Ang     = 55 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
@@ -119,13 +90,13 @@ switch Nome
         ini     = 10000;        % Inicio da leitura no log
         fim     = ini+1800;     % Final da leitura no log
         yaw_ini = 130*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
-
-    case 'Square2_dif'  
+        
+    case 'Square2_dif'
         load('LOG_Artigo_24_08/log2.mat')
         Ang     = 60 *(pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 20800;        % Inicio da leitura no log
         fim     = ini+1400;     % Final da leitura no log
-        yaw_ini = 130*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);   
+        yaw_ini = 130*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
         
     case 'Star'
         load('LOG_Artigo_24_08/log2.mat')
@@ -142,17 +113,30 @@ switch Nome
         yaw_ini = -45 * (pi/180);%155*(pi/180); Offset na guinada inicial (plot);
         
     case 'Squarelento'
-     load('LOG_Artigo_24_08/log2.mat')
+        load('LOG_Artigo_24_08/log2.mat')
         Ang     = 50 *(pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 1393;        % Inicio da leitura no log
         fim     = 4282;     % Final da leitura no log
         yaw_ini = -90*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
         
-    otherwise
+    case 'SquareROI'
         load('Artigo_31_08_2020/Square_31_08.mat')
         Ang     = 0 *(pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 4700;        % Inicio da leitura no log
         fim     = ini+3100;     % Final da leitura no log
+        yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
+        
+    case 'CircleROI'
+        load('Artigo_31_08_2020/sq1.mat')
+        Ang     = 0 *(pi/180);        % ajuste de angulo para plotar a imagem melhor
+        ini     = 6823;        % Inicio da leitura no log
+        fim     = 9271;     % Final da leitura no log
+        yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
+    otherwise
+        load('Artigo_31_08_2020/sq1.mat')
+        Ang     = 0 *(pi/180);        % ajuste de angulo para plotar a imagem melhor
+        ini     = 6823;        % Inicio da leitura no log
+        fim     = 9271;     % Final da leitura no log
         yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
 end
 
@@ -166,6 +150,8 @@ Vx    = AFSN(ini/2:fim/2,8)/100;        % Velocidade X no body
 Vy    = AFSN(ini/2:fim/2,9)/100;        % Velocidade Y no body
 Vyaw  = AFSN(ini/2:fim/2,10).*180/pi;   % Velocidade de Guinada (graus/s)
 
+TempoVel =  AFSN(ini/2:fim/2,2)/1000000;   
+TempoVel = TempoVel - TempoVel(1);
 yaw   = (yaw-yaw(1))*2 + yaw_ini - Ang ;             % Offset de yaw aplicado no sistema
 
 % Correção de YAW para igualar ao ATAN2
@@ -175,10 +161,10 @@ yaw   = (yaw-yaw(1))*2 + yaw_ini - Ang ;             % Offset de yaw aplicado no
 % Quando o SP é em OITO existe ainda uma nova singularidade
 switch Nome
     case 'Oito'
-        yaw(yaw<-100*(pi/180)) = yaw(yaw<-100*(pi/180))+2*pi;        
+        yaw(yaw<-100*(pi/180)) = yaw(yaw<-100*(pi/180))+2*pi;
     case 'Sway'
-        yaw = yaw-166*(pi/180);           % Offset na guinada inicial (plot)        
-    otherwise      
+        yaw = yaw-166*(pi/180);           % Offset na guinada inicial (plot)
+    otherwise
 end
 
 Tempo = Tempo-Tempo(1);     % Começa o relógio do zero
@@ -201,8 +187,8 @@ for i=1:length(yaw)
 end
 
 %% ========= PARAMETROS DE ALOCAÇÃO DO VEÍCULO ==================
-ini = ini /2;
-fim = fim /2;
+% ini = ini /2;
+% fim = fim /2;
 
 TempoAloc = MAT(ini:fim,2)/1000000;         % Tempo
 TempoAloc = TempoAloc - TempoAloc(1);   	% Começa o relógio do zero
