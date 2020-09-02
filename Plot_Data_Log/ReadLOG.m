@@ -1,4 +1,4 @@
-function [TempoVel,Velxyz_real,PoseNED_real,Tempo,Theta,PWM,F_IN,F_OUT,TempoAloc] = ReadLOG(Nome)
+function [Velxyz_real,PoseNED_real,Tempo,Theta,PWM,F_IN,F_OUT,TempoAloc] = ReadLOG(Nome)
 %% Carrega o LoG respectivo ai Nome definido
 %% a1.mat RUIM
 %% a2.mat CIRCULO
@@ -150,8 +150,6 @@ Vx    = AFSN(ini/2:fim/2,8)/100;        % Velocidade X no body
 Vy    = AFSN(ini/2:fim/2,9)/100;        % Velocidade Y no body
 Vyaw  = AFSN(ini/2:fim/2,10).*180/pi;   % Velocidade de Guinada (graus/s)
 
-TempoVel =  AFSN(ini/2:fim/2,2)/1000000;   
-TempoVel = TempoVel - TempoVel(1);
 yaw   = (yaw-yaw(1))*2 + yaw_ini - Ang ;             % Offset de yaw aplicado no sistema
 
 % Correção de YAW para igualar ao ATAN2
@@ -187,8 +185,8 @@ for i=1:length(yaw)
 end
 
 %% ========= PARAMETROS DE ALOCAÇÃO DO VEÍCULO ==================
-% ini = ini /2;
-% fim = fim /2;
+ini = ini /2;
+fim = fim /2;
 
 TempoAloc = MAT(ini:fim,2)/1000000;         % Tempo
 TempoAloc = TempoAloc - TempoAloc(1);   	% Começa o relógio do zero
