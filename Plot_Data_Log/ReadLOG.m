@@ -20,7 +20,13 @@ function [Velxyz_real,PoseNED_real,Tempo,Theta,PWM,F_IN,F_OUT,TempoAloc] = ReadL
 % -------- Final : 13200 |
 % --------- yaw  : yaw_ini = pi/4
 
-switch Nome                                                           
+switch Nome      
+    case 'Circular'
+        load('LogAntigo/boas grin-mat_div_2/a2.mat') ;                                                                           
+        Ang     = 140;          % ajuste de angulo para plotar a imagem melhor            
+        ini     = 7950;         % Inicio da leitura no log                                    
+        fim     = 9430;         % Final da leitura no log                           
+        yaw_ini = -45*(pi/180);  % Offset na guinada inicial (plot)
     case 'Linear'                                                                                                                        
         load('LogAntigo/b4.mat') ;                                                                           
         Ang     = 140;          % ajuste de angulo para plotar a imagem melhor            

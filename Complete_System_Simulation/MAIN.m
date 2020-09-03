@@ -4,12 +4,12 @@ clear all; close all; clc;
 Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{4};
+SetPoint = Possible_SPs{5};
 Lang     = Language{2};
 
 % Plot Configuration
 Plotar = 1;  % 1 - True or 0 - False
-Salvar = 0;  % 1 - True or 0 - False
+Salvar = 1;  % 1 - True or 0 - False
 
 Plot_Step = 20; % Step to dynamic plot
 
@@ -34,7 +34,7 @@ SetPointsCreation(SetPoint);
 
 %% Choose which controller is going to be used
 switch SetPoint
-    case {'Figra','LinarX','Circlar'}
+    case {'Figra','LinarX','Circaular'}
         L1_controller = 1;
     otherwise
         L1_controller = 0;
@@ -48,9 +48,9 @@ for i = 1:numel(Time)
     
     Position_Controller(i);
     
-    if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius 
-        Sim.Vel(:,i)=[0;0;0];
-    end
+%     if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius 
+%         Sim.Vel(:,i)=[0;0;0];
+%     end
     
     if(L1_controller==1)
         Path_L1_controller(i);

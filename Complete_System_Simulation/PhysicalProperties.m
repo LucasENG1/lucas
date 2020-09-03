@@ -11,7 +11,7 @@ MaxVelX   = 3.05;
 MaxVelY   = 1;
 MaxVelAng = 2.32; %rad/s
 
-WpRadius  = 3; % Raio do Waypoint para que o veículo assuma Wp alcançado
+WpRadius  = 5; % Raio do Waypoint para que o veículo assuma Wp alcançado
 
 %%  Parametros construtivos
 m   = 20.8;

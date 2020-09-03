@@ -15,8 +15,8 @@ Dia_3 = {'SquareROI','CircleROI'};
 Language = {'Portugues','Ingles'};
 Lang     = Language{2};
 
-Nome_SP = 'Lianear';%Dia_2{1};           % Nome do SP a ser carregado do LOG
-salva = 0;                    % 0/1 para salvar ou não as figuras obtidas
+Nome_SP = Nome{1};%Dia_2{1};           % Nome do SP a ser carregado do LOG
+salva = 1;                    % 0/1 para salvar ou não as figuras obtidas
 
 [Vel_real,Pose_real,TempoVeiculo,Theta,PWM,F,F_out,TempoAlocacao] = ReadLOG(Nome_SP); % Leitura do LOG acontece aqui
 
@@ -32,7 +32,7 @@ PlotCenarioReal(TempoVeiculo,TempoAlocacao,Pose_real,Vel_real,Nome_SP,Lang,salva
 %%
 PlotSaidaReal(TempoAlocacao,Theta,PWM,F,F_out,Nome_SP,Lang,salva);
 
-global SP;
+% global SP;
 % ise1 = ISE(sqrt(Pose_real(1,:).^2+Pose_real(2,:).^2),TempoVeiculo,sqrt(SP.X.^2+SP.Y.^2),SP.t)
 
 

@@ -286,23 +286,23 @@ switch Nome
 end
 
 if(salva==1)
-    saveas(posi3D,strcat(Nome,'Posicao3D'),'epsc');
-    saveas(posi3D,strcat(Nome,'Posicao3D'),'fig');
+    saveas(posi3D,strcat('Figures_Output/',strcat(Nome,'Posicao3D')),'epsc');
+    saveas(posi3D,strcat('Figures_Output/',strcat(Nome,'Posicao3D')),'fig');
     
-    saveas(posi3L,strcat(Nome,'Posicao3L'),'epsc');
-    saveas(posi3L,strcat(Nome,'Posicao3L'),'fig');
+    saveas(posi3L,strcat('Figures_Output/',strcat(Nome,'Posicao3L')),'epsc');
+    saveas(posi3L,strcat('Figures_Output/',strcat(Nome,'Posicao3L')),'fig');
     
-    saveas(vel3L,strcat(Nome,'Velocidade2L'),'epsc');
-    saveas(vel3L,strcat(Nome,'Velocidade2L'),'fig');
+    saveas(vel3L,strcat('Figures_Output/',strcat(Nome,'Velocidade2L')),'epsc');
+    saveas(vel3L,strcat('Figures_Output/',strcat(Nome,'Velocidade2L')),'fig');
     
-    saveas(force,strcat(Nome,'Forca'),'epsc');
-    saveas(force,strcat(Nome,'Forca'),'fig');
+    saveas(force,strcat('Figures_Output/',strcat(Nome,'Forca')),'epsc');
+    saveas(force,strcat('Figures_Output/',strcat(Nome,'Forca')),'fig');
     
-    saveas(servoAngle,strcat(Nome,'Angle'),'epsc');
-    saveas(servoAngle,strcat(Nome,'Angle'),'fig');
+    saveas(servoAngle,strcat('Figures_Output/',strcat(Nome,'Angle')),'epsc');
+    saveas(servoAngle,strcat('Figures_Output/',strcat(Nome,'Angle')),'fig');
     
-    saveas(servoPwm,strcat(Nome,'PWM'),'epsc');
-    saveas(servoPwm,strcat(Nome,'PWM'),'fig');
+    saveas(servoPwm,strcat('Figures_Output/',strcat(Nome,'PWM')),'epsc');
+    saveas(servoPwm,strcat('Figures_Output/',strcat(Nome,'PWM')),'fig');
     
     
 end

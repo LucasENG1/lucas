@@ -48,7 +48,7 @@ switch Nome
         
     case 'Circular'
         %% SP Circular HABILITAR LINE_OF_SIGHT
-        Arc=380;
+        Arc = 380;
         t   = Time;
         X   = 1e-10-(15*cosd((Arc/t(end))*t))+15;
         Y   = 1e-10-(15*sind((Arc/t(end))*t));

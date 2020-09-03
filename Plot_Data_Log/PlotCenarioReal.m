@@ -138,7 +138,7 @@ switch Nome
         ylim(vx3,[-75  70]);
         xlim([0 T(end)]);
         
-    case 'Circular_Real'
+    case 'Circular_Real0'
         figure(posi3D);
         axis([10.25-17 10.25+17 11.25-17 11.25+17]);
         

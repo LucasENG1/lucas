@@ -77,8 +77,8 @@ switch Nome
         % HABILITAR LINE_OF_SIGHT
         A   = 49;        % Gira o circulo para igualar ao real
         t   = 1:1:360;
-        X   = Pose(1,1)-(15*cosd((360/t(end))*t+A))+10.25;
-        Y   = Pose(2,1)-(15*sind((360/t(end))*t+A))+11.25;
+        X   = Pose(1,1)-(15*cosd((360/t(end))*t+A))+16;
+        Y   = Pose(2,1)-(15*sind((360/t(end))*t+A))+15;
         Yaw = 2.73*atan2(Y,X);    % ganho de guinada para igualar ao real
         Yaw(Yaw>pi) = Yaw(Yaw>pi)-2*pi; % ajuste para o ATAN2
         

@@ -7,7 +7,7 @@ Raio = 10;
 Px_umax = Sat.MaxVelX;
 Px_umin = 0;
 Px_Emax = Raio;    %  raio admitido
-Px_Emin = 0;     %  raio admitido
+Px_Emin = 0;       %  raio admitido
 
 kPX = calc_P_Gain(Px_umax,Px_umin,Px_Emax,Px_Emin);
 
@@ -23,7 +23,7 @@ kPY = calc_P_Gain(Py_umax,Py_umin,Py_Emax,Py_Emin);
 Psi_umax = Sat.MaxVelAng; % radianos
 Psi_umin = 0;
 Psi_Emax = pi/4; % radianos
-Psi_Emin = 0; %raio admitido
+Psi_Emin = 0;    % raio admitido
 
 kPYaw = calc_P_Gain(Psi_umax,Psi_umin,Psi_Emax,Psi_Emin);
 
