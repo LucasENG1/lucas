@@ -105,8 +105,8 @@ IM = IMrb + IMra;                 % 6.48    7.8
 settling_time_mt  = 0.3;
 settling_time_srv = 1.0; %//1.5;
 
-tau_mt  = settling_time_mt/5;    % Motors
-tau_srv = settling_time_srv/5;   % Servos
+tau_mt  = settling_time_mt/4.5;    % Motors
+tau_srv = settling_time_srv/4.5;   % Servos
 
 Sat = struct('F_motor',Fmax,'torque', Nmax,'MaxVelX',MaxVelX,'MaxVelY',MaxVelY,'MaxVelAng',MaxVelAng);
 

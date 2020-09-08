@@ -41,6 +41,7 @@ switch language
         Leg.YYaw3L  = {'Velocidade Angular (Grau/s)'};
         
     case 'Ingles'
+        Leg.p3D2         = {'Path to follow','Developed path'};
         Leg.p3D          = {'Path to follow','Developed path','NumColumns',2,'Location','northoutside'};
         Leg.posicaoX3L   = {'$X$ waypoint','$X$ response','Location','best'};
         Leg.posicaoY3L   = {'$Y$ waypoint','$Y$ response','Location','best'};
@@ -56,10 +57,14 @@ switch language
         Leg.AlocacaoY    = {'$F_y$ desired','$F_y$ allocated','Location','best'};
         Leg.AlocacaoPsi  = {'$\psi$ desired','$\psi$ allocated','Location','best'};
         
-        Leg.ServoAngle1  = {'Servomotor 1','Location','best'};
-        Leg.ServoAngle2  = {'Servomotor 2','Location','best'};
-        Leg.ServoAngle3  = {'Servomotor 3','Location','best'};
-        Leg.ServoAngle4  = {'Servomotor 4','Location','best'};
+        Leg.ServoAngle  = {'Servomotor 1','Servomotor 2','Servomotor 3','Servomotor 4','Location','north'};
+        
+        Leg.ServoAngle1  = {'Servomotor 1','Location','northeast'};
+        Leg.ServoAngle2  = {'Servomotor 2','Location','northeast'};
+        Leg.ServoAngle3  = {'Servomotor 3','Location','northeast'};
+        Leg.ServoAngle4  = {'Servomotor 4','Location','northeast'};
+        
+        Leg.ServoPWM  = {'Motor 1','Motor 2','Motor 3','Motor 4','Location','best'};
         
         Leg.ServoPWM1  = {'Motor 1','Location','best'};
         Leg.ServoPWM2  = {'Motor 2','Location','best'};

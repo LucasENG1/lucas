@@ -1,4 +1,4 @@
-function [Velxyz_real,PoseNED_real,Tempo,Theta,PWM,F_IN,F_OUT,TempoAloc] = ReadLOG(Nome)
+function [Velxyz_real,PoseNED_real,Theta,PWM,F_IN,F_OUT,Tempo,TempoAloc,TempoVel] = ReadLOG(Nome)
 %% Carrega o LoG respectivo ai Nome definido
 %% a1.mat RUIM
 %% a2.mat CIRCULO
@@ -30,7 +30,7 @@ switch Nome
     case 'Linear'                                                                                                                        
         load('LogAntigo/b4.mat') ;                                                                           
         Ang     = 140;          % ajuste de angulo para plotar a imagem melhor            
-        ini     = 1613;         % Inicio da leitura no log                                    
+        ini     = 1612;         % Inicio da leitura no log                                    
         fim     = ini+1162;         % Final da leitura no log                           
         yaw_ini = -130*(pi/180);  % Offset na guinada inicial (plot)
         
@@ -152,9 +152,12 @@ Py    = GRIN(ini:fim,5)/100;            % posição X no NED em cm (esta no py pel
 Px    = GRIN(ini:fim,6)/100;            % posição Y no NED em cm
 yaw   = GRIN(ini:fim,9)/10000;          % Salva yaw em radianos
 
-Vx    = AFSN(ini/2:fim/2,8)/100;        % Velocidade X no body
-Vy    = AFSN(ini/2:fim/2,9)/100;        % Velocidade Y no body
-Vyaw  = AFSN(ini/2:fim/2,10).*180/pi;   % Velocidade de Guinada (graus/s)
+TempoVel = AFSN(ini/2:fim/2,2)/1000000;         % Tempo
+Vx       = AFSN(ini/2:fim/2,8)/100;        % Velocidade X no body
+Vy       = AFSN(ini/2:fim/2,9)/100;        % Velocidade Y no body
+Vyaw     = AFSN(ini/2:fim/2,10).*180/pi;   % Velocidade de Guinada (graus/s)
+
+TempoVel = TempoVel - TempoVel(1);   	% Começa o relógio do zero
 
 yaw   = (yaw-yaw(1))*2 + yaw_ini - Ang ;             % Offset de yaw aplicado no sistema
 
@@ -166,8 +169,6 @@ yaw   = (yaw-yaw(1))*2 + yaw_ini - Ang ;             % Offset de yaw aplicado no
 switch Nome
     case 'Oito'
         yaw(yaw<-100*(pi/180)) = yaw(yaw<-100*(pi/180))+2*pi;
-    case 'Sway'
-        yaw = yaw-166*(pi/180);           % Offset na guinada inicial (plot)
     otherwise
 end
 
@@ -191,8 +192,8 @@ for i=1:length(yaw)
 end
 
 %% ========= PARAMETROS DE ALOCAÇÃO DO VEÍCULO ==================
-ini = ini /2;
-fim = fim /2;
+ ini = ini /2;
+ fim = fim /2;
 
 TempoAloc = MAT(ini:fim,2)/1000000;         % Tempo
 TempoAloc = TempoAloc - TempoAloc(1);   	% Começa o relógio do zero

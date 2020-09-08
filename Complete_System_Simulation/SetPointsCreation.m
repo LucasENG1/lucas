@@ -34,12 +34,12 @@ switch Nome
         %         Y   = [A*ones(size(Y)) A*(ones(1,180)) zeros(size(Y))];
         %         X = zeros(size(Y));
         %         %         hold on; plot(Y,X,'Linewidth',2); plot(Y(1),X(1),'*r');axis equal
-    case 'LinearX'
+    case 'Linear'
         t = 0:1:360;
         X   = 1e-10+(140*ones(size(t)));
         Y   = 1e-10-(140*zeros(size(t)));
         Yaw = 0*atan(Y./X);
-        
+%         Sim.Current_X_Y_psi = [0; 0; -pi/36];
     case 'LinearY'
         t = 0:1:360;
         Y   = 1e-10+(120*ones(size(t)));

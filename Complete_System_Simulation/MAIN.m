@@ -1,10 +1,12 @@
 clear all; close all; clc;
 
 %% Configuration
-Possible_SPs = {'Guinada','Sway','LinearY','LinearX','Circular','Oito','Figura'};
+Possible_SPs = {'Guinada','Sway','LinearY','Linear','Circular','Oito','Figura'};
 Language     = {'Portugues','Ingles'};
 
-SetPoint = Possible_SPs{5};
+Artigo1 = {'Linear','Circular','NAO_SquareROI'};
+
+SetPoint = Artigo1{1};
 Lang     = Language{2};
 
 % Plot Configuration

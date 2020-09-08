@@ -3,7 +3,7 @@ function [kpPosi,kiPosi,kdPosi] = Calc_Position_Controller()
 global Sat ;
 Raio = 10;
 
-% Posição X
+%% Posição X
 Px_umax = Sat.MaxVelX;
 Px_umin = 0;
 Px_Emax = Raio;    %  raio admitido
@@ -11,7 +11,7 @@ Px_Emin = 0;       %  raio admitido
 
 kPX = calc_P_Gain(Px_umax,Px_umin,Px_Emax,Px_Emin);
 
-% Posição Y
+%% Posição Y
 Py_umax = Sat.MaxVelY;
 Py_umin = 0;
 Py_Emax = Raio/2; %raio admitido
@@ -19,7 +19,7 @@ Py_Emin = 0; %raio admitido
 
 kPY = calc_P_Gain(Py_umax,Py_umin,Py_Emax,Py_Emin);
 
-% Posição de guinada
+%% Posição de guinada
 Psi_umax = Sat.MaxVelAng; % radianos
 Psi_umin = 0;
 Psi_Emax = pi/4; % radianos

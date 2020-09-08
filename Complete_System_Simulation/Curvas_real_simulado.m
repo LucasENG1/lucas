@@ -24,7 +24,7 @@ switch Nome
         plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
         plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
         PlotBarcoFigura(XYpsi,Theta, PWM,F);
-    case 'LinearX'
+    case 'Linear'
         Screen = [0 0 1 1];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
         posi3D = figure(figOpt{:});
@@ -57,7 +57,7 @@ end
 
 xlabel('Y(m)',Img.YLabelOpt{:});
 ylabel('X(m)',Img.XLabelOpt{:});
-legend(Leg.p3D{:},Img.Legend{:});
+legend(Leg.p3D2{:},Img.Legend{:});
 
 %% ============================================================= POSIÇÃO 3L
 posi3L = figure(Img.figOpt3L{:});
@@ -151,33 +151,34 @@ linkaxes([axf1 axf2 axf3],'x')
 linkaxes([axf1 axf2 ],'y')
 xlim([0 TimeJ(end)])
 %% ============================================================ Servo Angle
-servoAngle = figure(Img.figOpt4L{:});
-axSa1 = subplot(411);
+servoAngle = figure(Img.figOpt1L{:});
+% axSa1 = subplot(411);
 plot(TimeJ,Sim.Theta(1,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoAngle1{:},Img.Legend{:});
+% legend(Leg.ServoAngle1{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
+
+% axSa2 = subplot(412);
+plot(TimeJ,Sim.Theta(2,1:end-1),'r','linewidth',2');hold on; grid on;
+% legend(Leg.ServoAngle2{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
+
+% axSa3 = subplot(413);
+plot(TimeJ,Sim.Theta(3,1:end-1),'g','linewidth',2');hold on; grid on;
+% legend(Leg.ServoAngle3{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
+
+% axSa4 = subplot(414);
+plot(TimeJ,Sim.Theta(4,1:end-1),'m','linewidth',2');hold on; grid on;
+legend(Leg.ServoAngle{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-axSa2 = subplot(412);
-plot(TimeJ,Sim.Theta(2,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoAngle2{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YSA{:},Img.YLabelOpt{:});
-
-axSa3 = subplot(413);
-plot(TimeJ,Sim.Theta(3,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoAngle3{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YSA{:},Img.YLabelOpt{:});
-
-axSa4 = subplot(414);
-plot(TimeJ,Sim.Theta(4,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoAngle4{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YSA{:},Img.YLabelOpt{:});
-
-linkaxes([axSa1 axSa2 axSa3 axSa4],'xy')
+% linkaxes([axSa1 axSa2 axSa3 axSa4],'xy')
 xlim([0 TimeJ(end)]);
+% ylim([-120 120]);
 
 % plot(TimeJ,Sim.Theta(2,1:end-1),'linewidth',2')
 % plot(TimeJ,Sim.Theta(3,1:end-1),'linewidth',2')
@@ -189,39 +190,39 @@ xlim([0 TimeJ(end)]);
 % plot(TimeJ,Sim.T (4,1:end),'linewidth',2')
 
 %% ============================================================= Servo PWM
-servoPwm = figure(Img.figOpt4L{:});
-axPa1 = subplot(411);
+servoPwm = figure(Img.figOpt1L{:});
+% axPa1 = subplot(411);
 
 plot(TimeJ,Sim.PWM(1,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoPWM1{:},Img.Legend{:});
+% legend(Leg.ServoPWM1{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+% axPa2 = subplot(412);
+plot(TimeJ,Sim.PWM(2,1:end-1),'r','linewidth',2');hold on; grid on;
+% legend(Leg.ServoPWM2{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+% axPa3 = subplot(413);
+plot(TimeJ,Sim.PWM(3,1:end-1),'g','linewidth',2');hold on; grid on;
+% legend(Leg.ServoPWM3{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+% axPa4 = subplot(414);
+plot(TimeJ,Sim.PWM(4,1:end-1),'m','linewidth',2');hold on; grid on;
+legend(Leg.ServoPWM{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-axPa2 = subplot(412);
-plot(TimeJ,Sim.PWM(2,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoPWM2{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
-
-axPa3 = subplot(413);
-plot(TimeJ,Sim.PWM(3,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoPWM3{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
-
-axPa4 = subplot(414);
-plot(TimeJ,Sim.PWM(4,1:end-1),'b','linewidth',2');hold on; grid on;
-legend(Leg.ServoPWM4{:},Img.Legend{:});
-xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
-
-linkaxes([axPa1 axPa2 axPa3 axPa4],'xy')
+% linkaxes([axPa1 axPa2 axPa3 axPa4],'xy')
 
 xlim([0 TimeJ(end)]);
-ylim([ 0 1.1]);
+ylim([ 0 1]);
 %% ============================================= Configuração personalizada
 switch Nome
-    case 'LinearX'
+    case 'Linear'
         figure(posi3D);
         xlabel('X (m)',Img.YLabelOpt{:});
         ylabel('Y (m)',Img.XLabelOpt{:});
@@ -278,31 +279,31 @@ switch Nome
         xlim([0 TimeJ(end)])
         
         figure(vel3L)
-        ylim(vx1,[-1 2.5]);
-        legend(Leg.VelXY{:},Img.Legend{:});
-        ylim(vx3,[-20 20]);
+        ylim(vx1,[-1 2]);
+%         legend(Leg.VelXY{:},Img.Legend{:});
+%         ylim(vx3,[-20 20]);
         xlim([0 TimeJ(end)])
     otherwise
 end
 
 if(salva==1)
-    saveas(posi3D,strcat('Figures_Output/',strcat(Nome,'Posicao3D')),'epsc');
-    saveas(posi3D,strcat('Figures_Output/',strcat(Nome,'Posicao3D')),'fig');
+    saveas(posi3D,strcat('Figures/',strcat(Nome,'Posicao3D')),'epsc');
+    saveas(posi3D,strcat('Figures/',strcat(Nome,'Posicao3D')),'fig');
     
-    saveas(posi3L,strcat('Figures_Output/',strcat(Nome,'Posicao3L')),'epsc');
-    saveas(posi3L,strcat('Figures_Output/',strcat(Nome,'Posicao3L')),'fig');
+    saveas(posi3L,strcat('Figures/',strcat(Nome,'Posicao3L')),'epsc');
+    saveas(posi3L,strcat('Figures/',strcat(Nome,'Posicao3L')),'fig');
     
-    saveas(vel3L,strcat('Figures_Output/',strcat(Nome,'Velocidade2L')),'epsc');
-    saveas(vel3L,strcat('Figures_Output/',strcat(Nome,'Velocidade2L')),'fig');
+    saveas(vel3L,strcat('Figures/',strcat(Nome,'Velocidade2L')),'epsc');
+    saveas(vel3L,strcat('Figures/',strcat(Nome,'Velocidade2L')),'fig');
     
-    saveas(force,strcat('Figures_Output/',strcat(Nome,'Forca')),'epsc');
-    saveas(force,strcat('Figures_Output/',strcat(Nome,'Forca')),'fig');
+    saveas(force,strcat('Figures/',strcat(Nome,'Forca')),'epsc');
+    saveas(force,strcat('Figures/',strcat(Nome,'Forca')),'fig');
     
-    saveas(servoAngle,strcat('Figures_Output/',strcat(Nome,'Angle')),'epsc');
-    saveas(servoAngle,strcat('Figures_Output/',strcat(Nome,'Angle')),'fig');
+    saveas(servoAngle,strcat('Figures/',strcat(Nome,'Angle')),'epsc');
+    saveas(servoAngle,strcat('Figures/',strcat(Nome,'Angle')),'fig');
     
-    saveas(servoPwm,strcat('Figures_Output/',strcat(Nome,'PWM')),'epsc');
-    saveas(servoPwm,strcat('Figures_Output/',strcat(Nome,'PWM')),'fig');
+    saveas(servoPwm,strcat('Figures/',strcat(Nome,'PWM')),'epsc');
+    saveas(servoPwm,strcat('Figures/',strcat(Nome,'PWM')),'fig');
     
     
 end
