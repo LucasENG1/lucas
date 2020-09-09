@@ -1,12 +1,12 @@
 function PlotCenarioReal(T1,T2,T3,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome,Language,salva)
-global SP RAD_TO_DEG Fmax Nmax;
+global  RAD_TO_DEG Fmax Nmax;
 
 Img = ImageParametrization();
 Leg = LegendLanguage(Language);
 
 %% POSIÇÃO 3D
 switch Nome
-    case 'LinearX_Real'
+    case 'Linear_Real'
         Screen = [0 0 0.5 0.5];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto',...
             'Position',Screen};
@@ -16,7 +16,7 @@ switch Nome
         Pose_real(1,:) = Ax;
         Pose_real(3,:) = Pose_real(3,:) +pi/2;
         
-        plot(SP.Y,SP.X,'r','linewidth',2);hold on;axis equal
+%         plot(SP.Y,SP.X,'r','linewidth',2);hold on;axis equal
         plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
         FiguraArtigo(20,Pose_real); grid on;
         
@@ -27,7 +27,6 @@ switch Nome
         
     otherwise
         posi3D = figure(Img.figOpt{:});
-        plot(SP.X,SP.Y,'r','linewidth',2);hold on;axis equal
         plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
         FiguraArtigo(20,Pose_real); grid on;
 end
@@ -191,7 +190,7 @@ linkaxes([ax12 ax22 ax32],'x');
 xlim([0 T2(end)])
 
 switch Nome
-    case 'LinearX_Real'
+    case 'Linear_Real'
         figure(posi3D);
         axis([ -2 143 -10 10]);
         % posição
@@ -204,63 +203,14 @@ switch Nome
         
         figure(vel3L)
         ylim(vx1,[-0 4]);
-%         ylim(vx2,[-0 4]);
-        ylim(vx3,[-20  25]);
+%         ylim(vx3,[-20  25]);
         xlim([0 T1(end)])
-        
-    case 'Oito_Real'
-        figure(posi3D);
-        ylim([min([SP.Y Pose_real(2,:)])-2 max([SP.Y Pose_real(2,:)])+2])
-        xlim([min([SP.X Pose_real(1,:)])-2 max([SP.X Pose_real(1,:)])+2])
-        %         axis([-20 10 -55 10]);
-        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','northoutside');
-        % posição
-        ylim(ax1,[-60 5]);
-        ylim(ax2,[-30 30]);
-        ylim(ax3,[-50 250]);
-        
-        % velocidade
-        ylim(vx2,[-1 1])
-        
-    case 'Sway_Real'
-        figure(posi3D);
-        axis([-2 70 -2 5]);
-        
-        figure(posi3L)
-        ylim(ax1,[-1 60]);
-        ylim(ax2,[0  70]);
-        ylim(ax3,[-220  50]);
-        xlim([0 T1(end)])
-        
-        figure(vel3L)
-        ylim(vx1,[-2 3]);
-        ylim(vx2,[-2 3]);
-        ylim(vx3,[-75  70]);
-        xlim([0 T1(end)]);
-        
-    case 'Circular_Real0'
-        figure(posi3D);
-        axis([10.25-17 10.25+17 11.25-17 11.25+17]);
-        
-        figure(posi3L)
-        ylim(ax1,[10.25-20 10.25+20]);
-        ylim(ax2,[11.25-20 11.25+20]);
-        ylim(ax3,[-190  190]);
-        xlim([0 T1(end)])
-        
-        figure(vel3L)
-        ylim(vx1,[-1 2.5]);
-        ylim(vx2,[-1 2.5]);
-        ylim(vx3,[-30 25]);
-        xlim([0 T1(end)])
-        
-    otherwise
 end
 
 
 if(salva==1)
-    saveas(posi3D,strcat('Figuras/',strcat(Nome,'Posicao3D')),'epsc');
-    saveas(posi3D,strcat('Figuras/',strcat(Nome,'Posicao3D')),'fig');
+%     saveas(posi3D,strcat('Figuras/',strcat(Nome,'Posicao3D')),'epsc');
+%     saveas(posi3D,strcat('Figuras/',strcat(Nome,'Posicao3D')),'fig');
     
     saveas(posi3L,strcat('Figuras/',strcat(Nome,'Posicao3L')),'epsc');
     saveas(posi3L,strcat('Figuras/',strcat(Nome,'Posicao3L')),'fig');

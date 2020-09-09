@@ -1,35 +1,26 @@
 % Inicialização limpando as varáveis THIS IS THE MAIN
 close all; clear all; clc;
 %%
-ParametrosBarco()
+ParametrosBarco()  % Para plot das Figuras
 
-Nome  = {'Circular','LinearX','Sway','Sway2','Oito','OUTRO'};
+Artigo1 = {'Linear','Circular','SquareROI','Square1_top','Square_dif'};
 
-Dia_1 = {'Oito_dia_top','Reta_dia_top','Circulo_dia_top'};
+Nome_SP = Artigo1{4};           % Nome do SP a ser carregado do LOG
+Salva   = 0;                  % 0/1 para salvar ou não as figuras obtidas
 
-Dia_2 = {'survey_1', 'survey_1_Diferencial','Square1_top','Square2_top',...
-         'Square_3', 'Square_dif','Square2_dif' ,'Star','Star_dif'};
-     
-Dia_3 = {'SquareROI','CircleROI'};
-
-Artigo1 = {'Linear','Circular','SquareROI','Square_dif'};
-
-Language = {'Portugues','Ingles'};
-Lang     = Language{2};
-
-Nome_SP = Dia_2{6};%Dia_2{1};           % Nome do SP a ser carregado do LOG
-salva = 0;                    % 0/1 para salvar ou não as figuras obtidas
+Idioma   = {'Portugues','Ingles'};
+Language = Idioma{2};
 
 [Vel_real,Pose_real,Theta,PWM,F,F_out,Tempo,TempoAloc,TempoVel] = ReadLOG(Nome_SP); % Leitura do LOG acontece aqui
 
 %% Creates SetPoints to Be compared
-SetPointsCreation(Nome_SP,Pose_real);
+% SetPointsCreation(Nome_SP,Pose_real);
 
 %% Concatena o nome para identificar as variaveis de teste real
 Nome_SP = strcat(Nome_SP,'_Real');
 
 %%
-PlotCenarioReal(Tempo,TempoAloc,TempoVel,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome_SP,Lang,salva);
+PlotCenarioReal(Tempo,TempoAloc,TempoVel,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome_SP,Language,Salva);
 
 % global SP;
 % ise1 = ISE(sqrt(Pose_real(1,:).^2+Pose_real(2,:).^2),TempoVeiculo,sqrt(SP.X.^2+SP.Y.^2),SP.t)

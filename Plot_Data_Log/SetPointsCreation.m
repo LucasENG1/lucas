@@ -1,16 +1,6 @@
 function SetPointsCreation(Nome,Pose)
 %% CRIA SPs SEMELHANTES AO QUE FOI PEDIDO PELO PLANEJADOR DE MISSÃO
-
-% Global variable(s)
-global  SP Sim;
-
-%% SLOWER Loop
-% t = Time;
-% t = 0:1:360;
-
-% P1 = Polinomio(000,020,0,+20,0,0,Sim.Ts,Sim.tFinal);
-% P2 = Polinomio(040,080,0,-40,0,0,Sim.Ts,Sim.tFinal);
-% P3 = Polinomio(120,160,0,+20,0,0,Sim.Ts,Sim.tFinal);
+global  SP;
 
 switch Nome
     case 'Guinada'
@@ -42,8 +32,8 @@ switch Nome
         Yaw = -atan2([X(1:length(Y)/2-T), -X(1:length(Y)/2) -X(1:T)],...
             [Y(1:(length(Y)/2)-1-T), -Y(length(Y)/2:end) -Y(1:T)])+...
             0*(pi/180);
-  
-    case {'Square_dif','Square2_top'}
+        
+    case {'Square_dif','SquareROI'}
         t   = 1:1:80;
         X1   = [30/18:30/18:30];
         x21  = 30:2/17:(32-2/17);
@@ -67,78 +57,29 @@ switch Nome
         Yaw = [W1 W2 W3 W4];
         Yaw = Yaw.*pi/180;
         
-    case 'LinearX'
+    case 'Linear'
         t   = 1:1:360;
         Y   = [0 1e-10+(140*ones(size(t-1)))];
         X   = [0 1e-10-(140*zeros(size(t-1)))];
         Yaw = atan(Y./X);
         
     case 'Circular'
-        % HABILITAR LINE_OF_SIGHT
         A   = 49;        % Gira o circulo para igualar ao real
         t   = 1:1:360;
-        X   = Pose(1,1)-(15*cosd((360/t(end))*t+A))+16;
-        Y   = Pose(2,1)-(15*sind((360/t(end))*t+A))+15;
+        X   = Pose(1,1)-(15*cosd((360/t(end))*t+A))+11.5;
+        Y   = Pose(2,1)-(15*sind((360/t(end))*t+A))-18.8;
         Yaw = 2.73*atan2(Y,X);    % ganho de guinada para igualar ao real
-        Yaw(Yaw>pi) = Yaw(Yaw>pi)-2*pi; % ajuste para o ATAN2
+%         Yaw(Yaw>pi) = Yaw(Yaw>pi)-2*pi; % ajuste para o ATAN2
         
-    case 'Oito'
-        A   = 0;
-        p1  = 841;
-        t   = 0:.1:200;
-        %% SP OITO
-        X21  = 1e-10-(10*cosd((360/(t(end)))*t+A))+35;
-        Y21  = 1e-10-(10*sind((360/(t(end)))*t+A))-3.3;
-        X22  = 1e-10+(10*cosd((360/(t(end)))*t+A))+67;
-        Y22  = 1e-10-(10*sind((360/(t(end)))*t+A))-3.3;
-        
-        Y = [X21(335:671) X22(1290:end) X22(1:720) X21(1310:end) X21(1:330)];
-        X = [Y21(335:671) Y22(1290:end) Y22(1:720) Y21(1310:end) Y21(1:330)];
-        Y = Y -74.35-0.18;
-        X = X -2 -0.275 -0.03;
-        Yaw = atan2(Y,X);
-        Yaw = [Yaw(1) Yaw];
-        x1 = X(1:p1);
-        x1 = [X(p1:end) x1];
-        X = x1;
-        
-        y1 = Y(1:p1);
-        y1 = [Y(p1:end) y1];
-        Y = y1;
-        
-        X = X(end:-1:1);
-        Y = Y(end:-1:1);
-        
-        Sim.Current_X_Y_psi = [X(1); Y(1); Yaw(1)];
-        t  = 123.2/length(X):123.2/length(X):123.2;
     otherwise
-        X = 0;
-        Y = 0;
+        X   = 0;
+        Y   = 0;
         Yaw = 0;
-        t=0;
+        t   = 0;
 end
 
-% Plot para conferencia do SP criado
-%  hold on; plot(Y,X,'Linewidth',2); plot(Y(1),X(1),'*r');axis equal
-
-SP.X = X;
-SP.Y = Y;
+SP.X   = X;
+SP.Y   = Y;
 SP.Yaw = Yaw;
-SP.t = t;
+SP.t   = t;
 end
-
-% SP.X = X(1:length(X)/20:end);
-% SP.Y = Y(1:length(Y)/20:end);
-% SP.Yaw = Yaw(1:length(Yaw)/20:end);
-%%
-% sp = [10 10 10 10 10  1  0 -10;
-%       5  20 40 50 90 30 10 25];
-
-% SP.X = 5*sp(1,:)/2;
-% SP.Y = sp(2,:);
-% SP.Yaw = zeros(1,length(SP.X));
-%%
-
-% SP.X = [100 ];%15 20 25 30 10];
-% SP.Y = [200 ];%12 23 25 30  0];
-% Sim.Current_X_Y_psi = [SP.X(1) SP.Y(1) SP.Yaw(1)]';
