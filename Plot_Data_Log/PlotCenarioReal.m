@@ -209,23 +209,23 @@ end
 
 
 if(salva==1)
-%     saveas(posi3D,strcat('Figuras/',strcat(Nome,'Posicao3D')),'epsc');
-%     saveas(posi3D,strcat('Figuras/',strcat(Nome,'Posicao3D')),'fig');
+%     saveas(posi3D,strcat('Figuras_EPS/',strcat(Nome,'Posicao3D')),'epsc');
+%     saveas(posi3D,strcat('Figuras_FIG/',strcat(Nome,'Posicao3D')),'fig');
     
-    saveas(posi3L,strcat('Figuras/',strcat(Nome,'Posicao3L')),'epsc');
-    saveas(posi3L,strcat('Figuras/',strcat(Nome,'Posicao3L')),'fig');
+    saveas(posi3L,strcat('Figuras_EPS/',strcat(Nome,'Posicao3L')),'epsc');
+    saveas(posi3L,strcat('Figuras_FIG/',strcat(Nome,'Posicao3L')),'fig');
     
-    saveas(vel3L,strcat('Figuras/',strcat(Nome,'Velocidade3L')),'epsc');
-    saveas(vel3L,strcat('Figuras/',strcat(Nome,'Velocidade3L')),'fig');
+    saveas(vel3L,strcat('Figuras_EPS/',strcat(Nome,'Velocidade3L')),'epsc');
+    saveas(vel3L,strcat('Figuras_FIG/',strcat(Nome,'Velocidade3L')),'fig');
     
-    saveas(servoAngle,strcat('Figuras/',strcat(Nome,'Ang_Servo')),'epsc');
-    saveas(servoAngle,strcat('Figuras/',strcat(Nome,'Ang_Servo')),'fig');
+    saveas(servoAngle,strcat('Figuras_EPS/',strcat(Nome,'Ang_Servo')),'epsc');
+    saveas(servoAngle,strcat('Figuras_FIG/',strcat(Nome,'Ang_Servo')),'fig');
     
-    saveas(servoPwm,strcat('Figuras/',strcat(Nome,'PWM_Servo')),'epsc');
-    saveas(servoPwm,strcat('Figuras/',strcat(Nome,'PWM_Servo')),'fig');
+    saveas(servoPwm,strcat('Figuras_EPS/',strcat(Nome,'PWM_Servo')),'epsc');
+    saveas(servoPwm,strcat('Figuras_FIG/',strcat(Nome,'PWM_Servo')),'fig');
     
-    saveas(force,strcat('Figuras/',strcat(Nome,'ForcaServo')),'epsc');
-    saveas(force,strcat('Figuras/',strcat(Nome,'ForcaServo')),'fig');
+    saveas(force,strcat('Figuras_EPS/',strcat(Nome,'ForcaServo')),'epsc');
+    saveas(force,strcat('Figuras_FIG/',strcat(Nome,'ForcaServo')),'fig');
 end
 
 

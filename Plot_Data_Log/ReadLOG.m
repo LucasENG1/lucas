@@ -1,32 +1,32 @@
 function [Velxyz_real,PoseNED_real,Theta,PWM,F_IN,F_OUT,Tempo,TempoAloc,TempoVel] = ReadLOG(Nome)
 
 switch Nome
-    case 'Linear'
+    case 'Cenario1'
         load('LOG_Artigo/b4.mat') ;
         Ang     = -140*(pi/180);    % ajuste de angulo para plotar a imagem melhor
         ini     = 1612;             % Inicio da leitura no log
         fim     = ini+1162;         % Final da leitura no log
         
-    case 'Circular'
+    case 'Cenario2'
         load('LOG_Artigo/a2.mat') ;
         Ang     = 0*-102 *(pi/180);          % ajuste de angulo para plotar a imagem melhor
         ini     = 7950;         % Inicio da leitura no log
         fim     = 9430;         % Final da leitura no log
         
-    case 'SquareROI'
+    case 'Cenario3'
         load('LOG_Artigo/Square_31_08.mat')
         Ang     = 0*(pi/180);   % ajuste de angulo para plotar a imagem melhor
         ini     = 4700;         % Inicio da leitura no log
         fim     = ini+3100;     % Final da leitura no log
         %         yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
               
-    case 'Square1_top'
+    case 'ComparaFinal3dof'
         load('LOG_Artigo/log2.mat')
         Ang     = 0 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 12300;        % Inicio da leitura no log
         fim     = ini+1600;     % Final da leitura no log
         
-    case 'Square_dif'
+    case 'ComparaFinal2dof'
         load('LOG_Artigo/log2.mat')
         Ang     = 0*(pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 10000;        % Inicio da leitura no log
@@ -45,8 +45,6 @@ yaw   = GRIN(ini:fim,9)/5000;          % Salva yaw em radianos
 Tempo = Tempo-Tempo(1);     % Começa o relógio do zero
 Px    = Px - Px(1);         % Inicia todo mundo do zero
 Py    = Py - Py(1);         % Inicia tudo mundo do zero
-
-% yaw   = (yaw-yaw(1))+ yaw_ini ;%*2 + yaw_ini - Ang ;   % Offset de yaw aplicado no sistema
 
 %%  ========= PARAMETROS DE VELOCIDADE DO VEÍCULO ==================
 TempoVel = AFSN(ini/2:fim/2,2)/1000000;    % Tempo
