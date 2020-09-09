@@ -20,11 +20,18 @@ switch Nome
         fim     = ini+3100;     % Final da leitura no log
         %         yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
         
+%          case 'Square2_top'
+%         load('LOG_Artigo_24_08/log2.mat')
+%         Ang     = 0 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
+%         ini     = 12300;        % Inicio da leitura no log
+%         fim     = ini+1600;     % Final da leitura no log
+%         
+%         
     case 'Square1_top'
         load('LOG_Artigo/log2.mat')
-        Ang     = 0*(pi/180);        % ajuste de angulo para plotar a imagem melhor
-        ini     = 1200;        % Inicio da leitura no log
-        fim     = ini+3000;     % Final da leitura no log
+        Ang     = 0 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
+        ini     = 12300;        % Inicio da leitura no log
+        fim     = ini+1600;     % Final da leitura no log
         
     case 'Square_dif'
         load('LOG_Artigo/log2.mat')
