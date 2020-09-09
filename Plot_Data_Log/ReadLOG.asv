@@ -42,14 +42,12 @@ Py    = GRIN(ini:fim,5)/100;            % posição X no NED em cm (esta no py pel
 Px    = GRIN(ini:fim,6)/100;            % posição Y no NED em cm
 yaw   = GRIN(ini:fim,9)/100;            % Salva yaw em radianos
 
-for q = 1:length(yaw)
+for q=1:length(yaw)
    yaw(q) = mod(yaw(q),360)* (pi/180);
    if(yaw(q)> pi)
        yaw(q) = yaw(q)-2*pi ;
    end
-   if(yaw(q)<-pi)
-       yaw(q) = yaw(q)+2*pi;
-   end
+   if(yaw(q)<-pi = yaw(q)+2*pi;
 end
 
 
