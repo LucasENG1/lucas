@@ -1,17 +1,14 @@
 clear all; close all; clc;
-
 %% Configuration
-Possible_SPs = {'Guinada','Sway','LinearY','Linear','Circular','Oito','Figura'};
-Language     = {'Portugues','Ingles'};
+Artigo1 = {'Linear','Circular','SquareROI','Square1_top','Square_dif'};
+Idioma   = {'Portugues','Ingles'};
 
-Artigo1 = {'Linear','Circular','NAO_SquareROI'};
-
-SetPoint = Artigo1{1};
-Lang     = Language{2};
+SetPoint = Artigo1{2};
+Language = Idioma{2};
 
 % Plot Configuration
 Plotar = 1;  % 1 - True or 0 - False
-Salvar = 1;  % 1 - True or 0 - False
+Salvar = 0;  % 1 - True or 0 - False
 
 Plot_Step = 20; % Step to dynamic plot
 
@@ -36,7 +33,7 @@ SetPointsCreation(SetPoint);
 
 %% Choose which controller is going to be used
 switch SetPoint
-    case {'Figra','LinarX','Circaular'}
+    case {'null'}
         L1_controller = 1;
     otherwise
         L1_controller = 0;
@@ -104,7 +101,7 @@ Posi_IAE = IAE(Sim_Plot.SP_Posi,Sim_Plot.X_Y_psi,Sim.Ts)
 %% Plot das Figuras
 % FiguraAutopilot(spd,5*ayp,Sim_Plot.SP_Posi,salva);  % Autopilot
 
-Curvas_real_simulado(10,SetPoint,Lang,Salvar);            % Demais figuras
+Curvas_real_simulado(10,SetPoint,Language,Salvar);            % Demais figuras
 
 %% End of the script
 delete *.asv;
