@@ -1,5 +1,4 @@
 function Leg = LegendLanguage(language)
-
 switch language
     case 'Portugues'
         Leg.p3D         = {'Caminho desenvolvido','NumColumns',2,'Location','northoutside'};

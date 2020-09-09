@@ -1,6 +1,5 @@
 function Img = ImageParametrization()
 %%  OPÇÕES De FIGURA
-
 % Configuração geral
 Screen = [0.2 0.2 .25 .55];
 Img.figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto',...

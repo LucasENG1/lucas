@@ -13,7 +13,6 @@ X_Y_psi(2,:) = aux(1,:);
 
 global ROV DEG_TO_RAD;
 
-
 hold on
 for i=1:length(yaw)
     % Matriz de Rotação (Rotação em Z)
