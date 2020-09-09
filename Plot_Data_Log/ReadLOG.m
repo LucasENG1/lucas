@@ -56,6 +56,7 @@ Vyaw     = AFSN(ini/2:fim/2,10).*180/pi;   % Velocidade de Guinada (graus/s)
 
 TempoVel = TempoVel - TempoVel(1);         % Começa o relógio do zero
 
+% yaw   = (yaw-yaw(1));
 % Correção de YAW para igualar ao ATAN2
 % yaw(yaw> pi) = yaw(yaw>pi)-2*pi ;
 % yaw(yaw<-pi) = yaw(yaw<-pi)+2*pi;
@@ -63,8 +64,6 @@ TempoVel = TempoVel - TempoVel(1);         % Começa o relógio do zero
 %% Monta os vetores
 Pose_real1   = [Px';Py';yaw'];      % Vetor de Posição
 Velxyz_real  = [Vx';Vy';Vyaw'];     % Vetor de Velocidade BODY
-
-
 
 %% ========= PARAMETROS DE ALOCAÇÃO DO VEÍCULO ==================
 PoseNED_real = Pose_real1;
