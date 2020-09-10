@@ -1,23 +1,29 @@
 clear all; close all; clc;
 %% Configuration
-Artigo1 = {'Linear','Circular','SquareROI','Square1_top','Square_dif'};
-Idioma   = {'Portugues','Ingles'};
-
-SetPoint = Artigo1{2};
-Language = Idioma{2};
 
 % Plot Configuration
 Plotar = 1;  % 1 - True or 0 - False
 Salvar = 0;  % 1 - True or 0 - False
 
+
+Nboats = 10;
+
 Plot_Step = 20; % Step to dynamic plot
 
-%% Initialisation
-Initialisation;       % Time and some variables
-NoiseInitialization;  % Initialize the systems noise
+Artigo1 = {'Cenario1','Cenario2','Cenario3'};
+Idioma  = {'Portugues','Ingles'};
+Language = Idioma{2};
 
 %% Global variable(s) - MUST COME HERE, strictly after the initialisation
-global Sim Sim_Plot Time ROV Torque SLC SP WP ;
+global Sim Sim_Plot Time ROV Torque SLC SP WP  TimeJ RAD_TO_DEG ;
+
+for i = 1:length(Artigo1)
+    
+SetPoint = Artigo1{i};
+
+%% Initialisation
+Initialisation(SetPoint);       % Time and some variables
+NoiseInitialization;  % Initialize the systems noise
 
 %% Auxiliar variables
 Aux = [];
@@ -94,14 +100,19 @@ end
 elapsedTime = toc;
 fprintf('Total simulation time = %0.4fs\n', elapsedTime);
 
-%% Calculo do Indices
-Vel_IAE  = IAE(Sim_Plot.SP_Vel,Sim_Plot.u_v_r,Sim.Ts)
-Posi_IAE = IAE(Sim_Plot.SP_Posi,Sim_Plot.X_Y_psi,Sim.Ts)
+% %% Calculo do Indices
+% Vel_IAE  = IAE(Sim_Plot.SP_Vel,Sim_Plot.u_v_r,Sim.Ts)
+% Posi_IAE = IAE(Sim_Plot.SP_Posi,Sim_Plot.X_Y_psi,Sim.Ts)
 
 %% Plot das Figuras
 % FiguraAutopilot(spd,5*ayp,Sim_Plot.SP_Posi,salva);  % Autopilot
+% SetPoint = strcat('Sim_',SetPoint);
+save(strcat('Simulado/',strcat('Sim_',SetPoint)),'Nboats','SetPoint','Sim','Sim_Plot',...
+    'TimeJ','RAD_TO_DEG','ROV');
 
-Curvas_real_simulado(10,SetPoint,Language,Salvar);            % Demais figuras
+end
+
+Curvas_real_simulado(Nboats,SetPoint,Language,Salvar);            % Demais figuras
 
 %% End of the script
 delete *.asv;

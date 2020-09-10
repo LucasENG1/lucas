@@ -2,25 +2,28 @@ function [Velxyz_real,PoseNED_real,Theta,PWM,F_IN,F_OUT,Tempo,TempoAloc,TempoVel
 
 switch Nome
     case 'Cenario1'
+%         Linear
         load('LOG_Artigo/b4.mat') ;
         Ang     = -140*(pi/180);    % ajuste de angulo para plotar a imagem melhor
         ini     = 1612;             % Inicio da leitura no log
         fim     = ini+1162;         % Final da leitura no log
         
     case 'Cenario2'
+        %Circular
         load('LOG_Artigo/a2.mat') ;
         Ang     = 0*-102 *(pi/180);          % ajuste de angulo para plotar a imagem melhor
         ini     = 7950;         % Inicio da leitura no log
         fim     = 9430;         % Final da leitura no log
         
     case 'Cenario3'
+        % SquareROI
         load('LOG_Artigo/Square_31_08.mat')
         Ang     = 0*(pi/180);   % ajuste de angulo para plotar a imagem melhor
         ini     = 4700;         % Inicio da leitura no log
         fim     = ini+3100;     % Final da leitura no log
         %         yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
-              
     case 'ComparaFinal3dof'
+        % Square 3DOF
         load('LOG_Artigo/log2.mat')
         Ang     = 0 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
         ini     = 12300;        % Inicio da leitura no log
@@ -52,7 +55,6 @@ for q = 1:length(yaw)
    end
 end
 
-
 Tempo = Tempo-Tempo(1);     % Começa o relógio do zero
 Px    = Px - Px(1);         % Inicia todo mundo do zero
 Py    = Py - Py(1);         % Inicia tudo mundo do zero
@@ -77,10 +79,7 @@ Velxyz_real  = [Vx';Vy';Vyaw'];     % Vetor de Velocidade BODY
 %% ========= PARAMETROS DE ALOCAÇÃO DO VEÍCULO ==================
 PoseNED_real = Pose_real1;
 switch Nome
-    case {'Square1_top','Square_dif'}
-        ini = ini /2;
-        fim = fim /2;
-    case 'Linear'
+    case 'Cenario1'
         %% Rotação a posicao para plotar melhor
         for i=1:length(yaw)
             PoseNED_real(:,i) = BF2NED(-Ang,Pose_real1(:,i));

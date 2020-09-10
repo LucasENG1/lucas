@@ -1,4 +1,4 @@
-function Curvas_real_simulado(Nboats,Nome,Language,salva)
+function PlotCenarioSimulado(Nboats,Nome,Language,salva)
 global  Sim Sim_Plot TimeJ RAD_TO_DEG;
 
 Img = ImageParametrization;
@@ -19,7 +19,7 @@ PWM   = zeros(4,length(XYpsi(1,:)));
 
 %% POSIÇÃO 3D
 switch Nome
-    case 'Linear'
+    case 'Cenario1'
         Screen = [0 0 1 1];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
         posi3D = figure(figOpt{:});
@@ -282,23 +282,23 @@ switch Nome
 end
 
 if(salva==1)
-    saveas(posi3D,strcat('Figures/',strcat(Nome,'Posicao3D')),'epsc');
-    saveas(posi3D,strcat('Figures/',strcat(Nome,'Posicao3D')),'fig');
+    saveas(posi3D,strcat('Sim_EPS_output/',strcat(Nome,'Posicao3D')),'epsc');
+    saveas(posi3D,strcat('Sim_FIG_output/',strcat(Nome,'Posicao3D')),'fig');
     
-    saveas(posi3L,strcat('Figures/',strcat(Nome,'Posicao3L')),'epsc');
-    saveas(posi3L,strcat('Figures/',strcat(Nome,'Posicao3L')),'fig');
+    saveas(posi3L,strcat('Sim_EPS_output/',strcat(Nome,'Posicao3L')),'epsc');
+    saveas(posi3L,strcat('Sim_FIG_output/',strcat(Nome,'Posicao3L')),'fig');
     
-    saveas(vel3L,strcat('Figures/',strcat(Nome,'Velocidade2L')),'epsc');
-    saveas(vel3L,strcat('Figures/',strcat(Nome,'Velocidade2L')),'fig');
+    saveas(vel3L,strcat('Sim_EPS_output/',strcat(Nome,'Velocidade2L')),'epsc');
+    saveas(vel3L,strcat('Sim_FIG_output/',strcat(Nome,'Velocidade2L')),'fig');
     
-    saveas(force,strcat('Figures/',strcat(Nome,'Forca')),'epsc');
-    saveas(force,strcat('Figures/',strcat(Nome,'Forca')),'fig');
+    saveas(force,strcat('Sim_EPS_output/',strcat(Nome,'Forca')),'epsc');
+    saveas(force,strcat('Sim_FIG_output/',strcat(Nome,'Forca')),'fig');
     
-    saveas(servoAngle,strcat('Figures/',strcat(Nome,'Angle')),'epsc');
-    saveas(servoAngle,strcat('Figures/',strcat(Nome,'Angle')),'fig');
+    saveas(servoAngle,strcat('Sim_EPS_output/',strcat(Nome,'Angle')),'epsc');
+    saveas(servoAngle,strcat('Sim_FIG_output/',strcat(Nome,'Angle')),'fig');
     
-    saveas(servoPwm,strcat('Figures/',strcat(Nome,'PWM')),'epsc');
-    saveas(servoPwm,strcat('Figures/',strcat(Nome,'PWM')),'fig');
+    saveas(servoPwm,strcat('Sim_EPS_output/',strcat(Nome,'PWM')),'epsc');
+    saveas(servoPwm,strcat('Sim_FIG_output/',strcat(Nome,'PWM')),'fig');
     
     
 end

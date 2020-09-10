@@ -1,19 +1,15 @@
 function [] = PlotBarcoFigura(X_Y_psi,Theta, PWM,F)
-%%
 % Função para plotar o Barco em tamanho real 2D
 % x   = Posição x do veículo no referencial Global
 % y   = Posição y do veículo no referencial Global
 % z   = Posição z do veículo no referencial Global
 % yaw = Angulo de yaw do veículo no referencial fixo do corpo
 %%
-yaw  = X_Y_psi(3,:);
-aux  = X_Y_psi;
-X_Y_psi(1,:) = aux(2,:);
-X_Y_psi(2,:) = aux(1,:);
-
-global ROV;
-
-hold on
+% aux= X_Y_psi;
+% X_Y_psi(1,:) = aux(2,:);
+% X_Y_psi(2,:) = aux(1,:);
+yaw   = X_Y_psi(end,:);
+global ROV DEG_TO_RAD;
 for i=1:length(yaw)
     % Matriz de Rotação (Rotação em Z)
     M_rotacao = NED2BF(yaw(i),eye(3));
@@ -68,10 +64,6 @@ for i=1:length(yaw)
     PlotMotor(Theta(4,i)*(pi/180) + ang,PWM(4,i)*ROV.k1,XYZ + [X_Y_psi(1:2,i);0],'');
     
 end
-% title({strcat('$ Vehicle \ Posi $')}, 'Interpreter', 'latex');
-% xlabel('X (m)');ylabel('Y (m)');
-% legend('Desejado','Executado');
-hold off
-grid
+grid on 
 view(2)
 end

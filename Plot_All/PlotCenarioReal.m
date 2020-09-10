@@ -1,33 +1,51 @@
-function PlotCenarioReal(T1,T2,T3,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome,Language,salva)
+function PlotCenarioReal(Nboats,T1,T2,T3,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome,Language,salva)
 global Fmax Nmax;
 
 Img = ImageParametrization();
 Leg = LegendLanguage(Language);
 
+passo = floor(length(Pose_real(1,:))/Nboats); % Passo para plotar o Barco
+XYpsi = Pose_real(:,1:passo:end);
+
+F1     = 0*XYpsi;%F(:,1:passo:end)/5;
+Theta1 = zeros(4,length(XYpsi(1,:)));
+PWM1   = zeros(4,length(XYpsi(1,:)));
+
+
 %% POSIÇÃO 3D
 switch Nome
-    case 'Linear_Real'
+    case 'Cenario1'
         Screen = [0 0 0.5 0.5];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
         posi3D = figure(figOpt{:});
-        Ax = Pose_real(2,:);
-        Pose_real(2,:)= Pose_real(1,:);
-        Pose_real(1,:) = Ax;
+        
         Pose_real(3,:) = Pose_real(3,:) +pi/2;
-        
-%         plot(SP.Y,SP.X,'r','linewidth',2);hold on;axis equal
-        plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
-        FiguraArtigo(20,Pose_real); grid on;
+        XYpsi = Pose_real(:,1:passo:end);
         
         Ax = Pose_real(2,:);
         Pose_real(2,:)= Pose_real(1,:);
         Pose_real(1,:) = Ax;
-        Pose_real(3,:) = Pose_real(3,:) - pi/2;
+             
+        plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2); hold on;
         
+        Ax = Pose_real(2,:);
+        Pose_real(2,:)= Pose_real(1,:);
+        Pose_real(1,:) = Ax;
+
+                
+        PlotBarcoFigura(XYpsi,Theta1,PWM1,F1);
+        Pose_real(3,:) = Pose_real(3,:) - pi/2;
     otherwise
+        
+        Ax = XYpsi(2,:);
+        XYpsi(2,:)= XYpsi(1,:);
+        XYpsi(1,:) = Ax;
+        
         posi3D = figure(Img.figOpt{:});
-        plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2)
-        FiguraArtigo(20,Pose_real); grid on;
+        
+        plot(Pose_real(1,:),Pose_real(2,:),'color',Img.COR,'linewidth',2);  hold on;
+        
+        PlotBarcoFigura(XYpsi,Theta1,PWM1,F1);
 end
 
 
@@ -40,7 +58,7 @@ posi3L=figure(Img.figOpt3L{:});
 ax1 = subplot(311);
 % plot(SP.t,SP.Y,'r','linewidth',2);hold on
 plot(T1,Pose_real(2,:),'color',Img.COR,'linewidth',2);grid on
-legend('$X$ position',Img.Legend{:});  
+legend('$X$ position',Img.Legend{:});
 %legend(Leg.posicaoX3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
@@ -48,7 +66,7 @@ ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 ax2 = subplot(312);
 % plot(SP.t,SP.X,'r','linewidth',2);hold on
 plot(T1,Pose_real(1,:),'color',Img.COR,'linewidth',2);grid on
-legend('$Y$ position',Img.Legend{:});  
+legend('$Y$ position',Img.Legend{:});
 %legend(Leg.posicaoY3L{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
@@ -56,7 +74,7 @@ ylabel(Leg.YP3L{:},Img.YLabelOpt{:});
 ax3 = subplot(313);
 % plot(SP.t,SP.Yaw*RAD_TO_DEG,'r','linewidth',2);hold on;
 plot(T1,Pose_real(3,:)*(180/pi),'color',Img.COR,'linewidth',2);grid on
-legend('$\psi$ position',Img.Legend{:});  
+legend('$\psi$ position',Img.Legend{:});
 % legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.yaw3L{:},Img.YLabelOpt{:});
@@ -121,7 +139,7 @@ legend(Leg.ServoAngle{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 % linkaxes([axSa1 axSa2 axSa3 axSa4],'xy')
-% ylim([-180 90])    
+% ylim([-180 90])
 xlim([0 T2(end)])
 
 %% PWM
@@ -202,29 +220,29 @@ switch Nome
         
         figure(vel3L)
         ylim(vx1,[-0 4]);
-%         ylim(vx3,[-20  25]);
+        %         ylim(vx3,[-20  25]);
         xlim([0 T1(end)])
 end
 
 
 if(salva==1)
-%     saveas(posi3D,strcat('Figuras_EPS/',strcat(Nome,'Posicao3D')),'epsc');
-%     saveas(posi3D,strcat('Figuras_FIG/',strcat(Nome,'Posicao3D')),'fig');
+    %     saveas(posi3D,strcat('Figuras_EPS/',strcat(Nome,'Posicao3D')),'epsc');
+    %     saveas(posi3D,strcat('Figuras_FIG/',strcat(Nome,'Posicao3D')),'fig');
     
-    saveas(posi3L,strcat('Figuras_EPS/',strcat(Nome,'Posicao3L')),'epsc');
-    saveas(posi3L,strcat('Figuras_FIG/',strcat(Nome,'Posicao3L')),'fig');
+    saveas(posi3L,strcat('Real_EPS_output/',strcat(Nome,'Posicao3L')),'epsc');
+    saveas(posi3L,strcat('Real_FIG_output/',strcat(Nome,'Posicao3L')),'fig');
     
-    saveas(vel3L,strcat('Figuras_EPS/',strcat(Nome,'Velocidade3L')),'epsc');
-    saveas(vel3L,strcat('Figuras_FIG/',strcat(Nome,'Velocidade3L')),'fig');
+    saveas(vel3L,strcat('Real_EPS_output/',strcat(Nome,'Velocidade2L')),'epsc');
+    saveas(vel3L,strcat('Real_FIG_output/',strcat(Nome,'Velocidade2L')),'fig');
     
-    saveas(servoAngle,strcat('Figuras_EPS/',strcat(Nome,'Ang_Servo')),'epsc');
-    saveas(servoAngle,strcat('Figuras_FIG/',strcat(Nome,'Ang_Servo')),'fig');
+    saveas(servoAngle,strcat('Real_EPS_output/',strcat(Nome,'Angle')),'epsc');
+    saveas(servoAngle,strcat('Real_FIG_output/',strcat(Nome,'Angle')),'fig');
     
-    saveas(servoPwm,strcat('Figuras_EPS/',strcat(Nome,'PWM_Servo')),'epsc');
-    saveas(servoPwm,strcat('Figuras_FIG/',strcat(Nome,'PWM_Servo')),'fig');
+    saveas(servoPwm,strcat('Real_EPS_output/',strcat(Nome,'PWM')),'epsc');
+    saveas(servoPwm,strcat('Real_FIG_output/',strcat(Nome,'PWM')),'fig');
     
-    saveas(force,strcat('Figuras_EPS/',strcat(Nome,'ForcaServo')),'epsc');
-    saveas(force,strcat('Figuras_FIG/',strcat(Nome,'ForcaServo')),'fig');
+    saveas(force,strcat('Real_EPS_output/',strcat(Nome,'Forca')),'epsc');
+    saveas(force,strcat('Real_FIG_output/',strcat(Nome,'Forca')),'fig');
 end
 
 
