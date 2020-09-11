@@ -5,7 +5,6 @@ clear all; close all; clc;
 Plotar = 1;  % 1 - True or 0 - False
 Salvar = 0;  % 1 - True or 0 - False
 
-
 Nboats = 10;
 
 Plot_Step = 20; % Step to dynamic plot
