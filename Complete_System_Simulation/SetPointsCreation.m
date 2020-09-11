@@ -22,6 +22,13 @@ switch Nome
 
     case 'Cenario3'
         % SquareROI
+        load('SP.mat');
+        t = length(Time);
+        Spt = length(Pose_real(1,:));
+        X   = Pose_real(2,Spt/t:Spt/t:Spt);
+        Y   = Pose_real(1,Spt/t:Spt/t:Spt);
+        Yaw = Pose_real(3,Spt/t:Spt/t:Spt);
+        clear Pose_real;
         
     otherwise
         X = 0;
