@@ -25,7 +25,7 @@ switch Nome_SP
     case 'Cenario2'
         TEMPO_Sim  = 76;       % Total simulation time [s]
     case 'Cenario3'
-        TEMPO_Sim  = 182;       % Total simulation time [s]
+        TEMPO_Sim  = 160;       % Total simulation time [s]
     otherwise
         TEMPO_Sim  = 100;       % Total simulation time [s]
 end

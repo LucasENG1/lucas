@@ -12,15 +12,10 @@ F     = 0*XYpsi;%F(:,1:passo:end)/5;
 Theta = zeros(4,length(XYpsi(1,:)));
 PWM   = zeros(4,length(XYpsi(1,:)));
 
-% Utilizar essa se quiser ver os angulos e PWMs no plot
-% F     = 0.*Sim.F(:,1:passo:end)/10;
-% Theta = Sim.Theta(:,2:passo:end);
-% PWM   = Sim.PWM(:,2:passo:end);
-
 %% POSIÇÃO 3D
 switch Nome
     case 'Cenario1'
-        Screen = [0 0 1 1];
+        Screen = [0 0 .5 1];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
         posi3D = figure(figOpt{:});
         
@@ -39,6 +34,8 @@ switch Nome
         Sim_Plot.X_Y_psi(1,:) = Ax;
         Sim_Plot.X_Y_psi(3,:) = Sim_Plot.X_Y_psi(1,:) -pi/2;
         XYpsi = Sim_Plot.X_Y_psi(:,1:passo:end);
+        
+
     otherwise
         posi3D = figure(Img.figOpt{:});
         plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
@@ -95,12 +92,6 @@ vx1 = subplot(211);
 % plot(TimeJ,Sim_Plot.SP_Vel(1,:),'r','linewidth',2');
 plot(TimeJ,Sim_Plot.u_v_r(1,:),'linewidth',2'); hold on; grid on;
 
-% legend(Leg.VelX3L{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YV3L{:},Img.YLabelOpt{:});
-
-% vx2 = subplot(312);
-% plot(TimeJ,Sim_Plot.SP_Vel(2,:),'r','linewidth',2'); hold on; grid on;
 plot(TimeJ,Sim_Plot.u_v_r(2,:),'linewidth',2');
 
 legend(Leg.VelXY{:},Img.Legend{:});
@@ -115,7 +106,8 @@ xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YYaw3L{:},Img.YLabelOpt{:});
 
 linkaxes([vx1 vx3],'x')
-
+xlim([0 TimeJ(end)])
+        
 %% ====================================================== FORÇAS E ALOCAÇÃO
 force = figure(Img.figOpt3L{:});
 axf1 = subplot(311);
@@ -147,136 +139,70 @@ linkaxes([axf1 axf2 ],'y')
 xlim([0 TimeJ(end)])
 %% ============================================================ Servo Angle
 servoAngle = figure(Img.figOpt1L{:});
-% axSa1 = subplot(411);
+
 plot(TimeJ,Sim.Theta(1,1:end-1),'b','linewidth',2');hold on; grid on;
-% legend(Leg.ServoAngle1{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-% axSa2 = subplot(412);
 plot(TimeJ,Sim.Theta(2,1:end-1),'r','linewidth',2');hold on; grid on;
-% legend(Leg.ServoAngle2{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-% axSa3 = subplot(413);
 plot(TimeJ,Sim.Theta(3,1:end-1),'g','linewidth',2');hold on; grid on;
-% legend(Leg.ServoAngle3{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-% axSa4 = subplot(414);
 plot(TimeJ,Sim.Theta(4,1:end-1),'m','linewidth',2');hold on; grid on;
 legend(Leg.ServoAngle{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-% linkaxes([axSa1 axSa2 axSa3 axSa4],'xy')
 xlim([0 TimeJ(end)]);
-% ylim([-120 120]);
-
-% plot(TimeJ,Sim.Theta(2,1:end-1),'linewidth',2')
-% plot(TimeJ,Sim.Theta(3,1:end-1),'linewidth',2')
-% plot(TimeJ,Sim.Theta(4,1:end-1),'linewidth',2')
-
-% plot(TimeJ,Sim.T(1,1:end),'linewidth',2');hold on; grid on;
-% plot(TimeJ,Sim.T(2,1:end),'linewidth',2')
-% plot(TimeJ,Sim.T(3,1:end),'linewidth',2')
-% plot(TimeJ,Sim.T (4,1:end),'linewidth',2')
 
 %% ============================================================= Servo PWM
 servoPwm = figure(Img.figOpt1L{:});
-% axPa1 = subplot(411);
 
 plot(TimeJ,Sim.PWM(1,1:end-1),'b','linewidth',2');hold on; grid on;
-% legend(Leg.ServoPWM1{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa2 = subplot(412);
 plot(TimeJ,Sim.PWM(2,1:end-1),'r','linewidth',2');hold on; grid on;
-% legend(Leg.ServoPWM2{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa3 = subplot(413);
 plot(TimeJ,Sim.PWM(3,1:end-1),'g','linewidth',2');hold on; grid on;
-% legend(Leg.ServoPWM3{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa4 = subplot(414);
 plot(TimeJ,Sim.PWM(4,1:end-1),'m','linewidth',2');hold on; grid on;
 legend(Leg.ServoPWM{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% linkaxes([axPa1 axPa2 axPa3 axPa4],'xy')
-
 xlim([0 TimeJ(end)]);
 ylim([ 0 1]);
 %% ============================================= Configuração personalizada
 switch Nome
-    case 'Linear'
+    case 'Cenario1'
         figure(posi3D);
+        
         xlabel('X (m)',Img.YLabelOpt{:});
         ylabel('Y (m)',Img.XLabelOpt{:});
-        axis([ -2 143 -10 10]);
+        axis([ -2 143 -15 15]);
+        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','north');
+       
+        figure(posi3L)
         ylim(ax1,[0 150]);
         ylim(ax2,[-15 15]);
         ylim(ax3,[-50 100]);
-        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','northoutside');
-        
+
         figure(vel3L)
         ylim(vx1,[-1 4]);
-%         ylim(vx2,[-0 4]);
-%         ylim(vx3,[-20  20]);
-        xlim([0 TimeJ(end)])
         
-        figure(force)
-        xlim(axf1,[0 TimeJ(end)])
-        
-    case 'Oito'
+    case 'Cenario2'
         figure(posi3D);
-        axis([-15 8 23 79])
-        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','northoutside');
-        
-        figure(vel3L)
-        ylim(vx1,[-0 1.5]);
-%         ylim(vx2,[-1 1]);
-        ylim(vx3,[-20  20]);
-        xlim([0 TimeJ(end)])
-        
-    case 'Sway'
-        figure(posi3D);
-        axis([-2 70 -2 5]);
-        
-        figure(posi3L)
-        ylim(ax1,[-1 60]);
-        ylim(ax2,[0  70]);
-        ylim(ax3,[0  200]);
-        xlim([0 TimeJ(end)])
-        
-        figure(vel3L)
-        ylim(vx1,[-2 3]);
-%         ylim(vx2,[-2 3]);
-        ylim(vx3,[-75  70]);
-        xlim([0 TimeJ(end)]);
-        
-    case 'Circular'
-        figure(posi3D);
-        axis([-17.5 17.5 -2.5 32.5]);
-        
-        figure(posi3L)
-        %         ylim(ax1,[10.25-20 10.25+20]);
-        %         ylim(ax2,[11.25-20 11.25+20]);
-        %         ylim(ax3,[-190  190]);
-        xlim([0 TimeJ(end)])
+        axis([-17.5 17.5 -2.5 35]);       
+        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','north');
         
         figure(vel3L)
         ylim(vx1,[-1 2]);
-%         legend(Leg.VelXY{:},Img.Legend{:});
-%         ylim(vx3,[-20 20]);
+        xlim([0 TimeJ(end)])
+        
+    case 'Cenario3'
+        figure(posi3D);
+        axis([-2 32 -2 35]);       
+        legend(Leg.p3D2{:},Img.Legend{:},'NumColumns',2,'Location','north');
+        
+        figure(vel3L)
+        ylim(vx1,[-1 2]);
         xlim([0 TimeJ(end)])
     otherwise
 end

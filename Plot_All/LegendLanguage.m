@@ -41,8 +41,8 @@ switch language
         Leg.YYaw3L  = {'Velocidade Angular (Grau/s)'};
         
     case 'Ingles'
-        Leg.p3D2         = {'Path to follow','Developed path'};
-        Leg.p3D          = {'Path to follow','Developed path','NumColumns',2,'Location','northoutside'};
+        Leg.p3D2         = {'Path to follow','Developed path','Location','best'};
+        Leg.p3D          = {'Path to follow','Developed path','Location','best'};
         Leg.posicaoX3L   = {'$X$ waypoint','$X$ response','Location','best'};
         Leg.posicaoY3L   = {'$Y$ waypoint','$Y$ response','Location','best'};
         Leg.posicaoYaw3L = {'$\psi$ waypoint','$\psi$ response','Location','best'};
@@ -50,21 +50,21 @@ switch language
         Leg.VelXY        = {'$X$ speed','$Y$ speed','Location','best'};
         Leg.VelYaw     = {'$\psi$ speed','Location','northeast'};
         
-        Leg.VelX3L       = {'$X$ waypoint','Location','northeast'};
-        Leg.VelY3L       = {'$Y$ waypoint','Location','northeast'};
-        Leg.VelYaw3L     =  {'$\psi$ waypoint','$\psi$ response','Location','northeast'};
+        Leg.VelX3L       = {'$X$ waypoint','Location','best'};
+        Leg.VelY3L       = {'$Y$ waypoint','Location','best'};
+        Leg.VelYaw3L     =  {'$\psi$ waypoint','$\psi$ response','Location','best'};
         Leg.AlocacaoX    = {'$F_x$ desired','$F_x$ allocated','Location','best'};
         Leg.AlocacaoY    = {'$F_y$ desired','$F_y$ allocated','Location','best'};
         Leg.AlocacaoPsi  = {'$\psi$ desired','$\psi$ allocated','Location','best'};
         
-        Leg.ServoAngle  = {'Servomotor 1','Servomotor 2','Servomotor 3','Servomotor 4','Location','north'};
+        Leg.ServoAngle  = {'Servomotor 1','Servomotor 2','Servomotor 3','Servomotor 4','NumColumns',4,'Location','northoutside'};
         
         Leg.ServoAngle1  = {'Servomotor 1','Location','northeast'};
         Leg.ServoAngle2  = {'Servomotor 2','Location','northeast'};
         Leg.ServoAngle3  = {'Servomotor 3','Location','northeast'};
         Leg.ServoAngle4  = {'Servomotor 4','Location','northeast'};
         
-        Leg.ServoPWM  = {'Motor 1','Motor 2','Motor 3','Motor 4','Location','best'};
+        Leg.ServoPWM  = {'Motor 1','Motor 2','Motor 3','Motor 4','NumColumns',4,'Location','northoutside'};
         
         Leg.ServoPWM1  = {'Motor 1','Location','best'};
         Leg.ServoPWM2  = {'Motor 2','Location','best'};

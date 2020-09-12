@@ -17,25 +17,59 @@ switch Nome
         t   = Time;
         X   = 1e-10-(15*cosd((Arc/t(end))*t))+15;
         Y   = 1e-10-(15*sind((Arc/t(end))*t));
-        Yaw = atan(Y./X);
+        Yaw = atan2(Y,X);
         Sim.Current_X_Y_psi = [X(1); Y(1); -pi/2];
 
-    case 'Cenario3'
+    case 'Cena rio3'
         % SquareROI
         load('SP.mat');
         t = length(Time);
         Spt = length(Pose_real(1,:));
-        X   = Pose_real(2,Spt/t:Spt/t:Spt);
-        Y   = Pose_real(1,Spt/t:Spt/t:Spt);
-        Yaw = Pose_real(3,Spt/t:Spt/t:Spt);
+        A = 5;
+        X   = Pose_real(2,1:A*Spt/t:Spt);
+        Y   = Pose_real(1,1:A*Spt/t:Spt);
+        Yaw = Pose_real(3,1:A*Spt/t:Spt);
+        
+        Sim.Current_X_Y_psi = [0;0; 0];
+        
         clear Pose_real;
+        
+    case 'Cenario3'
+        % SquareROI
+%         Y   = [30 25 20 15 10 5 0 0  0  0  0  0  0  5 10 15 20 25 30 30 30 30 30 30];
+%         X   = [0   0 0   0  0 0 0 5 10 15 20 25 30 30 30 30 30 30 30 25 20 15 10  0];
+        df = 0.165;
+        Y   = [[30:-df:0]                 zeros(1,length([30:-df:0])) [0:df:30]                    30*ones(1,length([30:-df:0])) ];
+        X   = [zeros(1,length([30:-df:0])) [0:df:30]                  30*ones(1,length([30:-df:0])) [30:-df:0] ];
+      
+%         load('SP.mat');
+%         Yaw = Pose_real(3,1:3:end);
+%         clear Pose_real;
+        Yaw = atan2(Y,X);
+            
+% Yaw = Yaw(131:1:end-100)+pi;
+        
+        Sim.Current_X_Y_psi = [X(1); Y(1); -pi/2];
+        
+%         clear Pose_real;
         
     otherwise
         X = 0;
         Y = 0;
         Yaw = 0;  
 end
-WP = 2;
+WP = 1;
 SP.XYZ = [X;Y;Yaw];
+
+% figure
+% subplot(311)
+% plot(X)
+% subplot(312)
+% plot(Y)
+% subplot(313)
+% plot(Yaw)
+% 
+% figure
+% plot(X,Y)
 
 end

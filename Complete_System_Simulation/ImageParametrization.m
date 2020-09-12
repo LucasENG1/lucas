@@ -1,6 +1,7 @@
 function Img = ImageParametrization()
 %%  OPÇÕES DA FIGURA
 Screen = [0.2 0.2 .25 .55];
+Screen = [0.2 0.2 .25 .55];
 Img.figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto',...
     'Position',Screen,'InnerPosition',Screen};
 % quando tem 3 linhas de saida na figura

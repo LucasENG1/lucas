@@ -15,8 +15,8 @@ PWM1   = zeros(4,length(XYpsi(1,:)));
 %% POSIÇÃO 3D
 switch Nome
     case 'Cenario1'
-        Screen = [0 0 0.5 0.5];
-        figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
+         Screen = [0 0 .5 1];
+         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
         posi3D = figure(figOpt{:});
         
         Pose_real(3,:) = Pose_real(3,:) +pi/2;
@@ -31,7 +31,6 @@ switch Nome
         Ax = Pose_real(2,:);
         Pose_real(2,:)= Pose_real(1,:);
         Pose_real(1,:) = Ax;
-
                 
         PlotBarcoFigura(XYpsi,Theta1,PWM1,F1);
         Pose_real(3,:) = Pose_real(3,:) - pi/2;
@@ -51,7 +50,7 @@ end
 
 xlabel('Y (m)',Img.YLabelOpt{:});
 ylabel('X (m)',Img.YLabelOpt{:});
-legend(Leg.p3D{:},Img.Legend{:});
+legend(Leg.p3D{1},Img.Legend{:});
 
 %% POSIÇÃO EM CADA COMPONENTE
 posi3L=figure(Img.figOpt3L{:});
@@ -113,33 +112,17 @@ servoAngle = figure(Img.figOpt1L{:});
 
 % axSa1 = subplot(411);
 plot(T2,Th1,'b','linewidth',2);hold on; grid on;
-% legend(Leg.ServoAngle1{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-% axSa2 = subplot(412);
 plot(T2,Th2,'r','linewidth',2);hold on; grid on;
-% legend(Leg.ServoAngle2{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-% axSa3 = subplot(413);
 plot(T2,Th3,'g','linewidth',2);hold on; grid on;
-% legend(Leg.ServoAngle3{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
-% axSa4 = subplot(414);
 plot(T2,Th4,'m','linewidth',2);hold on; grid on;
-% legend(Leg.ServoAngle4{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YSA{:},Img.YLabelOpt{:});
 
 legend(Leg.ServoAngle{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YSA{:},Img.YLabelOpt{:});
-% linkaxes([axSa1 axSa2 axSa3 axSa4],'xy')
-% ylim([-180 90])
+
 xlim([0 T2(end)])
 
 %% PWM
@@ -147,29 +130,12 @@ servoPwm = figure(Img.figOpt1L{:});
 
 % axPa1 = subplot(411);
 plot(T2,pwm1,'b','linewidth',2);hold on; grid on;
-% legend(Leg.ServoPWM1{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa2 = subplot(412);
 plot(T2,pwm2,'r','linewidth',2);hold on; grid on;
-% legend(Leg.ServoPWM2{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa3 = subplot(413);
 plot(T2,pwm3,'g','linewidth',2);hold on; grid on;
-% legend(Leg.ServoPWM3{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa4 = subplot(414);
 plot(T2,pwm4,'m','linewidth',2);hold on; grid on;
-% legend(Leg.ServoPWM4{:},Img.Legend{:});
-% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
-
-% linkaxes([axPa1 axPa2 axPa3 axPa4],'xy')
 
 legend(Leg.ServoPWM{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
@@ -207,20 +173,18 @@ linkaxes([ax12 ax22 ax32],'x');
 xlim([0 T2(end)])
 
 switch Nome
-    case 'Linear_Real'
+    case 'Cenario1'
         figure(posi3D);
         axis([ -2 143 -10 10]);
-        % posição
+        
+        figure(posi3L)
         ylim(ax1,[0 150]);
         ylim(ax2,[-15 15]);
         ylim(ax3,[-50 100]);
-        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','northoutside');
-        xlabel('X (m)',Img.YLabelOpt{:});
-        ylabel('Y (m)',Img.YLabelOpt{:});
+        legend(Leg.p3D{:},Img.Legend{:},'NumColumns',1,'Location','best');
         
         figure(vel3L)
         ylim(vx1,[-0 4]);
-        %         ylim(vx3,[-20  25]);
         xlim([0 T1(end)])
 end
 

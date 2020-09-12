@@ -5,7 +5,7 @@ function Position_Controller(stp)
 global Ctrl Sim SP Sat SLC WP;
 
 ErrPXYZ    = (SP.XYZ(:,WP) - Sim.Current_X_Y_psi);
-ErrPXYZ(3) = SP.XYZ(3,WP) - abs(Sim.Current_X_Y_psi(3))* sign(Sim.Current_X_Y_psi(3));
+ErrPXYZ(3) = SP.XYZ(3,WP) - abs(Sim.Current_X_Y_psi(3))*sign(Sim.Current_X_Y_psi(3));
 
 ErrIXYZ  = Ctrl.ErrIXYZprev + ((Sim.Ts*SLC.Freq)/2)*(ErrPXYZ+Ctrl.ErrPXYZprev);
 Posi_dot = Sim.Current_u_v_r;

@@ -3,9 +3,9 @@ clear all; close all; clc;
 global Sim Sim_Plot Time ROV Torque SLC SP WP  TimeJ RAD_TO_DEG;
 
 % Plot Configuration
-Plot      = 01;         % 1 - Plot online Figures or      0 - False
+Plot      = 00;         % 1 - Plot online Figures or      0 - False
 Plot_Step = 20;         % Step to dynamic plot
-Salvar    = 00;         % 1 - Save Data to Plot Figure or 0 - False
+Salvar    = 01;         % 1 - Save Data to Plot Figure or 0 - False
 
 Artigo1  = {'Cenario1','Cenario2','Cenario3'}; % Possible scenarios name
 SetPoint = Artigo1{3};
@@ -32,8 +32,14 @@ for i = 1:numel(Time)
     
     WaypointUpdate;             % Updates the current waypoint
     
+    Point_of_interest([15,15]);
+    
     Position_Controller(i);     % Updates de basic position controller
 
+%     if(WP>length(SP.XYZ(1,:))-1)
+%         Sim.Vel(:,i)  = [0;0;0];
+%     end
+    
 %     if(L1_controller==1)
 %         Path_L1_controller(i);
 %     else
@@ -49,7 +55,6 @@ for i = 1:numel(Time)
         
         n_dot = BF2NED(Sim.Current_X_Y_psi(3),Sim.Current_u_v_r);
         v_dot = ROV.InverseInertia * (Torque - Sim.NetForces);
-
         %% Double integration: accelerations -> velocities -> position/attitude
         X                = [n_dot; v_dot];             % State vector
         [AuxVector, Aux] = Integration(X,Aux,j);
@@ -69,7 +74,8 @@ for i = 1:numel(Time)
     end
     % Plot online Figure
     if(mod(i,Plot_Step)==0 && Plot==1)
-        Plot_general(j)
+        Plot_general(j);
+        pause(1)
     end
     
 end
@@ -84,7 +90,8 @@ Posi_IAE = IAE(Sim_Plot.SP_Posi,Sim_Plot.X_Y_psi,Sim.Ts)
 %% Save Data to Future Figures
 save(strcat('Simulado/',strcat('Sim_',SetPoint)),'SetPoint','Sim','Sim_Plot','TimeJ','RAD_TO_DEG','ROV');
 
-    
+Curvas_real_simulado(10,SetPoint,'Ingles',Salvar);            % Demais figuras
+
 %     if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius 
 %         Sim.Vel(:,i)=[0;0;0];
 %     end

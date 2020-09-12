@@ -79,7 +79,7 @@ if strcmp(Nome,'Circular')==1
     plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');
     legend(Leg.posicaoYaw3L{:},Img.Legend{:});
 else
-    plot(TimeJ,Sim_Plot.X_Y_psi(3,:),'m','linewidth',2');grid on;
+    plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'m','linewidth',2');grid on;
     legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 end
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});

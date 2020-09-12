@@ -1,7 +1,7 @@
-function [kpPosi,kiPosi,kdPosi] = Calc_Position_Controller()
+function [kpPosi,kiPosi,kdPosi] = Calc_Position_Controller(Raio)
 %% Controlador de Posição
 global Sat ;
-Raio = 10;
+% Raio = 3;
 
 %% Posição X
 Px_umax = Sat.MaxVelX;
@@ -14,7 +14,7 @@ kPX = calc_P_Gain(Px_umax,Px_umin,Px_Emax,Px_Emin);
 %% Posição Y
 Py_umax = Sat.MaxVelY;
 Py_umin = 0;
-Py_Emax = Raio/2; %raio admitido
+Py_Emax = Raio/10; %raio admitido
 Py_Emin = 0; %raio admitido
 
 kPY = calc_P_Gain(Py_umax,Py_umin,Py_Emax,Py_Emin);
@@ -28,9 +28,9 @@ Psi_Emin = 0;    % raio admitido
 kPYaw = calc_P_Gain(Psi_umax,Psi_umin,Psi_Emax,Psi_Emin);
 
 % Posição X
-       kIX =  0;       kDX =  0;
+       kIX =  0.0;       kDX =  0;
 % Posição Y
-       kIY =  0;       kDY =  0;
+       kIY =  0.0;       kDY =  0;
 % Posição Guinada
        kIYaw = 0;      kDYaw = 0;
 
