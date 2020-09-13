@@ -164,7 +164,7 @@ switch Nome
         ylim(ax3,[-50 100]);
        
         figure(vel3L)
-        ylim(vx1,[-0.5 3.6]);
+        ylim(vx1,[-0.5 3.5]);
         xlim(vx1,[0 T3(end)]);
         subplot(211)
         legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
@@ -180,14 +180,11 @@ switch Nome
         legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','north');
         
         figure(vel3L)
-        ylim(vx1,[-0.6 2]);
+        ylim(vx1,[-0.5 2.5]);
         xlim(vx1,[0 T3(end)]);
         subplot(211)
         legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
-        
-        subplot(212)
-        legend(Leg.VelYaw{:},Img.Legend{:},'Location','southeast');
-        
+  
    case 'Cenario3'
         figure(posi3D);
         axis([-2 32 -2 35]);
@@ -196,7 +193,9 @@ switch Nome
         figure(vel3L)
         ylim(vx1,[-1.2 1.2]);
         xlim(vx1,[0 T3(end)]);
-        subplot(211) 
+        subplot(211)
+        legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
+        
         legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
     otherwise
 end

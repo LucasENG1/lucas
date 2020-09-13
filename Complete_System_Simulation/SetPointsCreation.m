@@ -38,9 +38,9 @@ switch Nome
         % SquareROI
 %         Y   = [30 25 20 15 10 5 0 0  0  0  0  0  0  5 10 15 20 25 30 30 30 30 30 30];
 %         X   = [0   0 0   0  0 0 0 5 10 15 20 25 30 30 30 30 30 30 30 25 20 15 10  0];
-        df = 0.165;
-        Y   = [[30:-df:0]                 zeros(1,length([30:-df:0])) [0:df:30]                    30*ones(1,length([30:-df:0])) ];
-        X   = [zeros(1,length([30:-df:0])) [0:df:30]                  30*ones(1,length([30:-df:0])) [30:-df:0] ];
+        df = 0.152;
+        Y   = [[30:-df:0]                 zeros(1,length([30:-df:0])) [0:df:30]                    30*ones(1,length([30:-df:0])) zeros(1,length([30:-df:0])) [0:df:30] ];
+        X   = [zeros(1,length([30:-df:0])) [0:df:30]                  30*ones(1,length([30:-df:0])) [30:-df:0] zeros(1,length([30:-df:0])) [0:df:30]  ];
       
 %         load('SP.mat');
 %         Yaw = Pose_real(3,1:3:end);
