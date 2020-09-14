@@ -19,7 +19,7 @@ switch Nome
         posi3D = figure(figOpt{:});
         
         Pose_real(3,:) = Pose_real(3,:) +pi/2;
-        XYpsi = Pose_real(:,1:passo:end);   
+        XYpsi = Pose_real(:,1:passo:end);
         Ax = Pose_real(2,:);
         Pose_real(2,:)= Pose_real(1,:);
         Pose_real(1,:) = Ax;
@@ -162,7 +162,7 @@ switch Nome
         ylim(ax1,[0 150]);
         ylim(ax2,[-15 15]);
         ylim(ax3,[-50 100]);
-       
+        
         figure(vel3L)
         ylim(vx1,[-0.5 3.6]);
         xlim(vx1,[0 T3(end)]);
@@ -174,9 +174,9 @@ switch Nome
         ylim([-180 180]);
         xlim(vx1,[0 T1(end)]);
         
-     case 'Cenario2'
+    case 'Cenario2'
         figure(posi3D);
-%         axis([-17.5 17.5 -2.5 35]);
+        %         axis([-17.5 17.5 -2.5 35]);
         legend(Leg.p3D{:},Img.Legend{:},'NumColumns',2,'Location','north');
         
         figure(vel3L)
@@ -188,7 +188,7 @@ switch Nome
         subplot(212)
         legend(Leg.VelYaw{:},Img.Legend{:},'Location','southeast');
         
-   case 'Cenario3'
+    case 'Cenario3'
         figure(posi3D);
         axis([-2 32 -2 35]);
         legend(Leg.p3D2{:},Img.Legend{:},'NumColumns',2,'Location','north');
@@ -196,8 +196,36 @@ switch Nome
         figure(vel3L)
         ylim(vx1,[-1.2 1.2]);
         xlim(vx1,[0 T3(end)]);
-        subplot(211) 
+        subplot(211)
         legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
+        
+    case  'ComparaFinal3dof'
+        
+        figure(force)
+        xlim([0 82.5])
+        
+        figure(servoPwm)
+        xlim([0 82.5])
+        
+        figure(servoAngle)
+        xlim([0 82.5])
+        
+        figure(vel3L)
+        xlim([0 82.5])
+        
+    case  'ComparaFinal2dof'
+        
+        figure(force)
+        xlim([0 85])
+        
+        figure(servoPwm)
+        xlim([0 85])
+        
+        figure(servoAngle)
+        xlim([0 85])
+        
+        figure(vel3L)
+        xlim([0 85])
     otherwise
 end
 

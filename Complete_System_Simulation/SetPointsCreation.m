@@ -38,9 +38,9 @@ switch Nome
         % SquareROI
 %         Y   = [30 25 20 15 10 5 0 0  0  0  0  0  0  5 10 15 20 25 30 30 30 30 30 30];
 %         X   = [0   0 0   0  0 0 0 5 10 15 20 25 30 30 30 30 30 30 30 25 20 15 10  0];
-        df = 0.152;
-        Y   = [[30:-df:0]                 zeros(1,length([30:-df:0])) [0:df:30]                    30*ones(1,length([30:-df:0])) zeros(1,length([30:-df:0])) [0:df:30] ];
-        X   = [zeros(1,length([30:-df:0])) [0:df:30]                  30*ones(1,length([30:-df:0])) [30:-df:0] zeros(1,length([30:-df:0])) [0:df:30]  ];
+        df = 0.16;
+        Y   = [[30:-df:0]                  zeros(1,length([30:-df:0])) [0:df:30]                      30*ones(1,length([30:-df:0])) 30*ones(1,length([30:-df:0]))];
+        X   = [zeros(1,length([30:-df:0])) [0:df:30]                   30*ones(1,length([30:-df:0]))  [30:-df:0]                      zeros(1,length([30:-df:0]))+1e-5 ];
       
 %         load('SP.mat');
 %         Yaw = Pose_real(3,1:3:end);
@@ -49,7 +49,7 @@ switch Nome
             
 % Yaw = Yaw(131:1:end-100)+pi;
         
-        Sim.Current_X_Y_psi = [X(1); Y(1); -pi/2];
+        Sim.Current_X_Y_psi = [X(1); Y(1); -pi/4];
         
 %         clear Pose_real;
         

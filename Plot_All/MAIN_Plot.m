@@ -15,10 +15,8 @@ for i=1:3
 end
 % clear all
 % close all
-
 for i = 1: length(Cenario)
     load(strcat('Real_LOG/',strcat('Real_',Cenario{i})));
     
     PlotCenarioReal(Nboats,Tempo,TempoAloc,TempoVel,Pose_real,Vel_real,Theta,PWM,F,F_out,SetPoint,Language,Salvar);
-    
 end

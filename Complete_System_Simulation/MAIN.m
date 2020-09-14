@@ -3,9 +3,14 @@ clear all; close all; clc;
 global Sim Sim_Plot Time ROV Torque SLC SP WP  TimeJ RAD_TO_DEG;
 
 % Plot Configuration
-Plot      = 00;         % 1 - Plot online Figures or      0 - False
-Plot_Step = 20;         % Step to dynamic plot
-Salvar    = 01;         % 1 - Save Data to Plot Figure or 0 - False
+Plot       = 01;         % 1 - Plot online Figures or      0 - False
+Plot_Step  = 20;         % Step to dynamic plot
+Salvar     = 01;         % 1 - Save Data to Plot Figure or 0 - False
+
+POI_active         = 1;         	% Activate the Point Of Interest
+LineOfsight_active = 0;
+
+POI = [15,15];
 
 Artigo1  = {'Cenario1','Cenario2','Cenario3'}; % Possible scenarios name
 SetPoint = Artigo1{3};
@@ -21,35 +26,35 @@ Calc_Controllers;               % Control gain Project
 
 SetPointsCreation(SetPoint);    % Creates SetPoints to be Tracked
 
-
 %% Auxiliar variables
 Aux = [];
 
-%% Start Simulation 
+%% Start Simulation
 tic;                % Starts the stopwatch timer and iterative simulation
 
 for i = 1:numel(Time)
     
     WaypointUpdate;             % Updates the current waypoint
     
-    Point_of_interest([15,15]);
+    if(POI_active)
+        Point_of_interest(POI);
+    end
     
     Position_Controller(i);     % Updates de basic position controller
-
-%     if(WP>length(SP.XYZ(1,:))-1)
-%         Sim.Vel(:,i)  = [0;0;0];
-%     end
     
-%     if(L1_controller==1)
-%         Path_L1_controller(i);
-%     else
-%         Line_of_sight(i);
-%     end
-
+    if LineOfsight_active
+        Line_of_sight(i);
+    end
+    
+    if WP == length(SP.XYZ(1,:))
+        Sim.Vel(:,i) = [0;0;0];
+    end
+        
+    
     for j = (SLC.Freq*(i-1)+1):SLC.Freq*(i)
         %% Controlador de Velocidade
         Speed_Controller(i,j);
-
+        
         %% Computes the net forces and moments acting on the ROV
         ROVLoads(j);
         
@@ -62,7 +67,7 @@ for i = 1:numel(Time)
         Sim.u_v_r_dot(:,j+1) = v_dot;         % utilizada no controle de Velocidade
         Sim.Current_X_Y_psi  = AuxVector(1:3);% + sqrt(R_gps)*randn(size(AuxVector(1:3)));
         Sim.Current_u_v_r    = AuxVector(4:6);% + sqrt(R_gps)*randn(size(AuxVector(1:3)));
-       
+        
         %% Armazena para PLOT
         Sim_Plot.u_v_r(:,j)   = Sim.Current_u_v_r;
         Sim_Plot.X_Y_psi(:,j) = Sim.Current_X_Y_psi;
@@ -92,11 +97,7 @@ save(strcat('Simulado/',strcat('Sim_',SetPoint)),'SetPoint','Sim','Sim_Plot','Ti
 
 Curvas_real_simulado(10,SetPoint,'Ingles',Salvar);            % Demais figuras
 
-%     if norm(SP.XYZ(:,end) - Sim.Current_X_Y_psi) <ROV.WpRadius 
-%         Sim.Vel(:,i)=[0;0;0];
-%     end
-
 %% Stops and reads the stopwatch timer
 
 elapsedTime = toc;
-fprintf('Total simulation time = %0.4fs\n', elapsedTime);    
+fprintf('Total simulation time = %0.4fs\n', elapsedTime);
