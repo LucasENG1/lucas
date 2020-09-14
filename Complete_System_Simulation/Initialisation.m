@@ -1,7 +1,7 @@
 % Inicia todas as variáveis relacionadas à simulação em geral
 % Sim
 % Sim_Plot
-function Initialisation
+function Initialisation(Nome_SP)
 
 %% Global variable(s)
 global numFig Sim Sim_Plot Time TimeJ SLC;
@@ -18,7 +18,18 @@ RAD_TO_DEG = 180/pi;
 %% Creates the simulation time vector
 
 SLC.Freq   = 20;       % Sucessive Loop Closure frequency % 90s Linear X / 
-TEMPO_Sim  = 60;       % Total simulation time [s]
+
+switch Nome_SP
+    case 'Cenario1'
+        TEMPO_Sim  = 60;       % Total simulation time [s]
+    case 'Cenario2'
+        TEMPO_Sim  = 76;       % Total simulation time [s]
+    case 'Cenario3'
+        TEMPO_Sim  = 160;       % Total simulation time [s]
+    otherwise
+        TEMPO_Sim  = 100;       % Total simulation time [s]
+end
+
 Ts         = 0.01;     % Integration step / sampling period [s]
 
 Time  = Ts*SLC.Freq:Ts*SLC.Freq:TEMPO_Sim;  % Time Vector

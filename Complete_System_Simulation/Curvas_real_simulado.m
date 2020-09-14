@@ -19,11 +19,6 @@ PWM   = zeros(4,length(XYpsi(1,:)));
 
 %% POSIÇÃO 3D
 switch Nome
-    case 'Sway'
-        posi3D = figure(Img.figOpt3L{:});
-        plot(Sim_Plot.SP_Posi(2,:),Sim_Plot.SP_Posi(1,:),'r','linewidth',2);hold on;axis equal
-        plot(Sim_Plot.X_Y_psi(2,:),Sim_Plot.X_Y_psi(1,:),'b','linewidth',2);
-        PlotBarcoFigura(XYpsi,Theta, PWM,F);
     case 'Linear'
         Screen = [0 0 1 1];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
@@ -84,7 +79,7 @@ if strcmp(Nome,'Circular')==1
     plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'b','linewidth',2');
     legend(Leg.posicaoYaw3L{:},Img.Legend{:});
 else
-    plot(TimeJ,Sim_Plot.X_Y_psi(3,:),'m','linewidth',2');grid on;
+    plot(TimeJ,Sim_Plot.X_Y_psi(3,:)*RAD_TO_DEG,'m','linewidth',2');grid on;
     legend(Leg.posicaoYaw3L{1},Img.Legend{:});
 end
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});

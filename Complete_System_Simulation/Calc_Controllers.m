@@ -9,7 +9,7 @@ ErrPVXYZprev = zeros(3,1);
 ErrIVXYZprev = zeros(3,1);
 
 %% Position control gain
-[kpPosi,kiPosi,kdPosi] = Calc_Position_Controller();
+[kpPosi,kiPosi,kdPosi] = Calc_Position_Controller(10);
 
 %% Speed Control gain
 [kpVel,kiVel,kdVel] = Calc_Speed_Controller(1,2,2);

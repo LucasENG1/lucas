@@ -11,8 +11,7 @@ aux  = X_Y_psi;
 X_Y_psi(1,:) = aux(2,:);
 X_Y_psi(2,:) = aux(1,:);
 
-global ROV DEG_TO_RAD;
-
+global ROV;
 
 hold on
 for i=1:length(yaw)
@@ -54,19 +53,19 @@ for i=1:length(yaw)
     ft = 3;
     % motor 1 (superior DIREITO)
     XYZ = Rot_pose_motor(ang,(ROV.dcbby),(ROV.Loa/ft));
-    PlotMotor(Theta(1,i)*DEG_TO_RAD + ang,PWM(1,i)*ROV.k1, XYZ + [X_Y_psi(1:2,i);0],'')
+    PlotMotor(Theta(1,i)*(pi/180) + ang,PWM(1,i)*ROV.k1, XYZ + [X_Y_psi(1:2,i);0],'')
     
     % motor 2 (inferior esquerdo)
     XYZ = Rot_pose_motor(ang,ROV.dceby,(-ROV.Loa/ft));
-    PlotMotor(Theta(2,i)*DEG_TO_RAD + ang,PWM(2,i)*ROV.k1,XYZ + [X_Y_psi(1:2,i);0],'')
+    PlotMotor(Theta(2,i)*(pi/180) + ang,PWM(2,i)*ROV.k1,XYZ + [X_Y_psi(1:2,i);0],'')
     
     % motor 3 (superior esquerdo)
     XYZ = Rot_pose_motor(ang,(ROV.dceby),(ROV.Loa/ft));
-    PlotMotor(Theta(3,i)*DEG_TO_RAD + ang,PWM(3,i)*ROV.k1,XYZ + [X_Y_psi(1:2,i);0],'')
+    PlotMotor(Theta(3,i)*(pi/180) + ang,PWM(3,i)*ROV.k1,XYZ + [X_Y_psi(1:2,i);0],'')
     
     % motor 4 (inferior direito)
     XYZ = Rot_pose_motor(ang,ROV.dcbby,(-ROV.Loa/ft));
-    PlotMotor(Theta(4,i)*DEG_TO_RAD + ang,PWM(4,i)*ROV.k1,XYZ + [X_Y_psi(1:2,i);0],'');
+    PlotMotor(Theta(4,i)*(pi/180) + ang,PWM(4,i)*ROV.k1,XYZ + [X_Y_psi(1:2,i);0],'');
     
 end
 % title({strcat('$ Vehicle \ Posi $')}, 'Interpreter', 'latex');

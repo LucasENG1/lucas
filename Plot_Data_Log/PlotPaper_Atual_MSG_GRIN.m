@@ -1,38 +1,34 @@
-% Inicialização limpando as varáveis THIS IS THE MAIN
 close all; clear all; clc;
 %%
-ParametrosBarco()
+ParametrosBarco;  % Para plot das Figuras
 
-Nome  = {'Circular','LinearX','Sway','Sway2','Oito','OUTRO'};
+global ROV Nmax Fmax;
 
-Dia_1 = {'Oito_dia_top','Reta_dia_top','Circulo_dia_top'};
+Artigo1 = {'Cenario1','Cenario2','Cenario3','ComparaFinal3dof','ComparaFinal2dof'};
+Idioma   = {'Portugues','Ingles'};
+Language = Idioma{2};
 
-Dia_2 = {'survey_1', 'survey_1_Diferencial','Square1_top','Square2_top',...
-         'Square_3', 'Square_dif','Square2_dif' ,'Star','Star_dif'};
-     
-Dia_3 = {'SquareROI','CircleROI'};
+Salva   = 0;  % 0/1 para salvar ou não as figuras obtidas
 
-Artigo1 = {'Linear','Circular','SquareROI','Square_dif'};
+for i = 1:length(Artigo1)
+    
+    SetPoint  = Artigo1{i};           % Nome do SP a ser carregado do LOG
+    
+    [Vel_real,Pose_real,Theta,PWM,F,F_out,Tempo,TempoAloc,TempoVel] = ReadLOG(SetPoint); % Leitura do LOG acontece aqui
+    
+    %% Concatena o nome para identificar as variaveis de teste real
+%     SetPoint = strcat('Real_',SetPoint);
+    
+    save(strcat('Real/',strcat('Real_',SetPoint)),'ROV', 'Nmax', 'Fmax','Tempo','TempoAloc','TempoVel',...
+        'Pose_real','Vel_real','Theta','PWM','F','F_out','SetPoint','Language')
+    
+end
 
-Language = {'Portugues','Ingles'};
-Lang     = Language{2};
+%% plot
 
-Nome_SP = Dia_2{6};%Dia_2{1};           % Nome do SP a ser carregado do LOG
-salva = 0;                    % 0/1 para salvar ou não as figuras obtidas
+%  PlotCenarioReal(Tempo,TempoAloc,TempoVel,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome_SP,Language,Salva);
 
-[Vel_real,Pose_real,Theta,PWM,F,F_out,Tempo,TempoAloc,TempoVel] = ReadLOG(Nome_SP); % Leitura do LOG acontece aqui
 
-%% Creates SetPoints to Be compared
-SetPointsCreation(Nome_SP,Pose_real);
-
-%% Concatena o nome para identificar as variaveis de teste real
-Nome_SP = strcat(Nome_SP,'_Real');
-
-%%
-PlotCenarioReal(Tempo,TempoAloc,TempoVel,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome_SP,Lang,salva);
-
-% global SP;
-% ise1 = ISE(sqrt(Pose_real(1,:).^2+Pose_real(2,:).^2),TempoVeiculo,sqrt(SP.X.^2+SP.Y.^2),SP.t)
 
 
 
