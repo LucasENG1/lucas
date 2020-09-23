@@ -6,7 +6,7 @@ Leg = LegendLanguage(Language);
 
 %% POSIÇÃO 3D
 switch Nome
-    case 'Linear_Real'
+    case 'Cenario1'
         Screen = [0 0 0.5 0.5];
         figOpt = {'color','w','Units','Normalized','PaperPositionMode','auto','Position',Screen};
         posi3D = figure(figOpt{:});

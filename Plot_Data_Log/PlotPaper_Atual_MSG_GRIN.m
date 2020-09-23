@@ -10,9 +10,9 @@ Language = Idioma{2};
 
 Salva   = 0;  % 0/1 para salvar ou não as figuras obtidas
 
-for i = 1:length(Artigo1)
+% for i = 1:length(Artigo1)
     
-    SetPoint  = Artigo1{i};           % Nome do SP a ser carregado do LOG
+    SetPoint  = Artigo1{1};           % Nome do SP a ser carregado do LOG
     
     [Vel_real,Pose_real,Theta,PWM,F,F_out,Tempo,TempoAloc,TempoVel] = ReadLOG(SetPoint); % Leitura do LOG acontece aqui
     
@@ -22,11 +22,10 @@ for i = 1:length(Artigo1)
     save(strcat('Real/',strcat('Real_',SetPoint)),'ROV', 'Nmax', 'Fmax','Tempo','TempoAloc','TempoVel',...
         'Pose_real','Vel_real','Theta','PWM','F','F_out','SetPoint','Language')
     
-end
+% end
 
 %% plot
-
-%  PlotCenarioReal(Tempo,TempoAloc,TempoVel,Pose_real,Vel_real,Theta,PWM,F,F_out,Nome_SP,Language,Salva);
+PlotCenarioReal(Tempo,TempoAloc,TempoVel,Pose_real,Vel_real,Theta,PWM,F,F_out,SetPoint,Language,Salva);
 
 
 

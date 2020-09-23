@@ -191,8 +191,8 @@ switch Nome
         ylim([-80 20]);
         xlim([0 TimeJ(end)]);
         
-        figure(servoAngle)
-        ylim([-180 180])
+        figure(servoangle)
+        
         
         
     case 'Cenario3'

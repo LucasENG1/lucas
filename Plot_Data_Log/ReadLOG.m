@@ -7,7 +7,7 @@ switch Nome
         Ang     = -140*(pi/180);    % ajuste de angulo para plotar a imagem melhor
         ini     = 1612;             % Inicio da leitura no log
         fim     = ini+1162;         % Final da leitura no log
-        
+%         fim     = ini+1162; 
     case 'Cenario2'
         %Circular
         load('LOG_Artigo/a2.mat') ;
@@ -21,19 +21,19 @@ switch Nome
         Ang     = 0*(pi/180);   % ajuste de angulo para plotar a imagem melhor
         ini     = 4700;         % Inicio da leitura no log
         fim     = ini+3100;     % Final da leitura no log
-        %         yaw_ini = 85*(pi/180);%155*(pi/180); Offset na guinada inicial (plot);
+        
     case 'ComparaFinal3dof'
         % Square 3DOF
         load('LOG_Artigo/log2.mat')
-        Ang     = 0 * (pi/180);        % ajuste de angulo para plotar a imagem melhor
-        ini     = 12300;        % Inicio da leitura no log
-        fim     = ini+1600;     % Final da leitura no log
+        Ang     = 0 * (pi/180);         % ajuste de angulo para plotar a imagem melhor
+        ini     = 12300;                % Inicio da leitura no log
+        fim     = ini+1600;             % Final da leitura no log
         
     case 'ComparaFinal2dof'
         load('LOG_Artigo/log2.mat')
-        Ang     = 0*(pi/180);        % ajuste de angulo para plotar a imagem melhor
-        ini     = 10000;        % Inicio da leitura no log
-        fim     = ini+1800;     % Final da leitura no log
+        Ang     = 0*(pi/180);       % ajuste de angulo para plotar a imagem melhor
+        ini     = 10000;            % Inicio da leitura no log
+        fim     = ini+1800;         % Final da leitura no log
         
     otherwise
         

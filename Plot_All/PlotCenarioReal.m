@@ -169,6 +169,9 @@ switch Nome
         subplot(211)
         legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
         
+        subplot(212)
+        ylim([-150 150]);
+        xlim([0 T3(end)]);
         
         figure(servoAngle)
         ylim([-180 180]);
@@ -186,7 +189,11 @@ switch Nome
         legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
         
         subplot(212)
+        ylim([-80 20]);
         legend(Leg.VelYaw{:},Img.Legend{:},'Location','southeast');
+        
+        figure(servoAngle)
+        ylim([-180 180])
         
     case 'Cenario3'
         figure(posi3D);
@@ -199,6 +206,12 @@ switch Nome
         subplot(211)
         legend(Leg.VelXY{:},Img.Legend{:},'NumColumns',2,'Location','northeast');
         
+        subplot(212)
+        axis([0 160 -5 15]);
+        
+        figure(servoAngle)
+        axis([0 160 -160 150]);
+        
     case  'ComparaFinal3dof'
         
         figure(force)
@@ -209,6 +222,7 @@ switch Nome
         
         figure(servoAngle)
         xlim([0 82.5])
+        ylim([-200 200])
         
         figure(vel3L)
         xlim([0 82.5])
@@ -223,6 +237,7 @@ switch Nome
         
         figure(servoAngle)
         xlim([0 85])
+        ylim([-200 200])
         
         figure(vel3L)
         xlim([0 85])
