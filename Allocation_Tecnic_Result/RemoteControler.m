@@ -30,7 +30,7 @@ Sim.Ts = 0.01;
 salva = 0;
 
 N = {'Cenario1','Cenario2','Cenario3','Cenario4','Torque'}; 
-Nome = N{4};
+Nome = N{1};
 
 switch Nome
     case 'Cenario2'
