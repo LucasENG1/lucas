@@ -1,20 +1,28 @@
 close all; clear all; clc;
 
-load('../SetPoints.mat')
+%% Carrega os Sps gerados em outro Arquivo
+% Nesse caso identificou-se com com SPs senoidais o FCA teria uma
+% "Vantagem" em relação aos demais (principalmente com cada sinal em
+% frequencia diferente
+load('SetPoints.mat')
 
-global Pwmmax Pwmmin APP k1 k2 k3 k4 Sim Fmax L Lx Ly Nmax ;
+%% Caracteristicas físicas da embarcação
+global Pwmmax Pwmmin APP k1 Sim Fmax L Lx Ly Nmax ;
 
-%% Mantendo o padrão utilizado no C
 L   = 0.586;
 Fmax = 2.1*9.81*4; % Força maxíma real
-Nmax = L*Fmax;
 
+% Saturações de Força e torque
+Nmax = L*Fmax;
 Pwmmax = 1001.0;
 Pwmmin = 1.0;
+
+% Braços de alavanca do Motor
 Lx = L*cos(pi/4.0);
 Ly = L*cos(pi/4.0);
+
+% Constante de propulsão do motor
 k1 = (Fmax/4.0)/(Pwmmax-Pwmmin);
-k2 = k1;k3 = k1;k4 = k1;
 
 % Constante de Tempo para dinamica dos atuadores (Parametros do Murillo)
 settling_time_mt  = 0.3;
@@ -28,40 +36,42 @@ APP.tau_srv = settling_time_srv/5;   % Servos
 % Variavel de plot (0 ou 1)
 PlotarCenarios = 1;
 
-tic
-for i=1:length(SP)
+Erro        = zeros(3,1);
+ISE_FCA     = zeros(3,1);
+F_desejado  = zeros(3,1);
+
+tic;
+for i=1:length(SP)  % O numero de SPs será o número de simulações ( Cada SP possui 3 sinais de N segundos)
     
     Out(i).Th          = zeros(4,1);
-    Out(i).PWM         = zeros(4,1);
+    Out(i).PWM         = ones(4,1);
     Out(i).F_out_FCA   = zeros(3,1);
     Out(i).Erro_FCA    = zeros(3,1);
     
     for j=1:length(SP(i).F_Mapeado(1,:))
         
-        CTRL_IN  = SP(i).F_Mapeado(1,:);
-        
         if j==1
-            % Alocação
-            [Out(i).Th(:,j),Out(i).PWM(:,j),Out(i).Erro_FCA(:,j)] = fmincon_use(CTRL_IN,zeros(8,1),j+1);
+            % Alocação            
+            [Out(i).Th(:,j),Out(i).PWM(:,j),Out(i).Erro_FCA(:,j),Out(i).F_out_FCA(:,j)] = Allocation_FCA(SP(i).F_Mapeado,Out(i).Th,Out(i).PWM,2);
         else
             % Alocação
-            [Out(i).Th(:,j),Out(i).PWM(:,j),Out(i).Erro_FCA(:,j)] = fmincon_use(CTRL_IN,[Out(i).PWM;Out(i).Th],j);
+            [Out(i).Th(:,j),Out(i).PWM(:,j),Out(i).Erro_FCA(:,j),Out(i).F_out_FCA(:,j)] = Allocation_FCA(SP(i).F_Mapeado,Out(i).Th,Out(i).PWM,j);
         end
         
-          % Servor Dynamics
-         [Out(i).Th(:,j),Out(i).PWM(:,j)] = DynamicsOfServosAndMotors(j,Out(i).Th,Out(i).PWM);
+         % Servor Dynamics
+        [Out(i).Th(:,j),Out(i).PWM(:,j)] = DynamicsOfServosAndMotors(j,Out(i).Th,Out(i).PWM);
         
         % Alocação Direta depois da dinamica dos atuadores
         Out(i).F_Saida(:,j) = Aloc_Direta(Out(i).Th(:,j),Out(i).PWM(:,j));
         
         Out(i).Erro_Saida_Final(:,j) = SP(i).F_Mapeado(:,j)- Out(i).F_Saida(:,j);
         
-    end
-        ISE_FMINCON(:,i) = (sum((Out(i).Erro_Saida_Final.^2)').*Sim.Ts)'; % ISE (Utilizdo no paper do Murillo)
+    end  
+    ISE_FCA(:,i) = (sum((Out(i).Erro_Saida_Final.^2)').*Sim.Ts)'; % ISE (Utilizdo no paper do Murillo)
 end
-Total_tempo = toc
-%% ----------------------- PLOT ---------------------------------
 
+Total_tempo = toc
+ 
 if PlotarCenarios
     for i=1:length(SP)
         %% Força de saida
@@ -138,18 +148,18 @@ if PlotarCenarios
 end
 figure
 ax(2) = subplot(311);
-plot(ISE_FMINCON(1,:),'b'); hold on
+plot(ISE_FCA(1,:),'b'); hold on
 legend('Fx FCA'); xlabel('Simulacao'); ylabel('Un')
 grid on
 
 ax(1) = subplot(312);
-plot(ISE_FMINCON(2,:),'b'); hold on
+plot(ISE_FCA(2,:),'b'); hold on
 legend('Fx FCA'); xlabel('Simulacao'); ylabel('Un')
 grid on
 
 ax(3) = subplot(313);
-plot(ISE_FMINCON(3,:),'b'); hold on
+plot(ISE_FCA(3,:),'b'); hold on
 legend('Fx FCA'); xlabel('Simulacao'); ylabel('Un')
 grid on
 
-MeanISE = sum(ISE_FMINCON')./length(ISE_FMINCON)
+MeanISE = sum(ISE_FCA')./length(ISE_FCA)

@@ -52,7 +52,7 @@ switch language
         
         Leg.VelX3L       = {'$X$ waypoint','Location','best'};
         Leg.VelY3L       = {'$Y$ waypoint','Location','best'};
-        Leg.VelYaw3L     =  {'$\psi$ waypoint','$\psi$ response','Location','best'};
+        Leg.VelYaw3L     = {'$\psi$ waypoint','$\psi$ response','Location','best'};
         Leg.AlocacaoX    = {'$F_x$ desired','$F_x$ allocated','Location','best'};
         Leg.AlocacaoY    = {'$F_y$ desired','$F_y$ allocated','Location','best'};
         Leg.AlocacaoPsi  = {'$\psi$ desired','$\psi$ allocated','Location','best'};
