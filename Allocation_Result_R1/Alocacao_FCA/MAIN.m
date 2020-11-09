@@ -4,7 +4,7 @@ close all; clear all; clc;
 % Nesse caso identificou-se com com SPs senoidais o FCA teria uma
 % "Vantagem" em relação aos demais (principalmente com cada sinal em
 % frequencia diferente
-load('SetPoints.mat')
+load('../Cria_SPs/SetPoints.mat');
 
 %% Caracteristicas físicas da embarcação
 global Pwmmax Pwmmin APP k1 Sim Fmax L Lx Ly Nmax ;
@@ -13,7 +13,7 @@ L   = 0.586;
 Fmax = 2.1*9.81*4; % Força maxíma real
 
 % Saturações de Força e torque
-Nmax = L*Fmax;
+Nmax   = L*Fmax;
 Pwmmax = 1001.0;
 Pwmmin = 1.0;
 
@@ -28,7 +28,7 @@ k1 = (Fmax/4.0)/(Pwmmax-Pwmmin);
 settling_time_mt  = 0.3;
 settling_time_srv = 1.5;
 
-Sim.Ts = 0.01;
+Sim.Ts = Ts;
 
 APP.tau_mt  = settling_time_mt/5;    % Motors
 APP.tau_srv = settling_time_srv/5;   % Servos
@@ -51,27 +51,28 @@ for i=1:length(SP)  % O numero de SPs será o número de simulações ( Cada SP poss
     for j=1:length(SP(i).F_Mapeado(1,:))
         
         if j==1
-            % Alocação            
+            % Alocação
             [Out(i).Th(:,j),Out(i).PWM(:,j),Out(i).Erro_FCA(:,j),Out(i).F_out_FCA(:,j)] = Allocation_FCA(SP(i).F_Mapeado,Out(i).Th,Out(i).PWM,2);
         else
             % Alocação
             [Out(i).Th(:,j),Out(i).PWM(:,j),Out(i).Erro_FCA(:,j),Out(i).F_out_FCA(:,j)] = Allocation_FCA(SP(i).F_Mapeado,Out(i).Th,Out(i).PWM,j);
         end
         
-         % Servor Dynamics
+        % Servor Dynamics
         [Out(i).Th(:,j),Out(i).PWM(:,j)] = DynamicsOfServosAndMotors(j,Out(i).Th,Out(i).PWM);
         
         % Alocação Direta depois da dinamica dos atuadores
         Out(i).F_Saida(:,j) = Aloc_Direta(Out(i).Th(:,j),Out(i).PWM(:,j));
         
+        % Erro Ponto a ponto
         Out(i).Erro_Saida_Final(:,j) = SP(i).F_Mapeado(:,j)- Out(i).F_Saida(:,j);
         
-    end  
+    end
     ISE_FCA(:,i) = (sum((Out(i).Erro_Saida_Final.^2)').*Sim.Ts)'; % ISE (Utilizdo no paper do Murillo)
 end
 
 Total_tempo = toc
- 
+
 if PlotarCenarios
     for i=1:length(SP)
         %% Força de saida

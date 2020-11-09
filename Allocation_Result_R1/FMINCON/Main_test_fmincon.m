@@ -1,6 +1,6 @@
 close all; clear all; clc;
 
-load('../SetPoints.mat')
+load('../Cria_SPs/SetPoints.mat');
 
 global Pwmmax Pwmmin APP k1 k2 k3 k4 Sim Fmax L Lx Ly Nmax ;
 
@@ -20,7 +20,7 @@ k2 = k1;k3 = k1;k4 = k1;
 settling_time_mt  = 0.3;
 settling_time_srv = 1.5;
 
-Sim.Ts = 0.01;
+Sim.Ts = Ts;
 
 APP.tau_mt  = settling_time_mt/5;    % Motors
 APP.tau_srv = settling_time_srv/5;   % Servos
@@ -38,7 +38,7 @@ for i=1:length(SP)
     
     for j=1:length(SP(i).F_Mapeado(1,:))
         
-        CTRL_IN  = SP(i).F_Mapeado(1,:);
+        CTRL_IN  = SP(i).F_Mapeado(:,j);
         
         if j==1
             % Alocação
@@ -48,16 +48,17 @@ for i=1:length(SP)
             [Out(i).Th(:,j),Out(i).PWM(:,j),Out(i).Erro_FCA(:,j)] = fmincon_use(CTRL_IN,[Out(i).PWM;Out(i).Th],j);
         end
         
-          % Servor Dynamics
-         [Out(i).Th(:,j),Out(i).PWM(:,j)] = DynamicsOfServosAndMotors(j,Out(i).Th,Out(i).PWM);
+        % Servor Dynamics
+        [Out(i).Th(:,j),Out(i).PWM(:,j)] = DynamicsOfServosAndMotors(j,Out(i).Th,Out(i).PWM);
         
         % Alocação Direta depois da dinamica dos atuadores
         Out(i).F_Saida(:,j) = Aloc_Direta(Out(i).Th(:,j),Out(i).PWM(:,j));
         
+        % Erro Ponto a ponto
         Out(i).Erro_Saida_Final(:,j) = SP(i).F_Mapeado(:,j)- Out(i).F_Saida(:,j);
         
     end
-        ISE_FMINCON(:,i) = (sum((Out(i).Erro_Saida_Final.^2)').*Sim.Ts)'; % ISE (Utilizdo no paper do Murillo)
+    ISE_FMINCON(:,i) = (sum((Out(i).Erro_Saida_Final.^2)').*Sim.Ts)'; % ISE (Utilizdo no paper do Murillo)
 end
 Total_tempo = toc
 %% ----------------------- PLOT ---------------------------------

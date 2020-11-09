@@ -4,9 +4,9 @@ L   = 0.586;
 Fmax = 2.1*9.81*4; % Força maxíma real
 Nmax = L*Fmax;
 
-Ts = 0.01;
-Time = 0:Ts:15;
-N_sim = 10;
+Ts = 0.1;
+Time = 0:Ts:20;
+N_sim = 5;
 
 %% Gera um sinal aleatorio [Fx ;Fy;Tn]
 % IMPORTANTE: O sinal deve estar entre -1 a 1 devido ao mapeamento para
@@ -38,5 +38,5 @@ for j=1:length(SP)
                                  C.*SP(j).F_unitario(3,:)];
 end
 
-save('SetPoints.mat','SP','Time');
+save('SetPoints.mat','SP','Time','Ts');
 

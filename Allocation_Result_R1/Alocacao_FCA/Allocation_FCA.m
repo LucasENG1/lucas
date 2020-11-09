@@ -1,11 +1,11 @@
-function [Th,PWM,Erro,F_out] = Allocation_FCA(F,Th,PWM,i)
-global k1 Lx Ly Pwmmax Pwmmin;
+function [Th,PWM,Erro_final,F_out] = Allocation_FCA(F,Th,PWM,i)
 
+global k1 Lx Ly Pwmmax Pwmmin;
 
 tolerancia = 0.05*norm(F(:,i-1)); % 5% de erro total tolerado
 
 % Inicialização
-iteracao_Maxim = 20; %Numero máximo iterações do FCA
+iteracao_Maxim = 10; %Numero máximo iterações do FCA
 
 Err = 100*norm(F(:,i-1));
 j   = 0;
@@ -24,13 +24,13 @@ PWM4 = PWM(4,i-1);
 if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
     
     while((j <= iteracao_Maxim) && (Err > tolerancia))
-        j = j + 1;
-                
+       
+        j = j + 1;  
         %% ============= Calculo dos Angulos a partir das forças e PWMs anteriores =============
         M1 =  [k1*PWM1      0            k1*PWM2      0            k1*PWM3     0            k1*PWM4       0   ;
-                  0         k1*PWM1      0            k1*PWM2      0           k1*PWM3      0             k1*PWM4;
+            0         k1*PWM1      0            k1*PWM2      0           k1*PWM3      0             k1*PWM4;
             -Ly*k1*PWM1     Lx*k1*PWM1   Ly*k1*PWM2  -Lx*k1*PWM2   Ly*k1*PWM3  Lx*k1*PWM3  -Ly*k1*PWM4   -Lx*k1*PWM4];
-               
+        
         M1_Inv = pinv(M1);  %transpose(M1)/(M1*transpose(M1));%+1e-5*eye(size(M1*transpose(M1))));
         
         F1 = M1_Inv * F(:,i-1);
@@ -40,12 +40,12 @@ if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
         Th3 = atan2(F1(6),F1(5));
         Th4 = atan2(F1(8),F1(7));
         
-%                 [T,P] = DynamicsOfServosAndMotors(i,[Th,[Th1;Th2;Th3;Th4]],[PWM,[PWM1;PWM2;PWM3;PWM4]]);
-%                 Th1 = T(1);
-%                 Th2 = T(2);
-%                 Th3 = T(3);
-%                 Th4 = T(4);
-
+%         [T,P] = DynamicsOfServosAndMotors(i,[Th,[Th1;Th2;Th3;Th4]],[PWM,[PWM1;PWM2;PWM3;PWM4]]);
+%         Th1 = T(1);
+%         Th2 = T(2);
+%         Th3 = T(3);
+%         Th4 = T(4);
+        
         %% ============= PWM calculado a partir da forca e dos angulos anteriores =============
         M2 =[k1*cos(Th1)                        k1*cos(Th2)                       k1*cos(Th3)                       k1*cos(Th4);
             k1*sin(Th1)                         k1*sin(Th2)                       k1*sin(Th3)                       k1*sin(Th4);
@@ -60,28 +60,22 @@ if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
         PWM3 = Pwm(3);
         PWM4 = Pwm(4);
         
-        %         [T,PM] =  DynamicsOfServosAndMotors(i,[Th,[Th1;Th2;Th3;Th4]],[PWM,Pwm]);  % Teste foi feito
-        %         PWM1 = PM(1);
-        %         PWM2 = PM(2);
-        %         PWM3 = PM(3);
-        %         PWM4 = PM(4);
+%         [T,PM] =  DynamicsOfServosAndMotors(i,[Th,[Th1;Th2;Th3;Th4]],[PWM,Pwm]);  % Teste foi feito
+%         PWM1 = PM(1);
+%         PWM2 = PM(2);
+%         PWM3 = PM(3);
+%         PWM4 = PM(4);
         
-        %% ===============================================================================================
-        %         [T,P] = DynamicsOfServosAndMotors(i,[Th,[Th1;Th2;Th3;Th4]],[PWM,[PWM1;PWM2;PWM3;PWM4]]);
-        %         Th1 = T(1);
-        %         Th2 = T(2);
-        %         Th3 = T(3);
-        %         Th4 = T(4);
-        
+%         %% ===============================================================================================        
 %                 [T,PM] = DynamicsOfServosAndMotors(i,[Th,[Th1;Th2;Th3;Th4]],[PWM,[PWM1;PWM2;PWM3;PWM4]]);
 %                 Th1 = T(1);
 %                 Th2 = T(2);
 %                 Th3 = T(3);
 %                 Th4 = T(4);
-%                 PWM1 = PM(1);        
+%                 PWM1 = PM(1);
 %                 PWM2 = PM(2);
 %                 PWM3 = PM(3);
-%                 PWM4 = PM(4);        
+%                 PWM4 = PM(4);
         
         %% Satura
         Th1 = Satura(Th1,pi,-pi);
@@ -97,8 +91,8 @@ if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
         %%
         F_out = Aloc_Direta([Th1;Th2;Th3;Th4],[PWM1;PWM2;PWM3;PWM4]);
         
-        Erro = (F(:,i-1) - F_out);
-        Err  = norm(Erro);
+        Erro(:,j) = abs(F(:,i-1) - F_out);
+        Err  = norm(Erro(:,j));
     end
 else
     F_out = zeros(3,1);
@@ -106,9 +100,37 @@ else
     Theta = zeros(4,1);
     Erro  = zeros(3,1);
 end
+
 j
+% %% Figura
+%         figure
+%         subplot(311);
+%         plot(Erro(1,:),'b'); hold on
+%         legend('Fx FCA') ; title('Erro Final');    grid on
+%         
+%         subplot(312);
+%         plot(Erro(2,:),'b'); hold on
+%         legend('Fy FCA') ; title('Erro Final');    grid on
+%         
+%         subplot(313);
+%         plot(Erro(3,:),'b'); hold on
+%         legend('Tn FCA') ; title('Erro Final');    grid on
+%         
+%         drawnow
+
+
 %%
+Erro_final = Erro(end,j);
+
 PWM = [PWM1;PWM2;PWM3;PWM4];
 Th  = [Th1;Th2;Th3;Th4];
 
 end
+
+
+
+
+
+
+
+
