@@ -2,7 +2,7 @@ function [Th,PWM,Erro_final,F_out] = Allocation_FCA(F,Th,PWM,i)
 
 global k1 Lx Ly Pwmmax Pwmmin;
 
-tolerancia = 0.05*norm(F(:,i-1)); % 5% de erro total tolerado
+tolerancia = 0.01*norm(F(:,i-1)); % 5% de erro total tolerado
 
 % Inicialização
 iteracao_Maxim = 10; %Numero máximo iterações do FCA
@@ -30,10 +30,14 @@ if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
         M1 =  [k1*PWM1      0            k1*PWM2      0            k1*PWM3     0            k1*PWM4       0   ;
             0         k1*PWM1      0            k1*PWM2      0           k1*PWM3      0             k1*PWM4;
             -Ly*k1*PWM1     Lx*k1*PWM1   Ly*k1*PWM2  -Lx*k1*PWM2   Ly*k1*PWM3  Lx*k1*PWM3  -Ly*k1*PWM4   -Lx*k1*PWM4];
+
+%         M1 =  [1    0     1     0    1    0    1    0;
+%                0    1     0     1    0    1    0    1;
+%               -Ly   Lx    Ly   -Lx   Ly   Lx  -Ly  -Lx];
         
         M1_Inv = pinv(M1);  %transpose(M1)/(M1*transpose(M1));%+1e-5*eye(size(M1*transpose(M1))));
         
-        F1 = M1_Inv * F(:,i-1);
+        F1 = M1_Inv * F(:,i);
         
         Th1 = atan2(F1(2),F1(1));
         Th2 = atan2(F1(4),F1(3));
@@ -53,7 +57,7 @@ if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
         
         M2_Inv = pinv(M2); %inv(W)*transpose(M2)/((M2*inv(W)*transpose(M2))+ep); % Eq. 12.276
         
-        Pwm  = M2_Inv * F(:,i-1);
+        Pwm  = M2_Inv * F(:,i);
         
         PWM1 = Pwm(1);
         PWM2 = Pwm(2);
@@ -78,11 +82,11 @@ if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
 %                 PWM4 = PM(4);
         
         %% Satura
-        Th1 = Satura(Th1,pi,-pi);
-        Th2 = Satura(Th2,pi,-pi);
-        Th3 = Satura(Th3,pi,-pi);
-        Th4 = Satura(Th4,pi,-pi);
-        
+%         Th1 = Satura(Th1,pi,-pi);
+%         Th2 = Satura(Th2,pi,-pi);
+%         Th3 = Satura(Th3,pi,-pi);
+%         Th4 = Satura(Th4,pi,-pi);
+%         
         PWM1 = Satura(PWM1,Pwmmax,Pwmmin);
         PWM2 = Satura(PWM2,Pwmmax,Pwmmin);
         PWM3 = Satura(PWM3,Pwmmax,Pwmmin);
@@ -91,7 +95,7 @@ if norm(F(:,i-1))> 0.1 % Verifica se existe alguma força para ser alocada
         %%
         F_out = Aloc_Direta([Th1;Th2;Th3;Th4],[PWM1;PWM2;PWM3;PWM4]);
         
-        Erro(:,j) = abs(F(:,i-1) - F_out);
+        Erro(:,j) = abs(F(:,i) - F_out);
         Err  = norm(Erro(:,j));
     end
 else

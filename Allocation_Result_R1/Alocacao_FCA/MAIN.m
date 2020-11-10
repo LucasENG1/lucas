@@ -59,7 +59,7 @@ for i=1:length(SP)  % O numero de SPs será o número de simulações ( Cada SP poss
         end
         
         % Servor Dynamics
-        [Out(i).Th(:,j),Out(i).PWM(:,j)] = DynamicsOfServosAndMotors(j,Out(i).Th,Out(i).PWM);
+%         [Out(i).Th(:,j),Out(i).PWM(:,j)] = DynamicsOfServosAndMotors(j,Out(i).Th,Out(i).PWM);
         
         % Alocação Direta depois da dinamica dos atuadores
         Out(i).F_Saida(:,j) = Aloc_Direta(Out(i).Th(:,j),Out(i).PWM(:,j));
