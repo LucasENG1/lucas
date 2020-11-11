@@ -2,11 +2,12 @@ close all; clear all; clc;
 
 L   = 0.586;
 Fmax = 2.1*9.81*4; % Força maxíma real
+Fmax = Fmax/5;
 Nmax = L*Fmax;
 
 Ts = 0.1;
 Time = 0:Ts:20;
-N_sim = 5;
+N_sim = 100;
 
 %% Gera um sinal aleatorio [Fx ;Fy;Tn]
 % IMPORTANTE: O sinal deve estar entre -1 a 1 devido ao mapeamento para
