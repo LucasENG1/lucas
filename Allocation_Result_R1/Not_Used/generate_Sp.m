@@ -18,7 +18,7 @@ for i=1:Nsim
     tf2 = ti2 + 2;
     P2 = Polinomio(ti2,tf2,0,Pf,0,0,dt,T_final);
     
-    SP(i,:)=[P1 - P2];
+    SP(i,:) = [P1 - P2];
 end
 SP(SP<0)=0;
 end

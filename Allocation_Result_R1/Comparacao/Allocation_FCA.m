@@ -18,12 +18,12 @@ PWM2 = PWM(2,i-1);
 PWM3 = PWM(3,i-1);
 PWM4 = PWM(4,i-1);
 
-if norm(F(:,i))> 0.1 % Verifica se existe alguma força para ser alocada
+if norm(F(:,i))> 0.001 % Verifica se existe alguma força para ser alocada
     
     while(j <= iteracao_Maxim)
         j = j + 1;
-       
-                %% ============= PWM calculado a partir da forca e dos angulos anteriores =============
+        
+        %% ============= PWM calculado a partir da forca e dos angulos anteriores =============
         M2 =[k1*cos(Th1)                        k1*cos(Th2)                       k1*cos(Th3)                       k1*cos(Th4);
             k1*sin(Th1)                         k1*sin(Th2)                       k1*sin(Th3)                       k1*sin(Th4);
             k1*(-Ly*cos(Th1)+Lx*sin(Th1))       k1*(Ly*cos(Th2)-Lx*sin(Th2))      k1*(Ly*cos(Th3)+Lx*sin(Th3))      k1*(-Ly*cos(Th4)-Lx*sin(Th4))];
@@ -33,18 +33,19 @@ if norm(F(:,i))> 0.1 % Verifica se existe alguma força para ser alocada
         Pwm  = M2_Inv * F(:,i);
         
         for a=1:length(Pwm)
-           if Pwm(a)<0;
-               Pwm(a) = -Pwm(a);
-               switch a
-                   case 1
-                       Th1= Th1+pi;
-               
-                   case 2
-                       Th2= Th2+pi;
-                   case 3
-                       Th3= Th3+pi;
-                   case 4
-                       Th4= Th4+pi;
+            if Pwm(a)<0
+                Pwm(a) = -Pwm(a);
+                switch a
+                    case 1
+                        Th1= Th1+pi;  
+                    case 2
+                        Th2= Th2+pi;
+                    case 3
+                        Th3= Th3+pi;
+                    case 4
+                        Th4= Th4+pi;
+                end
+            end
         end
         
         PWM1 = Pwm(1);
@@ -66,7 +67,7 @@ if norm(F(:,i))> 0.1 % Verifica se existe alguma força para ser alocada
             disp('1 - processo convergido na iteracao '); j
             break;
         end
-         %% ============= Calculo dos Angulos a partir das forças e PWMs anteriores =============
+        %% ============= Calculo dos Angulos a partir das forças e PWMs anteriores =============
         M1 =  [k1*PWM1      0            k1*PWM2      0            k1*PWM3     0            k1*PWM4       0   ;
             0         k1*PWM1      0            k1*PWM2      0           k1*PWM3      0             k1*PWM4;
             -Ly*k1*PWM1     Lx*k1*PWM1   Ly*k1*PWM2  -Lx*k1*PWM2   Ly*k1*PWM3  Lx*k1*PWM3  -Ly*k1*PWM4   -Lx*k1*PWM4];
@@ -92,7 +93,7 @@ if norm(F(:,i))> 0.1 % Verifica se existe alguma força para ser alocada
     end
 else
     F_out = zeros(3,1);
-    PWM   = ones(4,1);
+    PWM   = zeros(4,1);
     Theta = zeros(4,1);
     Erro  = zeros(3,1);
 end

@@ -14,5 +14,4 @@ F = M*Pwm;
 
 y = (CTRL_IN - F)'*(CTRL_IN - F);
 
-
 end

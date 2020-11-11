@@ -9,8 +9,8 @@ L   = 0.586;
 Fmax = 2.1*9.81*4; % Força maxíma real
 Nmax = L*Fmax;
 
-Pwmmax = 1001.0;
-Pwmmin = 1.0;
+Pwmmax = 1000.0;
+Pwmmin = 0.0;
 Lx = L*cos(pi/4.0);
 Ly = L*cos(pi/4.0);
 k1 = (Fmax/4.0)/(Pwmmax-Pwmmin);
