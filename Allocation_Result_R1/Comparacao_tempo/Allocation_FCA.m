@@ -1,12 +1,12 @@
-function [Th,PWM,Erro_final,F_out] = Allocation_FCA(F,Th,PWM,i)
+function [Th,PWM,Erro_final,Erro_int,F_out] = Allocation_FCA(F,Th,PWM,i)
 
 global k1 Lx Ly Pwmmax Pwmmin;
 
 % Inicialização
-iteracao_Maxim = 10; %Numero máximo iterações do FCA
+iteracao_Maxim = 15; %Numero máximo iterações do FCA
 
 j   = 0;
-
+Erro_part1 = [];
 % Variáveis da Alocação Anterior
 Th1 = Th(1,i-1);
 Th2 = Th(2,i-1);
@@ -18,9 +18,9 @@ PWM2 = PWM(2,i-1);
 PWM3 = PWM(3,i-1);
 PWM4 = PWM(4,i-1);
 
-if norm(F(:,i))> 0.001 % Verifica se existe alguma força para ser alocada
+if norm(F(:,i-1))> 0.000001 % Verifica se existe alguma força para ser alocada
     
-    while(j <= iteracao_Maxim)
+    while(j < iteracao_Maxim)
         j = j + 1;
         
         %% ============= PWM calculado a partir da forca e dos angulos anteriores =============
@@ -30,7 +30,7 @@ if norm(F(:,i))> 0.001 % Verifica se existe alguma força para ser alocada
         
         M2_Inv = pinv(M2); %inv(W)*transpose(M2)/((M2*inv(W)*transpose(M2))+ep); % Eq. 12.276
         
-        Pwm  = M2_Inv * F(:,i);
+        Pwm  = M2_Inv * F(:,i-1);
         
         for a=1:length(Pwm)
             if Pwm(a)<0
@@ -61,19 +61,19 @@ if norm(F(:,i))> 0.001 % Verifica se existe alguma força para ser alocada
         %% Erro parcial 1
         F_out_1 = Aloc_Direta([Th1;Th2;Th3;Th4],[PWM1;PWM2;PWM3;PWM4]);
         
-        Erro_part1 =  (F_out_1 - F(:,i))'* (F_out_1 - F(:,i)) ;
+        Erro_part1(end+1) =  sqrt((F_out_1 - F(:,i-1))'* (F_out_1 - F(:,i-1)));
         
-        if (Erro_part1<0.001)
-            disp('1 - processo convergido na iteracao '); j
-            break;
-        end
+%         if (Erro_part1<0.001)
+%             disp('1 - processo convergido na iteracao '); j
+%             break;
+%         end
         %% ============= Calculo dos Angulos a partir das forças e PWMs anteriores =============
         M1 =  [k1*PWM1      0            k1*PWM2      0            k1*PWM3     0            k1*PWM4       0   ;
             0         k1*PWM1      0            k1*PWM2      0           k1*PWM3      0             k1*PWM4;
             -Ly*k1*PWM1     Lx*k1*PWM1   Ly*k1*PWM2  -Lx*k1*PWM2   Ly*k1*PWM3  Lx*k1*PWM3  -Ly*k1*PWM4   -Lx*k1*PWM4];
         
         M1_Inv = pinv(M1);          %transpose(M1)/(M1*transpose(M1));%+1e-5*eye(size(M1*transpose(M1))));
-        F1     = M1_Inv * F(:,i);
+        F1     = M1_Inv * F(:,i-1);
         
         Th1 = atan2(F1(2),F1(1));
         Th2 = atan2(F1(4),F1(3));
@@ -83,12 +83,12 @@ if norm(F(:,i))> 0.001 % Verifica se existe alguma força para ser alocada
         %% Erro parcial 2
         F_out_2 = Aloc_Direta([Th1;Th2;Th3;Th4],[PWM1;PWM2;PWM3;PWM4]);
         
-        Erro_part2 =  (F_out_2 - F(:,i))'* (F_out_2 - F(:,i)) ;
+        Erro_part1(end+1) =  sqrt((F_out_2 - F(:,i-1))'*(F_out_2 - F(:,i-1))) ;
         
-        if (Erro_part2<0.001)
-            disp('2 - processo convergido na iteracao '); j
-            break;
-        end
+%         if (Erro_part2<0.001)
+%             disp('2 - processo convergido na iteracao '); j
+%             break;
+%         end
         
     end
 else
@@ -98,6 +98,8 @@ else
     Erro  = zeros(3,1);
 end
 
+Erro_int.E1 =  Erro_part1;
+Erro_int.j =  j;
 j
 % %% Figura
 %         figure
@@ -117,13 +119,12 @@ j
 %%
 F_out = Aloc_Direta([Th1;Th2;Th3;Th4],[PWM1;PWM2;PWM3;PWM4]);
 
-Erro_final = (F_out - F(:,i));
+Erro_final = (F_out - F(:,i-1));
 
 PWM = [PWM1;PWM2;PWM3;PWM4];
 Th  = [Th1;Th2;Th3;Th4];
 
 end
-
 
 %         [T,P] = DynamicsOfServosAndMotors(i,[Th,[Th1;Th2;Th3;Th4]],[PWM,[PWM1;PWM2;PWM3;PWM4]]);
 %         Th1 = T(1);

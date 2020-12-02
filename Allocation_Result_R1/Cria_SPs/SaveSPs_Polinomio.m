@@ -7,7 +7,7 @@ Nmax = L*Fmax;
 
 Ts = 0.1;
 Time = Ts:Ts:20;
-N_sim = 10;
+N_sim = 100;
 
 %% Gera um sinal aleatorio [Fx; Fy; Tn]
 % IMPORTANTE: O sinal deve estar entre -1 a 1 devido ao mapeamento para
@@ -39,8 +39,8 @@ for j=1:length(SP)
                                  C.*SP(j).F_unitario(3,:)];
 end
 
-plotGeneratedSP(Time,SP,'b',2)
-plotGeneratedSP(Time,SP,'r',3)
+% plotGeneratedSP(Time,SP,'b',2)
+% plotGeneratedSP(Time,SP,'r',3)
 
-save('SetPoints10.mat','SP','Time','Ts');
+save('SetPoints100.mat','SP','Time','Ts');
 

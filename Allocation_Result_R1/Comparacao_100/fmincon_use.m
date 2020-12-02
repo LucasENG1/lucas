@@ -1,4 +1,4 @@
-function [Th,PWM, fval] = fmincon_use (CTRL_IN,Xin,j)
+function [Th,PWM, fval,F,Temp] = fmincon_use (CTRL_IN,Xin,j,opt)
               
 % Maximum PWM Variation
 MaxPWM = 1000.0;
@@ -12,12 +12,10 @@ Aeq = [];
 beq = [];
 nolncol = [];
 
-emax= 1e-3;
-opt = optimoptions('fmincon','Algorithm','interior-point','TolFun', emax, 'MaxIter', 20); % run active-set algorithm
-opt.Display = 'notify';
 % [x,fval,exitflag,output,population,scores]= ga(@(x)dhxxx(x,G(1),G(2),G(3),G(4),G(5)),5,[],[],[],[],lb,ub,[],options);
-[x, fval ,exitflag, output] = fmincon(@(x)fob_function(x,CTRL_IN),x0,A,b,Aeq,beq,lb,ub,nolncol,opt);
-
+tic
+[x, fval] = fmincon(@(x)fob_function(x,CTRL_IN),x0,A,b,Aeq,beq,lb,ub,nolncol,opt);
+Temp = toc;
 % % % [T,PM] = DynamicsOfServosAndMotors(j,[Xin(5:8,:),x(5:8)],[Xin(1:4,:),x(1:4)]);
 % % % 
 % % % Th  = T;
@@ -25,5 +23,7 @@ opt.Display = 'notify';
 
 Th  = x(5:8);
 PWM = x(1:4);
+
+F = Aloc_Direta(Th,PWM);
 
 end

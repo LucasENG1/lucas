@@ -1,6 +1,6 @@
 close all; clear all; clc;
 
-load('../Cria_SPs/SetPoints.mat');
+load('../Cria_SPs/SetPoints10.mat');
 
 global Pwmmax Pwmmin APP k1 k2 k3 k4 Sim Fmax L Lx Ly Nmax ;
 

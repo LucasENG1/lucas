@@ -3,7 +3,7 @@ function Leg = LegendLanguage(language)
 
 switch language
     case 'Portugues'
-        Leg.ISE         = {'FCA','fmincon ','Location','best'};
+        Leg.Algorit         = {'FCA','Conjunto Ativado','Pontos Interiores','Location','best'};
         Leg.Title1       = {'ISE Fx'};
         Leg.Title2       = {'ISE Fy'};
         Leg.Title3       = {'ISE $\tau_{n}$'};
@@ -13,7 +13,7 @@ switch language
         Leg.Ylabel2      = {'Torque (N.m)'};
         
     case 'Ingles'
-        Leg.ISE         = {'FCA','fmincon ','Location','best'};
+        Leg.Algorit      = {'FCA','Active-set','Interior-point','Location','best'};
         Leg.Title1       = {'ISE Fx'};
         Leg.Title2       = {'ISE Fy'};
         Leg.Title3       = {'ISE $\tau_{n}$'};
