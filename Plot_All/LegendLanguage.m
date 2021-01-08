@@ -3,33 +3,38 @@ function Leg = LegendLanguage(language)
 
 switch language
     case 'Portugues'
-        Leg.p3D         = {'Caminho a desenvolver','Caminho desenvolvido','NumColumns',2,'Location','northoutside'};
+        Leg.p3D2        = {'Caminho desejado','Caminho obtido','Location','best'};
+        Leg.p3D         = {'Caminho desejado','Caminho obtido','NumColumns',2,'Location','northoutside'};
         Leg.posicaoX3L  = {'Setpoint em $X$','Simula\c{c}\~{a}o em $X$','Location','best'};
         Leg.posicaoY3L  = {'Setpoint em $Y$','Simula\c{c}\~{a}o em $Y$','Location','best'};
         Leg.posicaoYaw3L= {'Setpoint em $\psi$','Simula\c{c}\~{a}o em $\psi$','Location','best'};
         
-        Leg.VelXY       = {'Velocidade $X$','Velocidade $Y$''Location','best'};
-        Leg.VelYaw      = {'Simula\c{c}\~{a}o em $\psi$','Location','northeast'};
+        Leg.VelXY       = {'Velocidade $X$','Velocidade $Y$','Location','best'};
+        Leg.VelYaw      = {'Velocidade em $\psi$','Location','northeast'};
         
         Leg.VelX3L      = {'Setpoint em $X$','Simula\c{c}\~{a}o em $X$','Location','northeast'};
         Leg.VelY3L      = {'Setpoint em $Y$','Simula\c{c}\~{a}o em $Y$','Location','northeast'};
         Leg.VelYaw3L    = {'Setpoint em $\psi$','Simula\c{c}\~{a}o em $\psi$','Location','northeast'};
         Leg.AlocacaoX   = {'$F_x$ Desejado','$F_x$  Alocado','Location','best'};
         Leg.AlocacaoY   = {'$F_y$ Desejado','$F_y$  Alocado','Location','best'};
-        Leg.AlocacaoPsi = {'$\tau_{\psi}$ Desejado','$\tau_{\psi}$  Alocado','Location','best'};
+        Leg.AlocacaoPsi = {'$\tau_{\psi}$ Desejado','$\tau_{\psi}$ Alocado','Location','best'};
+        
+        Leg.ServoAngle  = {'Servo motor 1','Servo motor 2','Servo motor 3','Servo motor 4','NumColumns',4,'Location','northoutside'}; 
         
         Leg.ServoAngle1  = {'Servo motor 1','Location','northeast'};
         Leg.ServoAngle2  = {'Servo motor 2','Location','northeast'};
         Leg.ServoAngle3  = {'Servo motor 3','Location','northeast'};
         Leg.ServoAngle4  = {'Servo motor 4','Location','northeast'};
-                       
+        
+        Leg.ServoPWM  = {'Motor 1','Motor 2','Motor 3','Motor 4','NumColumns',4,'Location','northoutside'};
+        
         Leg.ServoPWM1  = {'Motor 1','Location','northeast'};
         Leg.ServoPWM2  = {'Motor 2','Location','northeast'};
         Leg.ServoPWM3  = {'Motor 3','Location','northeast'};
         Leg.ServoPWM4  = {'Motor 4','Location','northeast'};
                        
         Leg.YSA     = {'\^ Angulo (Grau)'};
-        Leg.YPWM     = {'PWM (\%)'};
+        Leg.YPWM    = {'PWM (\%)'};
         Leg.X3D     = {'X (m)'};
         Leg.Y3D     = {'Y (m)'};
         Leg.XP3L    = {'Tempo (s)'};
@@ -48,11 +53,11 @@ switch language
         Leg.posicaoYaw3L = {'$\psi$ waypoint','$\psi$ response','Location','best'};
         
         Leg.VelXY        = {'$X$ speed','$Y$ speed','Location','best'};
-        Leg.VelYaw     = {'$\psi$ speed','Location','northeast'};
+        Leg.VelYaw       = {'$\psi$ speed','Location','northeast'};
         
         Leg.VelX3L       = {'$X$ waypoint','Location','best'};
         Leg.VelY3L       = {'$Y$ waypoint','Location','best'};
-        Leg.VelYaw3L     =  {'$\psi$ waypoint','$\psi$ response','Location','best'};
+        Leg.VelYaw3L     = {'$\psi$ waypoint','$\psi$ response','Location','best'};
         Leg.AlocacaoX    = {'$F_x$ desired','$F_x$ allocated','Location','best'};
         Leg.AlocacaoY    = {'$F_y$ desired','$F_y$ allocated','Location','best'};
         Leg.AlocacaoPsi  = {'$\psi$ desired','$\psi$ allocated','Location','best'};
@@ -71,8 +76,8 @@ switch language
         Leg.ServoPWM3  = {'Motor 3','Location','best'};
         Leg.ServoPWM4  = {'Motor 4','Location','best'};
         
-        Leg.YSA     = {'Angle (Degree)'};
-        Leg.YPWM     = {'PWM (\%)'};
+        Leg.YSA    = {'Angle (Degree)'};
+        Leg.YPWM   = {'PWM (\%)'};
         Leg.X3D    = {'X (m)'};
         Leg.Y3D    = {'Y (m)'};
         Leg.XP3L   = {'Time (s)'};

@@ -12,7 +12,7 @@ Salva   = 0;  % 0/1 para salvar ou não as figuras obtidas
 
 % for i = 1:length(Artigo1)
     
-    SetPoint  = Artigo1{1};           % Nome do SP a ser carregado do LOG
+    SetPoint  = Artigo1{4};           % Nome do SP a ser carregado do LOG
     
     [Vel_real,Pose_real,Theta,PWM,F,F_out,Tempo,TempoAloc,TempoVel] = ReadLOG(SetPoint); % Leitura do LOG acontece aqui
     
