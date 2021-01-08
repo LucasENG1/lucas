@@ -15,7 +15,7 @@ switch language
         Leg.VelX3L      = {'Setpoint em $X$','Simula\c{c}\~{a}o em $X$','Location','northeast'};
         Leg.VelY3L      = {'Setpoint em $Y$','Simula\c{c}\~{a}o em $Y$','Location','northeast'};
         Leg.VelYaw3L    = {'Setpoint em $\psi$','Simula\c{c}\~{a}o em $\psi$','Location','northeast'};
-        Leg.AlocacaoX   = {'$F_x$ Desejado','$F_x$  Alocado','Location','best'};
+        Leg.AlocacaoX   = {'$F_x$ Desejada','$F_x$  Alocado','Location','best'};
         Leg.AlocacaoY   = {'$F_y$ Desejado','$F_y$  Alocado','Location','best'};
         Leg.AlocacaoPsi = {'$\tau_{\psi}$ Desejado','$\tau_{\psi}$ Alocado','Location','best'};
         

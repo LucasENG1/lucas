@@ -45,7 +45,7 @@ end
 
 xlabel('Y (m)',Img.YLabelOpt{:});
 ylabel('X (m)',Img.YLabelOpt{:});
-legend(Leg.p3D2{1},Img.Legend{:});
+legend(Leg.p3D2{2},Img.Legend{:});
 
 %% POSIÇÃO EM CADA COMPONENTE
 posi3L=figure(Img.figOpt3L{:});
