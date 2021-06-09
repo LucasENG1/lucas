@@ -1,13 +1,13 @@
 close all; clc; clear all;
 
 Cenario =  {'Cenario1','Cenario2','Cenario3','ComparaFinal3dof','ComparaFinal2dof'};
-Salvar = 1;
+Salvar = 0;
 
 Idioma   = {'Portugues','Ingles'};
 Language = Idioma{1};
 
 Nboats = 10;
-% plota todos os Simulados
+%% plota todos os Simulados
 for i=1:3
     load(strcat('Simulado_LOG/',strcat('Sim_',Cenario{i})));
     
@@ -15,6 +15,7 @@ for i=1:3
 end
 % clear all
 % close all
+%% plota todos os Reais
 for i = 1: length(Cenario)
     load(strcat('Real_LOG/',strcat('Real_',Cenario{i})));
     Language = Idioma{1};

@@ -7,7 +7,7 @@ Plot       = 01;         % 1 - Plot online Figures or      0 - False
 Plot_Step  = 20;         % Step to dynamic plot
 Salvar     = 01;         % 1 - Save Data to Plot Figure or 0 - False
 
-POI_active         = 1;         	% Activate the Point Of Interest
+POI_active         = 0;         	% Activate the Point Of Interest
 LineOfsight_active = 0;
 
 POI = [15,15];
