@@ -3,12 +3,52 @@ function SetPointsCreation(Nome)
 global  SP Sim Time WP;
 
 switch Nome
+    case 'soyaw'
+        Arc = 380;
+        t   = Time;
+        X   = 1e-10-(15*cosd((Arc/t(end))*t-180))+15;
+        Y   = 1e-10-(15*sind((Arc/t(end))*t-180));
+        
+        Yaw = atan2(Y,X);
+        if numel(Yaw) > 1
+            for i = 2:numel(Yaw)
+                diff_yaw = Yaw(i) - Yaw(i-1);
+                if diff_yaw > pi*0.95
+                    Yaw(i:end) = Yaw(i:end) - 1*pi;
+                elseif diff_yaw < -pi*0.95
+                    Yaw(i:end) = Yaw(i:end) + 1*pi;
+                end
+            end
+        end
+        Sim.Current_X_Y_psi = [0;0; Yaw(1)];
+        X = X.*0;
+        Y = Y.*0;
+        plot(Yaw*180/pi);
+        
+        %        Arc = 380;
+        %         t   = Time;
+        %         X   = 1e-10-(15*cosd((Arc/t(end))*t-180))+15;
+        %         Y   = 1e-10-(15*sind((Arc/t(end))*t-180));
+        %
+        %         Yaw = atan2(Y,X);
+        %         Sim.Current_X_Y_psi = [X(1); Y(1); -pi/2];
+        %         X = X.*0;
+        %         Y = Y.*0;
+        %         plot(Yaw*180/pi);
     case 'Cenario1'
         % Linear
         t = 0:1:360;
         X   = 1e-10+(140*ones(size(t)));
         Y   = 1e-10-(140*zeros(size(t)));
         Yaw = 0*atan(Y./X);
+        
+    case 'NegLin'
+        % Linear
+        t = 0:1:360;
+        X   = -1e-10-(50*ones(size(t)));
+        Y   = 1e-10-(140*zeros(size(t)));
+        Yaw = 0*atan(Y./X);
+        Sim.Current_X_Y_psi = [0;0; Yaw(1)];
         
     case 'Cenario2'
         % Circular
@@ -19,8 +59,8 @@ switch Nome
         Y   = 1e-10-(15*sind((Arc/t(end))*t));
         Yaw = atan2(Y,X);
         Sim.Current_X_Y_psi = [X(1); Y(1); -pi/2];
-
-    case 'Cena rio3'
+        
+    case 'Cenario13'
         % SquareROI
         load('SP.mat');
         t = length(Time);
@@ -36,27 +76,27 @@ switch Nome
         
     case 'Cenario3'
         % SquareROI
-%         Y   = [30 25 20 15 10 5 0 0  0  0  0  0  0  5 10 15 20 25 30 30 30 30 30 30];
-%         X   = [0   0 0   0  0 0 0 5 10 15 20 25 30 30 30 30 30 30 30 25 20 15 10  0];
+        %         Y   = [30 25 20 15 10 5 0 0  0  0  0  0  0  5 10 15 20 25 30 30 30 30 30 30];
+        %         X   = [0   0 0   0  0 0 0 5 10 15 20 25 30 30 30 30 30 30 30 25 20 15 10  0];
         df = 0.16;
         Y   = [[30:-df:0]                  zeros(1,length([30:-df:0])) [0:df:30]                      30*ones(1,length([30:-df:0])) 30*ones(1,length([30:-df:0]))];
         X   = [zeros(1,length([30:-df:0])) [0:df:30]                   30*ones(1,length([30:-df:0]))  [30:-df:0]                      zeros(1,length([30:-df:0]))+1e-5 ];
-      
-%         load('SP.mat');
-%         Yaw = Pose_real(3,1:3:end);
-%         clear Pose_real;
+        
+        %         load('SP.mat');
+        %         Yaw = Pose_real(3,1:3:end);
+        %         clear Pose_real;
         Yaw = atan2(Y,X);
-            
-% Yaw = Yaw(131:1:end-100)+pi;
+        
+        % Yaw = Yaw(131:1:end-100)+pi;
         
         Sim.Current_X_Y_psi = [X(1); Y(1); -pi/4];
         
-%         clear Pose_real;
+        %         clear Pose_real;
         
     otherwise
         X = 0;
         Y = 0;
-        Yaw = 0;  
+        Yaw = 0;
 end
 WP = 1;
 SP.XYZ = [X;Y;Yaw];
@@ -68,7 +108,7 @@ SP.XYZ = [X;Y;Yaw];
 % plot(Y)
 % subplot(313)
 % plot(Yaw)
-% 
+%
 % figure
 % plot(X,Y)
 

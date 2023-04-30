@@ -19,7 +19,7 @@ xg  = -0.05;
 Iz  = 2.9824;
 L   = 0.586;
 
-Fmax = 2.1*9.81*4; % Força maxíma real
+Fmax = 2.1*9.81*4/10; % Força maxíma real
 Nmax = L*Fmax;
 
 Pwmmax = 1001.0;

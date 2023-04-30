@@ -3,6 +3,7 @@ function Leg = LegendLanguage(language)
 
 switch language
     case 'Portugues'
+        Leg.p3D2         = {'caminho a desenvolver','Caminho desenvolvido'};
         Leg.p3D         = {'Caminho a desenvolver','Caminho desenvolvido','NumColumns',2,'Location','northoutside'};
         Leg.posicaoX3L  = {'Setpoint em $X$','Simula\c{c}\~{a}o em $X$','Location','best'};
         Leg.posicaoY3L  = {'Setpoint em $Y$','Simula\c{c}\~{a}o em $Y$','Location','best'};
@@ -27,6 +28,8 @@ switch language
         Leg.ServoPWM2  = {'Motor 2','Location','northeast'};
         Leg.ServoPWM3  = {'Motor 3','Location','northeast'};
         Leg.ServoPWM4  = {'Motor 4','Location','northeast'};
+        Leg.ServoPWM5  = {'Motor 5','Location','northeast'};
+        Leg.ServoPWM6  = {'Motor 6','Location','northeast'};
                        
         Leg.YSA     = {'\^ Angulo (Grau)'};
         Leg.YPWM     = {'PWM (\%)'};
@@ -70,6 +73,8 @@ switch language
         Leg.ServoPWM2  = {'Motor 2','Location','best'};
         Leg.ServoPWM3  = {'Motor 3','Location','best'};
         Leg.ServoPWM4  = {'Motor 4','Location','best'};
+        Leg.ServoPWM5  = {'Motor 5','Location','best'};
+        Leg.ServoPWM6  = {'Motor 6','Location','best'};
         
         Leg.YSA     = {'Angle (Degree)'};
         Leg.YPWM     = {'PWM (\%)'};

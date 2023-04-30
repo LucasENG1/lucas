@@ -22,13 +22,13 @@ Sim.NetForces = D_V + Coriolis + g_n; % parte da equação 3.69 (segundo parentesi
 % Sim.F(:,j) = Mapeando(Sim.F(:,j));
 
 % Totals the net forces and moments
-[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = Allocation_Fossen(Sim.F(:,j),Sim.Theta(:,j),Sim.PWM(:,j));
+[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = Allocation_FossenSAE(Sim.F(:,j),Sim.Theta(:,j),Sim.PWM(:,j));
 
 % Servor Dynamics
-[Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = DynamicsOfServosAndMotors((j+1),Sim.Theta,Sim.PWM);
+% [Sim.Theta(:,j+1),Sim.PWM(:,j+1)] = DynamicsOfServosAndMotors((j+1),Sim.Theta,Sim.PWM);
 
 % Alocação direta
-Sim.F_out(:,j) = Aloc_Direta(Sim.Theta(:,j+1),Sim.PWM(:,j+1));
+Sim.F_out(:,j) = Aloc_DiretaSAE(Sim.Theta(:,j+1),Sim.PWM(:,j+1));
 
 
 Torque = Sim.F_out(:,j);%Sim.F(:,j);

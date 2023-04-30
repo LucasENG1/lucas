@@ -22,7 +22,7 @@ kPY = calc_P_Gain(Py_umax,Py_umin,Py_Emax,Py_Emin);
 %% Posição de guinada
 Psi_umax = Sat.MaxVelAng; % radianos
 Psi_umin = 0;
-Psi_Emax = pi/4; % radianos
+Psi_Emax = pi ; % radianos
 Psi_Emin = 0;    % raio admitido
 
 kPYaw = calc_P_Gain(Psi_umax,Psi_umin,Psi_Emax,Psi_Emin);

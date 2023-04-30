@@ -185,33 +185,46 @@ xlim([0 TimeJ(end)]);
 % plot(TimeJ,Sim.T (4,1:end),'linewidth',2')
 
 %% ============================================================= Servo PWM
-servoPwm = figure(Img.figOpt1L{:});
-% axPa1 = subplot(411);
-
+servoPwm = figure(Img.figOpt3L{:});
+axPa1 = subplot(611);
 plot(TimeJ,Sim.PWM(1,1:end-1),'b','linewidth',2');hold on; grid on;
-% legend(Leg.ServoPWM1{:},Img.Legend{:});
+legend(Leg.ServoPWM1{:},Img.Legend{:});
 % xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa2 = subplot(412);
+axPa2 = subplot(612);
 plot(TimeJ,Sim.PWM(2,1:end-1),'r','linewidth',2');hold on; grid on;
-% legend(Leg.ServoPWM2{:},Img.Legend{:});
+legend(Leg.ServoPWM2{:},Img.Legend{:});
 % xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa3 = subplot(413);
+axPa3 = subplot(613);
 plot(TimeJ,Sim.PWM(3,1:end-1),'g','linewidth',2');hold on; grid on;
-% legend(Leg.ServoPWM3{:},Img.Legend{:});
+legend(Leg.ServoPWM3{:},Img.Legend{:});
 % xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
-% ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% axPa4 = subplot(414);
+axPa4 = subplot(614);
 plot(TimeJ,Sim.PWM(4,1:end-1),'m','linewidth',2');hold on; grid on;
-legend(Leg.ServoPWM{:},Img.Legend{:});
+legend(Leg.ServoPWM4{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+
+axPa5 = subplot(615);
+plot(TimeJ,Sim.PWM(5,1:end-1),'k','linewidth',2');hold on; grid on;
+legend(Leg.ServoPWM5{:},Img.Legend{:});
+% xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
+ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
+
+axPa6 = subplot(616);
+plot(TimeJ,Sim.PWM(6,1:end-1),'c','linewidth',2');hold on; grid on;
+legend(Leg.ServoPWM6{:},Img.Legend{:});
 xlabel(Leg.XP3L{:},Img.XLabelOpt{:});
 ylabel(Leg.YPWM{:},Img.YLabelOpt{:});
 
-% linkaxes([axPa1 axPa2 axPa3 axPa4],'xy')
+
+linkaxes([axPa1 axPa2 axPa3 axPa4 axPa5 axPa6],'xy')
 
 xlim([0 TimeJ(end)]);
 ylim([ 0 1]);

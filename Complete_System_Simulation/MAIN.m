@@ -5,15 +5,15 @@ global Sim Sim_Plot Time ROV Torque SLC SP WP  TimeJ RAD_TO_DEG;
 % Plot Configuration
 Plot       = 01;         % 1 - Plot online Figures or      0 - False
 Plot_Step  = 20;         % Step to dynamic plot
-Salvar     = 01;         % 1 - Save Data to Plot Figure or 0 - False
+Salvar     = 0;         % 1 - Save Data to Plot Figure or 0 - False
 
 POI_active         = 0;         	% Activate the Point Of Interest
 LineOfsight_active = 0;
 
 POI = [15,15];
 
-Artigo1  = {'Cenario1','Cenario2','Cenario3'}; % Possible scenarios name
-SetPoint = Artigo1{3};
+Artigo1  = {'NegLin','soyaw','Cenario1','Cenario2','Cenario3'}; % Possible scenarios name
+SetPoint = Artigo1{1};
 
 %% Initialisation
 Initialisation(SetPoint);       % Time and some variables

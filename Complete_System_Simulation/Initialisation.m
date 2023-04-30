@@ -45,7 +45,7 @@ X_Y_psi             = [];
 u_v_w               = [];
 
 F   = zeros(3,1);
-PWM = ones(4,1);
+PWM = ones(6,1);
 Th  = zeros(4,1);
 
 u_v_r_dot = zeros(3,1);

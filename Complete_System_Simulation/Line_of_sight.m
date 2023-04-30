@@ -7,10 +7,10 @@ global  Sim  SP Time SLC WP Sat;
 XY = NED2BF(Sim.Current_X_Y_psi(3),[SP.XYZ(1:2,WP);0]-[Sim.Current_X_Y_psi(1:2);0]);
 N  = atan2(XY(2),XY(1)); % Angulo entre V e o ponto desejado
 
-Sim.Vel(1,stp) = 2.5*norm(Sim.Vel(1:2,stp));%norm(NED2BF(Sim.Current_X_Y_psi(3),[Sim.Vel(1:2,stp);0]));
+Sim.Vel(1,stp) = 1.5*norm(Sim.Vel(1:2,stp));%norm(NED2BF(Sim.Current_X_Y_psi(3),[Sim.Vel(1:2,stp);0]));
 % Sim.Vel(1,stp) = norm(XY);
 Sim.Vel(2,stp) = 0;
-Sim.Vel(3,stp) = N;
+Sim.Vel(3,stp) = 0.5*N;
 
 if(stp>=length(Time))
     stp = length(Time)-1;
